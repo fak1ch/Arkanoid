@@ -5,22 +5,36 @@ using UnityEngine;
 public class WallsLimiters : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D[] _wallVerticalColliders;
-    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private BoxCollider2D[] _wallHorizontalColliders;
+    [SerializeField] private Canvas _canvas;
 
     private void Start()
     {
         ResizeVerticalWallColliders();
+        ResizeHorizontalWallColliders();
     }
 
     private void ResizeVerticalWallColliders()
     {
-        int cameraHeight = _mainCamera.pixelHeight;
+        float height = Screen.height / _canvas.scaleFactor;
 
         for (int i = 0; i < _wallVerticalColliders.Length; i++)
         {
             Vector2 newSize = _wallVerticalColliders[i].size;
-            newSize.y = cameraHeight;
+            newSize.y = height;
             _wallVerticalColliders[i].size = newSize;
+        }
+    }
+
+    private void ResizeHorizontalWallColliders()
+    {
+        float width = Screen.width / _canvas.scaleFactor;
+
+        for (int i = 0; i < _wallHorizontalColliders.Length; i++)
+        {
+            Vector2 newSize = _wallHorizontalColliders[i].size;
+            newSize.x = width;
+            _wallHorizontalColliders[i].size = newSize;
         }
     }
 }
