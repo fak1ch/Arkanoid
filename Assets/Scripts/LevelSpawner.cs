@@ -10,7 +10,7 @@ public class LevelSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _blockPrefab;
     [SerializeField] private GridLayoutGroup _blockContainer;
-    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private Canvas _canvas;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class LevelSpawner : MonoBehaviour
 
     private Vector2 CalculateCellSize()
     {
-        float newBlockWidth = _mainCamera.pixelWidth;
+        float newBlockWidth = Screen.width / _canvas.scaleFactor;
         newBlockWidth -= _blockContainer.padding.left + _blockContainer.padding.right;
         newBlockWidth -= _blockContainer.spacing.x * (_blocksCountRow - 1);
         newBlockWidth = newBlockWidth / _blocksCountRow;

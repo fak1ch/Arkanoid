@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 768, y: 1366}
@@ -614,7 +614,10 @@ MonoBehaviour:
   _wallVerticalColliders:
   - {fileID: 318189982}
   - {fileID: 118923896}
-  _mainCamera: {fileID: 519420031}
+  _wallHorizontalColliders:
+  - {fileID: 1874831953}
+  - {fileID: 317404762}
+  _canvas: {fileID: 635465241}
 --- !u!1 &839585648
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +741,7 @@ MonoBehaviour:
   _blocksCountColumn: 3
   _blockPrefab: {fileID: 8620432768031376329, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
   _blockContainer: {fileID: 898227705}
-  _mainCamera: {fileID: 519420031}
+  _canvas: {fileID: 635465241}
 --- !u!4 &948997581
 Transform:
   m_ObjectHideFlags: 0
