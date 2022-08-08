@@ -179,7 +179,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!61 &118923896
 BoxCollider2D:
@@ -263,7 +263,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!61 &317404762
 BoxCollider2D:
@@ -373,7 +373,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!1 &519420028
 GameObject:
@@ -571,6 +571,7 @@ GameObject:
   - component: {fileID: 700346352}
   - component: {fileID: 700346353}
   - component: {fileID: 700346354}
+  - component: {fileID: 700346355}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -678,8 +679,20 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 84400ab7cce14c74e80d0bbada1c65d0, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &700346355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700346350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5f6eedc93d039418575793ac0d5c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &706938637
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +937,7 @@ GameObject:
   - component: {fileID: 1608241258}
   - component: {fileID: 1608241259}
   - component: {fileID: 1608241255}
+  - component: {fileID: 1608241254}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -931,6 +945,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1608241254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608241253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3121b67f7c005b44a3e64c2262f3062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1608241255
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1173,7 +1199,7 @@ MonoBehaviour:
       scaleFactor: {x: 1, y: 0}
     canvas: {fileID: 635465241}
   _levelSpawnerSettings:
-    blockPrefab: {fileID: 8620432768031376329, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
+    blockPrefab: {fileID: 2530908874892444128, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
     blockContainer: {fileID: 898227705}
     levelData:
       BlocksCountRow: 5
@@ -1193,8 +1219,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movableSettings:
-    speed: 1
+    startSpeed: 1
+    maxSpeed: 2
+    startDirection: {x: 1, y: 0}
+    correctionValues: {x: 0.025, y: 0.025}
+    plusMinusAngle: 1
+    correctionAngles: 00000000b40000005a000000a6ffffff
     rigidbody2D: {fileID: 700346354}
+    collisionExit: {fileID: 700346355}
 --- !u!1 &1874831950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1283,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!61 &1874831953
 BoxCollider2D:
