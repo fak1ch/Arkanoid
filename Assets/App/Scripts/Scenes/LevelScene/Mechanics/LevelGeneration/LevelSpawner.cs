@@ -1,4 +1,5 @@
 using Architecture;
+using Blocks;
 using ParcerJson;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace LevelGeneration
         private LevelSpawnerData _settings;
 
         private JsonParcer<LevelData> _jsonParcer;
-        private List<GameObject> _blocks = new List<GameObject>();
+        private List<Block> _blocks = new List<Block>();
 
         public LevelSpawner(LevelSpawnerData settings)
         {
@@ -46,13 +47,15 @@ namespace LevelGeneration
 
         private void CreateBlocks()
         {
-            _settings.blockContainer.cellSize = CalculateCellSize();
+            var newCellSize = CalculateCellSize();
+            _settings.blockContainer.cellSize = newCellSize;
 
             DeleteAllBlocks();
 
             for (int i = 0; i < _settings.levelData.BlocksCountRow * _settings.levelData.BlocksCountColumn; i++)
             {
                 var block = _settings.manipulator.Instantiate(_settings.blockPrefab, _settings.blockContainer.transform);
+                block.SetBoxColliderSize(newCellSize);
                 _blocks.Add(block);
             }
         }
