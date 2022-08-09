@@ -3,22 +3,18 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 
-namespace ParcerJson
+namespace ParserJson
 {
-    public class JsonParcer<T>
+    public class JsonParser<T>
     {
         private string _savePath;
         private string _fileName = "LevelData.json";
 
         private T _data = default(T);
 
-        public JsonParcer()
+        public JsonParser()
         {
-            #if UNITY_ANDROID && !UNITY_EDITOR
-                _savePath = Path.Combine(Application.persistentDataPath, _fileName);
-            #else
-                _savePath = Path.Combine(Application.dataPath, _fileName);
-            #endif
+            _savePath = Path.Combine(Application.persistentDataPath, _fileName);
         }
 
         public void SaveLevelDataToFile(T dataClass)
@@ -32,7 +28,7 @@ namespace ParcerJson
             }
             catch (Exception e)
             {
-                Debug.LogError("JsonParcer + " + e.Message);
+                Debug.LogError("JsonParser + " + e.Message);
             }
         }
 
@@ -51,7 +47,7 @@ namespace ParcerJson
             }
             catch (Exception e)
             {
-                Debug.LogError("JsonParcer loadFromFile: error" + e.Message);
+                Debug.LogError("JsonParser loadFromFile: error" + e.Message);
             }
 
             return _data;

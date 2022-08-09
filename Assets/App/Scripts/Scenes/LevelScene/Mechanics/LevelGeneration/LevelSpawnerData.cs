@@ -12,6 +12,5 @@ namespace LevelGeneration
         public GridLayoutGroup blockContainer;
         public LevelData levelData;
         public Canvas canvas;
-        public GameObjectManipulator manipulator;
     }
 }
