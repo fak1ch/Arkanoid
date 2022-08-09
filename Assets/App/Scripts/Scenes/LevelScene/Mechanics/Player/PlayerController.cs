@@ -2,11 +2,12 @@ using Architecture;
 using InputSystems;
 using UnityEngine;
 using System;
+using Ball;
 
 namespace Player
 {
     [Serializable]
-    public class PlayerSettings
+    public class PlayerControllerInfo
     {
         public float speed;
         public Rigidbody2D rigidbody2D;
@@ -14,23 +15,20 @@ namespace Player
 
     public class PlayerController : CustomBehaviour
     {
-        private PlayerSettings _settings;
+        private PlayerControllerInfo _playerControllerInfo;
         private InputSystem _inputSystem;
 
-        public PlayerController(PlayerSettings playerSettings, InputSystem inputSystem)
+        public PlayerController(PlayerControllerInfo playerSettings, InputSystem inputSystem)
         {
-            _settings = playerSettings;
+            _playerControllerInfo = playerSettings;
             _inputSystem = inputSystem;
         }
 
         public override void FixedTick()
         {
-            if (_inputSystem.InputHorizontal != 0)
-            {
-                Vector2 newPosition = _settings.rigidbody2D.position;
-                newPosition.x += _inputSystem.InputHorizontal * Time.fixedDeltaTime * _settings.speed;
-                _settings.rigidbody2D.MovePosition(newPosition);
-            }
+            Vector2 newVelocity = _playerControllerInfo.rigidbody2D.velocity;
+            newVelocity.x = _inputSystem.InputHorizontal * Time.fixedDeltaTime * _playerControllerInfo.speed;
+            _playerControllerInfo.rigidbody2D.velocity = newVelocity;
         }
     }
 }

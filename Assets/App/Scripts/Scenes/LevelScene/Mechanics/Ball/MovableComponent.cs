@@ -1,5 +1,4 @@
 ﻿using Architecture;
-using ColliderEvents;
 using Player;
 using System;
 using UnityEngine;
@@ -8,10 +7,9 @@ using Random = UnityEngine.Random;
 namespace Ball
 {
     [Serializable]
-    public class MovableSettings
+    public class MovableInfo
     {
-        public float startSpeed;
-        public float maxSpeed;
+        public float speed;
         public Vector2 startDirection;
         public Vector2 correctionValues;
         public float plusMinusAngle;
@@ -19,30 +17,50 @@ namespace Ball
 
         [Space(10)]
         public Rigidbody2D rigidbody2D;
-        public CollisionExit2DEvent collisionExit;
     }
 
-    public class MovableComponent : CustomBehaviour
+    public class MovableComponent : MonoBehaviour
     {
-        private MovableSettings _settings;
+        [SerializeField] private MovableInfo _movableInfo;
 
-        public MovableComponent(MovableSettings settings)
+        private Vector2 _velocity;
+
+        public Rigidbody2D Rigidbody2D => _movableInfo.rigidbody2D;
+
+        public float Speed
         {
-            _settings = settings;
+            get { return _movableInfo.speed; }
+            set
+            {
+                if (value >= 0)
+                    _movableInfo.speed = value;
+            }
         }
 
-        public override void Initialize()
+        private void FixedUpdate()
         {
-            _settings.rigidbody2D.velocity = _settings.startDirection;
-            _settings.collisionExit.CollisionExit2D += CollisionExit2D;
+            NormalizeVelocity();
         }
 
-        public override void Tick()
+        public void PrepareToLaunch()
         {
-            NormalizeVelocity(_settings.rigidbody2D.velocity.normalized);
+            _movableInfo.rigidbody2D.isKinematic = true;
         }
 
-        public override void CollisionExit2D(Collision2D collision)
+        public void LaunchThisObject(Vector2 direction)
+        {
+            transform.parent = null;
+            _movableInfo.rigidbody2D.isKinematic = false;
+            _movableInfo.startDirection = ClampVector2(direction + _movableInfo.startDirection);
+            _movableInfo.rigidbody2D.velocity = _movableInfo.startDirection;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            _movableInfo.rigidbody2D.velocity = Vector2.Reflect(_velocity, collision.contacts[0].normal);
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.gameObject.TryGetComponent(out PlayerPlatform playerPlatform) == false)
             {
@@ -52,23 +70,34 @@ namespace Ball
 
         private void CorrectAngle()
         {
-            float angle = Mathf.Atan2(_settings.rigidbody2D.velocity.y, _settings.rigidbody2D.velocity.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(_movableInfo.rigidbody2D.velocity.y, _movableInfo.rigidbody2D.velocity.x) * Mathf.Rad2Deg;
 
             int randomMultiplier = Random.Range(0, 2) == 0 ? 1 : -1;
 
-            for(int i = 0; i < _settings.correctionAngles.Length; i++)
+            for (int i = 0; i < _movableInfo.correctionAngles.Length; i++)
             {
-                if (angle > _settings.correctionAngles[i] - _settings.plusMinusAngle 
-                    && angle < _settings.correctionAngles[i] + _settings.plusMinusAngle)
+                if (angle > _movableInfo.correctionAngles[i] - _movableInfo.plusMinusAngle
+                    && angle < _movableInfo.correctionAngles[i] + _movableInfo.plusMinusAngle)
                 {
-                    _settings.rigidbody2D.velocity += _settings.correctionValues * randomMultiplier;
+                    _movableInfo.rigidbody2D.velocity += _movableInfo.correctionValues * randomMultiplier;
                 }
             }
         }
 
-        private void NormalizeVelocity(Vector2 direction)
+        private void NormalizeVelocity()
         {
-            _settings.rigidbody2D.velocity = direction.normalized * Mathf.Lerp(_settings.startSpeed, _settings.maxSpeed, 1);
+            _movableInfo.rigidbody2D.velocity = _movableInfo.rigidbody2D.velocity.normalized * _movableInfo.speed;
+            _velocity = _movableInfo.rigidbody2D.velocity;
+        }
+
+        private Vector2 ClampVector2(Vector2 vector)
+        {
+            float max = Mathf.Max(vector.x, vector.y);
+
+            vector.x /= max;
+            vector.y /= max;
+
+            return vector;
         }
     }
 }

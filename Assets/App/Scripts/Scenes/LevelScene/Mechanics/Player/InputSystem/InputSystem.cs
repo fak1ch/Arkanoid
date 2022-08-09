@@ -5,7 +5,7 @@ using UnityEngine;
 namespace InputSystems
 {
     [Serializable]
-    public class InputSystemSettings
+    public class InputSystemInfo
     {
         public float lerpSpeed = 0.1f;
         public float maxInputValue = 1;
@@ -17,14 +17,14 @@ namespace InputSystems
 
     public class InputSystem : CustomBehaviour
     {
-        private InputSystemSettings _settings;
+        private InputSystemInfo _inputSystemInfo;
 
         private bool _gameOnPause = true;
         public float InputHorizontal { get; private set; } = 0;
 
-        public InputSystem(InputSystemSettings settings)
+        public InputSystem(InputSystemInfo settings)
         {
-            _settings = settings;
+            _inputSystemInfo = settings;
         }
 
         public override void Initialize()
@@ -44,8 +44,8 @@ namespace InputSystems
         {
             if (Input.GetMouseButton(0))
             {
-                float neededX = _settings.mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
-                MoveTargetToPosition(_settings.target.position.x, neededX);
+                float neededX = _inputSystemInfo.mainCamera.ScreenToWorldPoint(Input.mousePosition).x;
+                MoveTargetToPosition(_inputSystemInfo.target.position.x, neededX);
             }
             else
             {
@@ -62,8 +62,8 @@ namespace InputSystems
 
         private float GetSmoothInputValue(float start, float end)
         {
-            float resultValue = Mathf.Lerp(start, end, _settings.lerpSpeed * Time.deltaTime);
-            float clampValue = Mathf.Clamp(resultValue, _settings.minInputValue, _settings.maxInputValue);
+            float resultValue = Mathf.Lerp(start, end, _inputSystemInfo.lerpSpeed * Time.deltaTime);
+            float clampValue = Mathf.Clamp(resultValue, _inputSystemInfo.minInputValue, _inputSystemInfo.maxInputValue);
 
             if (Mathf.Approximately(clampValue, 0))
                 return 0;

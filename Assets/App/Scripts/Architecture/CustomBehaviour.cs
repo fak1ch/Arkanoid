@@ -14,11 +14,6 @@ namespace Architecture
         public virtual void Tick() { }
         public virtual void FixedTick() { }
 
-        public virtual void CollisionEnter2D(Collision2D collision) { }
-        public virtual void CollisionExit2D(Collision2D collision) { }
-        public virtual void TriggerEnter2D(Collider2D collider) { }
-        public virtual void TriggerExit2D(Collider2D collider) { }
-
         public virtual void Dispose() { }
     }
 }
