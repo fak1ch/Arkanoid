@@ -1,4 +1,4 @@
-﻿using Ball;
+﻿using BallSpace;
 using System;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Player
         public void PrepareBallToLaunch(MovableComponent ball)
         {
             if (_currentPinnedBall != null)
-                LaunchBall();
+                LaunchBall();  
 
             _currentPinnedBall = ball;
             _currentPinnedBall.Rigidbody2D.velocity = new Vector2(0, 0);

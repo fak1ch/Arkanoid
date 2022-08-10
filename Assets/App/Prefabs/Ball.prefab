@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6478197079195923082}
   - component: {fileID: 6478197079195923081}
   - component: {fileID: 6478197079195923080}
+  - component: {fileID: 3243529458571504020}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MonoBehaviour:
     plusMinusAngle: 1
     correctionAngles: 00000000b40000005a000000a6ffffff
     rigidbody2D: {fileID: 6478197079195923081}
+--- !u!114 &3243529458571504020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478197079195923093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b7c372cfe02de4fb4bc591a9b71c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
