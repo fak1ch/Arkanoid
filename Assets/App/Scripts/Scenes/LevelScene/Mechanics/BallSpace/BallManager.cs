@@ -21,29 +21,7 @@ namespace BallSpace
         {
             _pool.Initialize();
             SetSpeedToAllBalls(_data.startBallSpeed);
-        }
-
-        public override void Tick()
-        {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                PlaceNewBallToPlayerPlatform();
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SpawnBallAtPositionWithDirection(new Vector2(0, 0), new Vector2(1, 1));
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                DoJumpSpeedForAllBalls();
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                ReturnAllBallsToPool();
-            }
+            PlaceNewBallToPlayerPlatform();
         }
 
         public void PlaceNewBallToPlayerPlatform()
@@ -85,7 +63,7 @@ namespace BallSpace
             }
         }
 
-        private void ReturnAllBallsToPool()
+        public void ReturnAllBallsToPool()
         {
             var balls = _pool.GetAllElementsFromPool();
             for (int i = 0; i < balls.Count; i++)
