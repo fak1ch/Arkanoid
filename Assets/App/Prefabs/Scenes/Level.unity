@@ -1005,8 +1005,8 @@ MonoBehaviour:
     blockPrefab: {fileID: 2530908874892444128, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
     blockContainer: {fileID: 898227705}
     levelData:
-      BlocksCountRow: 5
-      BlocksCountColumn: 5
+      BlocksCountRow: 3
+      BlocksCountColumn: 3
     canvas: {fileID: 635465241}
   _ballManagerData:
     poolData:

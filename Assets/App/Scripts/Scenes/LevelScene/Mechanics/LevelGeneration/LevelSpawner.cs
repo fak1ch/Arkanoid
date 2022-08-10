@@ -3,6 +3,7 @@ using Blocks;
 using ParserJson;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace LevelGeneration 
 {
@@ -11,22 +12,31 @@ namespace LevelGeneration
         private LevelSpawnerData _levelSpawnerData;
 
         private JsonParser<LevelData> _jsonParcer;
-        private List<Block> _blocks = new List<Block>();
+        private List<List<Block>> _blocks;
 
         public LevelSpawner(LevelSpawnerData settings)
         {
             _levelSpawnerData = settings;
+            _blocks = new List<List<Block>>(_levelSpawnerData.levelData.BlocksCountColumn);
         }
 
         public override void Initialize()
         {
             _jsonParcer = new JsonParser<LevelData>();
-            LoadLevelDataFromJson();
+
+            LoadLevelDataFromJson(StaticLevelPath.LevelPath);
         }
 
         public void BlockDestroy(Block block)
         {
-            _blocks.Remove(block);
+            for(int i = 0; i < _blocks.Count; i++)
+            {
+                if (_blocks[i].Contains(block))
+                {
+                    _blocks[i].Remove(block);
+                }
+            }
+
             block.OnBlockDestroy -= BlockDestroy;
             block.transform.localScale = new Vector3(0, 0, 0);
         }
@@ -58,12 +68,16 @@ namespace LevelGeneration
 
             DeleteAllBlocks();
 
-            for (int i = 0; i < _levelSpawnerData.levelData.BlocksCountRow * _levelSpawnerData.levelData.BlocksCountColumn; i++)
+            for (int i = 0; i < _levelSpawnerData.levelData.BlocksCountRow; i++)
             {
-                var block = Object.Instantiate(_levelSpawnerData.blockPrefab, _levelSpawnerData.blockContainer.transform);
-                block.SetBoxColliderSize(newCellSize);
-                _blocks.Add(block);
-                block.OnBlockDestroy += BlockDestroy;
+                _blocks.Add(new List<Block>(_levelSpawnerData.levelData.BlocksCountRow));
+                for(int k = 0; k < _levelSpawnerData.levelData.BlocksCountColumn; k++)
+                {
+                    var block = Object.Instantiate(_levelSpawnerData.blockPrefab, _levelSpawnerData.blockContainer.transform);
+                    block.SetBoxColliderSize(newCellSize);
+                    _blocks[i].Add(block);
+                    block.OnBlockDestroy += BlockDestroy;
+                }
             }
         }
 
@@ -73,21 +87,20 @@ namespace LevelGeneration
             {
                 for (int i = 0; i < _blocks.Count; i++)
                 {
-                    Object.Destroy(_blocks[i]);
+                    for(int k = 0; k < _blocks[i].Count; k++)
+                    {
+                        BlockDestroy(_blocks[i][k]);
+                        Object.Destroy(_blocks[i][k].gameObject);
+                    }
                 }
             }
 
             _blocks.Clear();
         }
 
-        public void SaveCurrentLevelDataToJson()
+        public void LoadLevelDataFromJson(string levelDataPath)
         {
-            _jsonParcer.SaveLevelDataToFile(_levelSpawnerData.levelData);
-        }
-
-        public void LoadLevelDataFromJson()
-        {
-            _levelSpawnerData.levelData = _jsonParcer.LoadLevelDataFromFile();
+            _levelSpawnerData.levelData = _jsonParcer.LoadLevelDataFromFile(levelDataPath);
 
             CreateBlocks();
         }
