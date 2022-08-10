@@ -11,7 +11,6 @@ namespace BallSpace
     {
         public float speed;
         public Vector2 startDirection;
-        public Vector2 correctionValues;
         public float plusMinusAngle;
         public int[] correctionAngles;
 
@@ -70,16 +69,22 @@ namespace BallSpace
 
         private void CorrectAngle()
         {
-            float angle = Mathf.Atan2(_movableInfo.rigidbody2D.velocity.y, _movableInfo.rigidbody2D.velocity.x) * Mathf.Rad2Deg;
-
-            int randomMultiplier = Random.Range(0, 2) == 0 ? 1 : -1;
+            float angle = ConvertVectorToDegreeAngle(_movableInfo.rigidbody2D.velocity);
 
             for (int i = 0; i < _movableInfo.correctionAngles.Length; i++)
             {
                 if (angle > _movableInfo.correctionAngles[i] - _movableInfo.plusMinusAngle
                     && angle < _movableInfo.correctionAngles[i] + _movableInfo.plusMinusAngle)
                 {
-                    _movableInfo.rigidbody2D.velocity += _movableInfo.correctionValues * randomMultiplier;
+                    float difference = _movableInfo.correctionAngles[i] - angle;
+                    float newAngle;
+
+                    if (difference >= 0)
+                        newAngle = _movableInfo.correctionAngles[i] - _movableInfo.plusMinusAngle;
+                    else
+                        newAngle = _movableInfo.correctionAngles[i] + _movableInfo.plusMinusAngle;
+
+                    _movableInfo.rigidbody2D.velocity = ConvertAngeToDirection(newAngle);
                 }
             }
         }
@@ -98,6 +103,23 @@ namespace BallSpace
             vector.y /= max;
 
             return vector;
+        }
+
+        private float ConvertVectorToDegreeAngle(Vector2 vector)
+        {
+            return Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
+        }
+
+        private Vector2 ConvertAngeToDirection(float angle)
+        {
+            Vector2 direction = Vector2.zero;
+            direction.x = Mathf.Abs((float)Math.Sin(angle / Mathf.Rad2Deg));
+            direction.y = Mathf.Abs((float)Math.Cos(angle / Mathf.Rad2Deg));
+
+            direction.x *= _movableInfo.rigidbody2D.velocity.x / Math.Abs(_movableInfo.rigidbody2D.velocity.x);
+            direction.y *= _movableInfo.rigidbody2D.velocity.y / Math.Abs(_movableInfo.rigidbody2D.velocity.y);
+
+            return direction;
         }
     }
 }
