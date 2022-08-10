@@ -1,5 +1,6 @@
 ﻿using Architecture;
 using BallSpace;
+using GameEventsControllerSpace;
 using InputSystems;
 using LevelGeneration;
 using Player;
@@ -14,6 +15,8 @@ namespace Installers.LevelScene
         [SerializeField] private WallLimitersData _wallLimitersSettings;
         [SerializeField] private LevelSpawnerData _levelSpawnerSettings;
         [SerializeField] private BallManagerData _ballManagerData;
+        [SerializeField] private PlayerHealthData _playerHealthData;
+        [SerializeField] private GameEventsControllerData _gameEventsControllerData;
 
         public override void Install(AppHandler appHandler)
         {
@@ -23,13 +26,19 @@ namespace Installers.LevelScene
             var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
             var levelSpawner = new LevelSpawner(_levelSpawnerSettings);
 
-            var ballManager = new BallManager(_ballManagerData); 
+            var ballManager = new BallManager(_ballManagerData);
+
+            var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
+
+            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth);
 
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);
             appHandler.AddBehaviour(wallsLimiters);
             appHandler.AddBehaviour(levelSpawner);
             appHandler.AddBehaviour(ballManager);
+            appHandler.AddBehaviour(playerHealth);
+            appHandler.AddBehaviour(gameEventsController);
         }
     }
 }

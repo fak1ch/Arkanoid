@@ -138,7 +138,6 @@ MonoBehaviour:
   _movableInfo:
     speed: 2
     startDirection: {x: 0, y: 1}
-    correctionValues: {x: 0.05, y: 0.05}
     plusMinusAngle: 2
     correctionAngles: 00000000b40000005a000000a6ffffff4cffffff
     rigidbody2D: {fileID: 6478197079195923081}
@@ -155,3 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
+  _movableComponent: {fileID: 6478197079195923080}
