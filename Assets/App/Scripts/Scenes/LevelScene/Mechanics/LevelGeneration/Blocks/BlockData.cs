@@ -14,6 +14,7 @@ namespace Blocks
         public Color color;
 
         [Space(10)]
+        public int minHealth;
         public List<BlockHealthData> health;
         public Image blockBreakImage;
     }

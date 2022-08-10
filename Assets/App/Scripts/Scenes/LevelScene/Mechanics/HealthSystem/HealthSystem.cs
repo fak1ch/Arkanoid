@@ -9,17 +9,19 @@ namespace HealthSystemSpace
 {
     public class HealthSystem
     {
-        public event Action OnHealthZero;
+        public event Action OnHealthEqualsMinValue;
 
-        private int _maxHealth;
+        private int _minValue;
+        private int _maxValue;
         private int _health;
 
         public int CurrentHealth => _health;
 
-        public HealthSystem(int maxHealth)
+        public HealthSystem(int minValue, int maxValue)
         {
-            _maxHealth = maxHealth;
-            _health = _maxHealth;
+            _minValue = minValue;
+            _maxValue = maxValue;
+            _health = _maxValue;
         }
 
         public void TakeDamage(int damage)
@@ -30,14 +32,14 @@ namespace HealthSystemSpace
                 return;
             }
 
-            if (_health - damage > 0)
+            if (_health - damage > _minValue)
             {
                 _health -= damage;
             }
             else
             {
-                _health = 0;
-                OnHealthZero?.Invoke();
+                _health = _minValue;
+                OnHealthEqualsMinValue?.Invoke();
             }
         }
 
@@ -49,13 +51,13 @@ namespace HealthSystemSpace
                 return;
             }
 
-            if (_health + value <= _maxHealth)
+            if (_health + value <= _maxValue)
             {
                 _health += value;
             }
             else
             {
-                _health = _maxHealth;
+                _health = _maxValue;
             }
         }
     }

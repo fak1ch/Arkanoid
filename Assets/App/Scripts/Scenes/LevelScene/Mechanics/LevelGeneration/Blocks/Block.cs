@@ -16,14 +16,14 @@ namespace Blocks
 
         private void Start()
         {
-            _healthSystem = new HealthSystem(_data.health.Count);
+            _healthSystem = new HealthSystem(_data.minHealth, _data.health.Count);
             _data.blockImage.sprite = _data.blockSprite;
-            _healthSystem.OnHealthZero += BlockDestroy;
+            _healthSystem.OnHealthEqualsMinValue += BlockDestroy;
         }
 
         private void BlockDestroy()
         {
-            _healthSystem.OnHealthZero -= BlockDestroy;
+            _healthSystem.OnHealthEqualsMinValue -= BlockDestroy;
             PlayDestroyEffect();
             OnBlockDestroy?.Invoke(this);
         }
