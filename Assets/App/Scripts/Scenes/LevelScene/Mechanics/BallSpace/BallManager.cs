@@ -2,7 +2,7 @@
 using Pool;
 using UnityEngine;
 
-namespace Ball
+namespace BallSpace
 {
     public class BallManager : CustomBehaviour
     {

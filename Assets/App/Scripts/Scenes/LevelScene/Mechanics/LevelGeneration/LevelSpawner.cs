@@ -24,6 +24,13 @@ namespace LevelGeneration
             LoadLevelDataFromJson();
         }
 
+        public void BlockDestroy(Block block)
+        {
+            _blocks.Remove(block);
+            block.OnBlockDestroy -= BlockDestroy;
+            block.transform.localScale = new Vector3(0, 0, 0);
+        }
+
         private Vector2 CalculateCellSize()
         {
             float newBlockWidth = Screen.width / _levelSpawnerData.canvas.scaleFactor;
@@ -56,6 +63,7 @@ namespace LevelGeneration
                 var block = Object.Instantiate(_levelSpawnerData.blockPrefab, _levelSpawnerData.blockContainer.transform);
                 block.SetBoxColliderSize(newCellSize);
                 _blocks.Add(block);
+                block.OnBlockDestroy += BlockDestroy;
             }
         }
 

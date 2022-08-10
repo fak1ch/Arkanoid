@@ -3,7 +3,7 @@ using Pool;
 using System;
 using UnityEngine;
 
-namespace Ball
+namespace BallSpace
 {
     [Serializable]
     public class BallManagerData
