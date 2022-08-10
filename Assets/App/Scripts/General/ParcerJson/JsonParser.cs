@@ -2,29 +2,24 @@
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.Networking;
 
 namespace ParserJson
 {
     public class JsonParser<T>
     {
-        private string _savePath;
-        private string _fileName = "LevelData.json";
-
         private T _data = default(T);
 
-        public JsonParser()
-        {
-            _savePath = Path.Combine(Application.persistentDataPath, _fileName);
-        }
+        public JsonParser() { }
 
-        public void SaveLevelDataToFile(T dataClass)
+        public void SaveLevelDataToFile(T dataClass, string path)
         {
             _data = dataClass;
-            string json = JsonConvert.SerializeObject(dataClass);
+            string json = JsonConvert.SerializeObject(dataClass, Formatting.Indented);
 
             try
             {
-                File.WriteAllText(_savePath, json);
+                File.WriteAllText(path, json);
             }
             catch (Exception e)
             {
@@ -32,18 +27,16 @@ namespace ParserJson
             }
         }
 
-        public T LoadLevelDataFromFile()
+        public T LoadLevelDataFromFile(string path)
         {
-            if (!File.Exists(_savePath))
-            {
-                Debug.LogError("Json parcer: File not found");
-                return _data;
-            }
-
             try
             {
-                string json = File.ReadAllText(_savePath);
-                _data = JsonConvert.DeserializeObject<T>(json);
+                UnityWebRequest www = UnityWebRequest.Get(path);
+                www.SendWebRequest();
+
+                while (!www.downloadHandler.isDone) { }
+
+                _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
             }
             catch (Exception e)
             {

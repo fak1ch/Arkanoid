@@ -139,8 +139,8 @@ MonoBehaviour:
     speed: 2
     startDirection: {x: 0, y: 1}
     correctionValues: {x: 0.05, y: 0.05}
-    plusMinusAngle: 1
-    correctionAngles: 00000000b40000005a000000a6ffffff
+    plusMinusAngle: 2
+    correctionAngles: 00000000b40000005a000000a6ffffff4cffffff
     rigidbody2D: {fileID: 6478197079195923081}
 --- !u!114 &3243529458571504020
 MonoBehaviour:
