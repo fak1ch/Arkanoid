@@ -34,8 +34,6 @@ namespace ParserJson
                 UnityWebRequest www = UnityWebRequest.Get(path);
                 www.SendWebRequest();
 
-                while (!www.downloadHandler.isDone) { }
-
                 _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
             }
             catch (Exception e)

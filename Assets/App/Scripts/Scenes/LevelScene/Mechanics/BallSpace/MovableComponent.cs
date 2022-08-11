@@ -22,7 +22,8 @@ namespace BallSpace
     {
         [SerializeField] private MovableInfo _movableInfo;
 
-        private Vector2 _velocity;
+        private Vector2 _velocityForReflection;
+        private Vector2 _velocityUntilPauseGame;
         private bool _gameOnPause;
 
         public Rigidbody2D Rigidbody2D => _movableInfo.rigidbody2D;
@@ -37,19 +38,22 @@ namespace BallSpace
             }
         }
 
-        public bool GameOnPause 
+        public bool GameOnPause
         {
             get { return _gameOnPause; }
             set
             {
-                if (value == false)
+                _gameOnPause = value;
+
+                if (value == true)
                 {
-                    _movableInfo.rigidbody2D.velocity = _velocity;
-                    _gameOnPause = false;
+                    _velocityUntilPauseGame = _movableInfo.rigidbody2D.velocity;
+                    _movableInfo.rigidbody2D.velocity = Vector2.zero;
                 }
                 else
                 {
-                    _gameOnPause = true;
+                    _movableInfo.rigidbody2D.velocity = _velocityUntilPauseGame;
+                    _velocityUntilPauseGame = _movableInfo.startDirection;
                 }
             }
         }
@@ -60,28 +64,24 @@ namespace BallSpace
             {
                 NormalizeVelocity();
             }
-            else
-            {
-                _movableInfo.rigidbody2D.velocity = Vector2.zero;
-            }
         }
 
         public void PrepareToLaunch()
         {
             _movableInfo.rigidbody2D.isKinematic = true;
+            _movableInfo.rigidbody2D.velocity = Vector2.zero;
         }
 
-        public void LaunchThisObject(Vector2 direction)
+        public void LaunchThisObject()
         {
             transform.parent = null;
             _movableInfo.rigidbody2D.isKinematic = false;
-            _movableInfo.startDirection = ClampVector2(direction + _movableInfo.startDirection);
             _movableInfo.rigidbody2D.velocity = _movableInfo.startDirection;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            _movableInfo.rigidbody2D.velocity = Vector2.Reflect(_velocity, collision.contacts[0].normal);
+            _movableInfo.rigidbody2D.velocity = Vector2.Reflect(_velocityForReflection, collision.contacts[0].normal);
         }
 
         private void OnCollisionExit2D(Collision2D collision)
@@ -117,9 +117,7 @@ namespace BallSpace
         private void NormalizeVelocity()
         {
             _movableInfo.rigidbody2D.velocity = _movableInfo.rigidbody2D.velocity.normalized * _movableInfo.speed;
-
-            if (_movableInfo.rigidbody2D.velocity != Vector2.zero)
-                _velocity = _movableInfo.rigidbody2D.velocity;
+            _velocityForReflection = _movableInfo.rigidbody2D.velocity;
         }
 
         private Vector2 ClampVector2(Vector2 vector)

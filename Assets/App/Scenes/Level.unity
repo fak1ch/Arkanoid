@@ -4757,9 +4757,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1608241256}
   - component: {fileID: 1608241258}
-  - component: {fileID: 1608241259}
   - component: {fileID: 1608241255}
   - component: {fileID: 1608241254}
+  - component: {fileID: 1608241257}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4781,6 +4781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 1608241258}
   _ballPointTransform: {fileID: 1988672168}
+  _timeUntilCanLaunchBall: 0.1
 --- !u!212 &1608241255
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4847,6 +4848,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1608241257
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608241253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.7266298, y: 0.15095258}
+  - {x: -0.26644155, y: 0.08935428}
+  - {x: -0.14987572, y: -0.027245998}
+  - {x: -0.091920644, y: -0.19733715}
+  - {x: 0.07565993, y: -0.20679212}
+  - {x: 0.14754654, y: -0.030480385}
+  - {x: 0.2674419, y: 0.0803349}
+  - {x: 0.73960507, y: 0.15500998}
+  - {x: 0.75107914, y: 0.10067654}
+  - {x: 0.80348605, y: 0.13682103}
+  - {x: 0.7978515, y: 0.512516}
+  - {x: 0.7685029, y: 0.5227108}
+  - {x: 0.7464997, y: 0.49521136}
+  - {x: 0.739897, y: 0.49419236}
+  - {x: 0.30071697, y: 0.51771855}
+  - {x: 0.13619226, y: 0.53}
+  - {x: -0.0034006462, y: 0.53}
+  - {x: -0.114182316, y: 0.53}
+  - {x: -0.65221655, y: 0.49515438}
+  - {x: -0.7312612, y: 0.49159837}
+  - {x: -0.74966747, y: 0.51823664}
+  - {x: -0.7778955, y: 0.5284779}
+  - {x: -0.79170257, y: 0.50388193}
+  - {x: -0.79354244, y: 0.15514445}
+  - {x: -0.7790051, y: 0.1241138}
+  - {x: -0.7391126, y: 0.09953022}
+  - {x: -0.72245896, y: 0.1541977}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!50 &1608241258
 Rigidbody2D:
   serializedVersion: 4
@@ -4868,32 +4916,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 6
---- !u!61 &1608241259
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608241253}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: 0.300022}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.79, y: 1.29}
-    newSize: {x: 1.79, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.6176926, y: 0.4413092}
-  m_EdgeRadius: 0
 --- !u!1 &1645931015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,6 +5923,7 @@ MonoBehaviour:
     healthView: {fileID: 212794538}
   _gameEventsControllerData:
     mainUi: {fileID: 1727095099}
+    playerPlatform: {fileID: 1608241254}
 --- !u!114 &1873474723
 MonoBehaviour:
   m_ObjectHideFlags: 0
