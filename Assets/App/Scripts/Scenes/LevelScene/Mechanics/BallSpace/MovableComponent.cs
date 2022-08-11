@@ -143,10 +143,18 @@ namespace BallSpace
             direction.x = Mathf.Abs((float)Math.Sin(angle / Mathf.Rad2Deg));
             direction.y = Mathf.Abs((float)Math.Cos(angle / Mathf.Rad2Deg));
 
-            direction.x *= _movableInfo.rigidbody2D.velocity.x / Math.Abs(_movableInfo.rigidbody2D.velocity.x);
-            direction.y *= _movableInfo.rigidbody2D.velocity.y / Math.Abs(_movableInfo.rigidbody2D.velocity.y);
+            direction.x *= GetNumberSign(_movableInfo.rigidbody2D.velocity.x);
+            direction.y *= GetNumberSign(_movableInfo.rigidbody2D.velocity.y);
 
             return direction;
+        }
+
+        private int GetNumberSign(float value)
+        {
+            if (value == 0)
+                return 1;
+
+            return (int)(value / Mathf.Abs(value)); ;
         }
     }
 }
