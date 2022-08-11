@@ -1,4 +1,5 @@
 using Architecture;
+using BallSpace;
 using Blocks;
 using ParserJson;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace LevelGeneration
         private LevelSpawnerData _levelSpawnerData;
 
         private JsonParser<LevelData> _jsonParcer;
+        private BallManager _ballManager;
         private List<List<Block>> _blocks;
 
-        public LevelSpawner(LevelSpawnerData settings)
+        public LevelSpawner(LevelSpawnerData settings, BallManager ballManager)
         {
             _levelSpawnerData = settings;
+            _ballManager = ballManager;
             _blocks = new List<List<Block>>(_levelSpawnerData.levelData.BlocksCountColumn);
         }
 
@@ -29,14 +32,7 @@ namespace LevelGeneration
 
         public void BlockDestroy(Block block)
         {
-            for(int i = 0; i < _blocks.Count; i++)
-            {
-                if (_blocks[i].Contains(block))
-                {
-                    _blocks[i].Remove(block);
-                }
-            }
-
+            _ballManager.DoJumpSpeedForAllBalls();
             block.OnBlockDestroy -= BlockDestroy;
             block.transform.localScale = new Vector3(0, 0, 0);
         }
@@ -89,13 +85,19 @@ namespace LevelGeneration
                 {
                     for(int k = 0; k < _blocks[i].Count; k++)
                     {
-                        BlockDestroy(_blocks[i][k]);
                         Object.Destroy(_blocks[i][k].gameObject);
                     }
+
+                    _blocks[i].Clear();
                 }
             }
 
             _blocks.Clear();
+        }
+
+        public void RecreateLevel()
+        {
+            CreateBlocks();
         }
 
         public void LoadLevelDataFromJson(string levelDataPath)
