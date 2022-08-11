@@ -952,7 +952,7 @@ MonoBehaviour:
         m_CallState: 2
   rectTransform: {fileID: 192357186}
   buttonImage: {fileID: 192357187}
-  settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
+  settings: {fileID: 11400000, guid: 57e9f0d372e712048925cc71e702e965, type: 2}
 --- !u!1 &212187391
 GameObject:
   m_ObjectHideFlags: 0
