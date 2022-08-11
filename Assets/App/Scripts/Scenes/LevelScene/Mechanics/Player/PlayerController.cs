@@ -18,6 +18,8 @@ namespace Player
         private PlayerControllerInfo _playerControllerInfo;
         private InputSystem _inputSystem;
 
+        public bool GameOnPause { get; set; }
+
         public PlayerController(PlayerControllerInfo playerSettings, InputSystem inputSystem)
         {
             _playerControllerInfo = playerSettings;
@@ -26,9 +28,16 @@ namespace Player
 
         public override void FixedTick()
         {
-            Vector2 newVelocity = _playerControllerInfo.rigidbody2D.velocity;
-            newVelocity.x = _inputSystem.InputHorizontal * Time.fixedDeltaTime * _playerControllerInfo.speed;
-            _playerControllerInfo.rigidbody2D.velocity = newVelocity;
+            if (GameOnPause == false)
+            {
+                Vector2 newVelocity = _playerControllerInfo.rigidbody2D.velocity;
+                newVelocity.x = _inputSystem.InputHorizontal * Time.fixedDeltaTime * _playerControllerInfo.speed;
+                _playerControllerInfo.rigidbody2D.velocity = newVelocity;
+            }
+            else
+            {
+                _playerControllerInfo.rigidbody2D.velocity = Vector2.zero;
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ namespace BallSpace
         [SerializeField] private MovableInfo _movableInfo;
 
         private Vector2 _velocity;
+        private bool _gameOnPause;
 
         public Rigidbody2D Rigidbody2D => _movableInfo.rigidbody2D;
 
@@ -36,9 +37,33 @@ namespace BallSpace
             }
         }
 
+        public bool GameOnPause 
+        {
+            get { return _gameOnPause; }
+            set
+            {
+                if (value == false)
+                {
+                    _movableInfo.rigidbody2D.velocity = _velocity;
+                    _gameOnPause = false;
+                }
+                else
+                {
+                    _gameOnPause = true;
+                }
+            }
+        }
+
         private void FixedUpdate()
         {
-            NormalizeVelocity();
+            if (_gameOnPause == false)
+            {
+                NormalizeVelocity();
+            }
+            else
+            {
+                _movableInfo.rigidbody2D.velocity = Vector2.zero;
+            }
         }
 
         public void PrepareToLaunch()
@@ -92,7 +117,9 @@ namespace BallSpace
         private void NormalizeVelocity()
         {
             _movableInfo.rigidbody2D.velocity = _movableInfo.rigidbody2D.velocity.normalized * _movableInfo.speed;
-            _velocity = _movableInfo.rigidbody2D.velocity;
+
+            if (_movableInfo.rigidbody2D.velocity != Vector2.zero)
+                _velocity = _movableInfo.rigidbody2D.velocity;
         }
 
         private Vector2 ClampVector2(Vector2 vector)

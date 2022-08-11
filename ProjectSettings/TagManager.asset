@@ -41,6 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
+  - name: Background
     uniqueID: 200877315
+    locked: 0
+  - name: Balls
+    uniqueID: 1271921479
+    locked: 0
+  - name: Bonuses
+    uniqueID: 1691653647
+    locked: 0
+  - name: Effects
+    uniqueID: 3231221257
+    locked: 0
+  - name: TabloInfo
+    uniqueID: 4179601623
+    locked: 0
+  - name: UI
+    uniqueID: 2545950853
     locked: 0

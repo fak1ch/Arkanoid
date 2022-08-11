@@ -87,12 +87,31 @@ namespace BallSpace
         public void ReturnAllBallsToPool()
         {
             var balls = _pool.GetAllElementsFromPool();
+            _speed = _data.startBallSpeed;
+
             for (int i = 0; i < balls.Count; i++)
             {
+                balls[i].Speed = _speed;
                 _pool.ReturnElementToPool(balls[i]);
             }
 
             _currentBalls.Clear();
+        }
+
+        public void StopAllBalls()
+        {
+            for(int i = 0; i < _currentBalls.Count; i++)
+            {
+                _currentBalls[i].GameOnPause = true;
+            }
+        }
+
+        public void BallsContinueMove()
+        {
+            for (int i = 0; i < _currentBalls.Count; i++)
+            {
+                _currentBalls[i].GameOnPause = false;
+            }
         }
     }
 }

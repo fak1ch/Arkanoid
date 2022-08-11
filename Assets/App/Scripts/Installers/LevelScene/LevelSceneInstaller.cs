@@ -23,20 +23,20 @@ namespace Installers.LevelScene
             var inputSystem = new InputSystem(_inputSystemSettings);
             var playerController = new PlayerController(_playerSettings, inputSystem);
 
-            var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
-            var levelSpawner = new LevelSpawner(_levelSpawnerSettings);
-
             var ballManager = new BallManager(_ballManagerData);
+
+            var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
+            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager);
 
             var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
 
-            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth);
+            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, playerController, levelSpawner);
 
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);
+            appHandler.AddBehaviour(ballManager);
             appHandler.AddBehaviour(wallsLimiters);
             appHandler.AddBehaviour(levelSpawner);
-            appHandler.AddBehaviour(ballManager);
             appHandler.AddBehaviour(playerHealth);
             appHandler.AddBehaviour(gameEventsController);
         }
