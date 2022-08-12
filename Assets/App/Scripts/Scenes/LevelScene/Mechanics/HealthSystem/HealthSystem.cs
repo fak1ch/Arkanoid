@@ -16,6 +16,7 @@ namespace HealthSystemSpace
         private int _health;
 
         public int CurrentHealth => _health;
+        public int MaxHealth => _maxValue;
 
         public HealthSystem(int minValue, int maxValue)
         {

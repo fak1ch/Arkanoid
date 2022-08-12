@@ -34,6 +34,7 @@ namespace Player
         {
             _ballManager.OnCurrentBallsZero += TakeDamage;
             _healthSystem.OnHealthEqualsMinValue += HealthEqualsMinValue;
+            _data.healthView.InitializeHealthView(_healthSystem.MaxHealth);
         }
 
         private void TakeDamage()
@@ -51,6 +52,12 @@ namespace Player
         private void HealthEqualsMinValue()
         {
             OnHealthEqualsMinusOne?.Invoke();
+        }
+
+        public void RestoreHealth()
+        {
+            _healthSystem.RestoreHealth();
+            RefreshPlayerHealthView();
         }
     }
 }
