@@ -5,7 +5,9 @@ namespace LevelGeneration
     [Serializable]
     public class LevelData
     {
-        public int BlocksCountRow = 4;
-        public int BlocksCountColumn = 4;
+        public int blocksCountRow = 4;
+        public int blocksCountColumn = 4;
+
+        public int Size => blocksCountColumn * blocksCountRow;
     }
 }

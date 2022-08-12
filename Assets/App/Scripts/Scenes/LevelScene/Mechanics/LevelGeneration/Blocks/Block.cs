@@ -13,17 +13,19 @@ namespace Blocks
         [SerializeField] private BlockData _data;
 
         private HealthSystem _healthSystem;
+        private int _healthImageIndex;
 
         private void Start()
         {
+            _healthImageIndex = _data.health.Count - 1;
             _healthSystem = new HealthSystem(_data.minHealth, _data.health.Count);
             _data.blockImage.sprite = _data.blockSprite;
             _healthSystem.OnHealthEqualsMinValue += BlockDestroy;
+            RefreshDamageSprite();
         }
 
         private void BlockDestroy()
         {
-            _healthSystem.OnHealthEqualsMinValue -= BlockDestroy;
             PlayDestroyEffect();
             OnBlockDestroy?.Invoke(this);
         }
@@ -49,10 +51,18 @@ namespace Blocks
 
         private void RefreshDamageSprite()
         {
-            if (_data.health.Count > 1)
-                _data.health.RemoveAt(_data.health.Count - 1);
+            _data.blockBreakImage.sprite = _data.health[_healthImageIndex].damageSprite;
 
-            _data.blockBreakImage.sprite = _data.health.Last().damageSprite;
+            if (_healthImageIndex > 0)
+                _healthImageIndex--;
+        }
+
+        public void RestoreHealth()
+        {
+            _healthImageIndex = _data.health.Count - 1;
+            _healthSystem.RestoreHealth();
+            
+            RefreshDamageSprite();
         }
     }
 }

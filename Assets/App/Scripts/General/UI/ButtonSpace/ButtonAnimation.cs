@@ -17,7 +17,6 @@ namespace ButtonSpace
         private Color _normalColor;
         private Vector3 _startScale;
         private bool _isPointerExit = true;
-        private bool _isOpen = true;
 
         protected override void Start()
         {
@@ -27,29 +26,20 @@ namespace ButtonSpace
 
         public override void OnPointerDown(PointerEventData eventData)
         {
-            if (_isOpen == true)
-            {
-                _isPointerExit = false;
-                ButtonPressed();
-            }
+            _isPointerExit = false;
+            ButtonPressed();
         }
 
         public override void OnPointerUp(PointerEventData eventData)
         {
-            if (_isOpen == true)
-            {
-                if (_isPointerExit == false)
-                    ButtonUnPressed();
-            }
+            if (_isPointerExit == false)
+                ButtonUnPressed();
         }
 
         public override void OnPointerExit(PointerEventData eventData)
         {
-            if (_isOpen == true)
-            {
-                _isPointerExit = true;
-                ButtonUnPressed();
-            }
+            _isPointerExit = true;
+            ButtonUnPressed();
         }
 
         private void ButtonPressed()
@@ -69,7 +59,6 @@ namespace ButtonSpace
         {
             if (_isPointerExit == false)
             {
-                _isOpen = false;
                 onClickMy?.Invoke();
             }
         }

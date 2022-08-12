@@ -12,6 +12,7 @@ namespace GameEventsControllerSpace
     public class GameEventsControllerData
     {
         public MainUI mainUi;
+        public PlayerPlatform playerPlatform;
     }
 
     public class GameEventsController : CustomBehaviour
@@ -42,17 +43,16 @@ namespace GameEventsControllerSpace
 
         private void RestartGame()
         {
-            UnpauseTheGame();
+            _data.playerPlatform.RestartPlayerPlatform();
+
+            _levelSpawner.RecreateLevel();
 
             _ballManager.ReturnAllBallsToPool();
             _ballManager.PlaceNewBallToPlayerPlatform();
-
-            _levelSpawner.RecreateLevel();
         }
 
         private void GameOver()
         {
-            PauseTheGame();
             _data.mainUi.OpenGameOverMenu();
         }
 

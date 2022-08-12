@@ -1,55 +1,71 @@
 using Architecture;
 using BallSpace;
 using Blocks;
-using ParserJson;
+using ParserJsonSpace;
 using System.Collections.Generic;
+using Pool;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace LevelGeneration 
 {
     public class LevelSpawner : CustomBehaviour
     {
-        private LevelSpawnerData _levelSpawnerData;
-
-        private JsonParser<LevelData> _jsonParcer;
+        private LevelSpawnerData _data;
         private BallManager _ballManager;
+        private ObjectPool<Block> _pool;
         private List<List<Block>> _blocks;
 
-        public LevelSpawner(LevelSpawnerData settings, BallManager ballManager)
+        private Vector2 _cellSize;
+        
+        public LevelSpawner(LevelSpawnerData settings, BallManager ballManager, ObjectPool<Block> pool)
         {
-            _levelSpawnerData = settings;
+            _data = settings;
             _ballManager = ballManager;
-            _blocks = new List<List<Block>>(_levelSpawnerData.levelData.BlocksCountColumn);
+            _pool = pool;
+            _blocks = new List<List<Block>>(_data.levelData.blocksCountColumn);
         }
 
         public override void Initialize()
         {
-            _jsonParcer = new JsonParser<LevelData>();
+            _cellSize = CalculateCellSize();
+            _data.blockContainer.cellSize = _cellSize;
 
-            LoadLevelDataFromJson(StaticLevelPath.LevelPath);
+            _pool.Initialize();
+            CreateBlocks();
         }
 
         public void BlockDestroy(Block block)
         {
             _ballManager.DoJumpSpeedForAllBalls();
-            block.OnBlockDestroy -= BlockDestroy;
             block.transform.localScale = new Vector3(0, 0, 0);
+            block.OnBlockDestroy -= BlockDestroy;
+            _pool.ReturnElementToPool(block);
+        }
+
+        public Block GetBlockFromPool()
+        {
+            var block = _pool.GetElement();
+            block.SetBoxColliderSize(_cellSize);
+            block.OnBlockDestroy += BlockDestroy;
+            block.transform.localScale = new Vector3(1, 1, 1);
+            block.gameObject.SetActive(true);
+
+            return block;
         }
 
         private Vector2 CalculateCellSize()
         {
-            float newBlockWidth = Screen.width / _levelSpawnerData.canvas.scaleFactor;
-            newBlockWidth -= _levelSpawnerData.blockContainer.padding.left + _levelSpawnerData.blockContainer.padding.right;
-            newBlockWidth -= _levelSpawnerData.blockContainer.spacing.x * (_levelSpawnerData.levelData.BlocksCountRow - 1);
-            newBlockWidth = newBlockWidth / _levelSpawnerData.levelData.BlocksCountRow;
+            float newBlockWidth = Screen.width / _data.canvas.scaleFactor;
+            newBlockWidth -= _data.blockContainer.padding.left + _data.blockContainer.padding.right;
+            newBlockWidth -= _data.blockContainer.spacing.x * (_data.levelData.blocksCountRow - 1);
+            newBlockWidth /= _data.levelData.blocksCountRow;
 
-            float procent = GetProcent(0, _levelSpawnerData.blockContainer.cellSize.x, newBlockWidth);
+            float percent = GetPercent(0, _data.blockContainer.cellSize.x, newBlockWidth);
 
-            return new Vector2(newBlockWidth, _levelSpawnerData.blockContainer.cellSize.y * procent);
+            return new Vector2(newBlockWidth, _data.blockContainer.cellSize.y * percent);
         }
 
-        public float GetProcent(float a, float b, float value)
+        private float GetPercent(float a, float b, float value)
         {
             if (Mathf.Approximately(b - a, 0))
                 return 0;
@@ -59,52 +75,54 @@ namespace LevelGeneration
 
         private void CreateBlocks()
         {
-            var newCellSize = CalculateCellSize();
-            _levelSpawnerData.blockContainer.cellSize = newCellSize;
-
             DeleteAllBlocks();
 
-            for (int i = 0; i < _levelSpawnerData.levelData.BlocksCountRow; i++)
+            for (int i = 0; i < _data.levelData.blocksCountRow; i++)
             {
-                _blocks.Add(new List<Block>(_levelSpawnerData.levelData.BlocksCountRow));
-                for(int k = 0; k < _levelSpawnerData.levelData.BlocksCountColumn; k++)
+                _blocks.Add(new List<Block>(_data.levelData.blocksCountRow));
+                for(int k = 0; k < _data.levelData.blocksCountColumn; k++)
                 {
-                    var block = Object.Instantiate(_levelSpawnerData.blockPrefab, _levelSpawnerData.blockContainer.transform);
-                    block.SetBoxColliderSize(newCellSize);
+                    var block = GetBlockFromPool();
                     _blocks[i].Add(block);
-                    block.OnBlockDestroy += BlockDestroy;
                 }
             }
         }
 
         public void DeleteAllBlocks()
         {
-            if (_blocks.Count > 0)
+            for (int i = 0; i < _blocks.Count; i++)
             {
-                for (int i = 0; i < _blocks.Count; i++)
+                for(int k = 0; k < _blocks[i].Count; k++)
                 {
-                    for(int k = 0; k < _blocks[i].Count; k++)
-                    {
-                        Object.Destroy(_blocks[i][k].gameObject);
-                    }
-
-                    _blocks[i].Clear();
+                    BlockDestroy(_blocks[i][k]);
                 }
-            }
 
+                _blocks[i].Clear();
+            }
+            
             _blocks.Clear();
         }
 
         public void RecreateLevel()
         {
-            CreateBlocks();
+            RestoreAllBlocks();
         }
 
-        public void LoadLevelDataFromJson(string levelDataPath)
+        private void RestoreAllBlocks()
         {
-            _levelSpawnerData.levelData = _jsonParcer.LoadLevelDataFromFile(levelDataPath);
+            for (int i = 0; i < _blocks.Count; i++)
+            {
+                for(int k = 0; k < _blocks[i].Count; k++)
+                {
+                    RestoreBlock(_blocks[i][k]);
+                }
+            }
+        }
 
-            CreateBlocks();
+        private void RestoreBlock(Block block)
+        {
+            block.RestoreHealth();
+            block.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

@@ -4,9 +4,10 @@ using UnityEngine;
 namespace Pool
 {
     [Serializable]
-    public class PoolData
+    public class PoolData<T>
     {
-        public int Size;
+        public int size;
         public Transform container;
+        public T prefab;
     }
 }

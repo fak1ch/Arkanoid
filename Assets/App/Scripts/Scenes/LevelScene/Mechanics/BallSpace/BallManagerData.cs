@@ -9,8 +9,7 @@ namespace BallSpace
     [Serializable]
     public class BallManagerData
     {
-        public PoolData poolData;
-        public MovableComponent ballPrefab;
+        public PoolData<MovableComponent> poolData;
         public PlayerPlatform playerPlatform;
         public BottomWall bottomWall;
         public float startBallSpeed;
