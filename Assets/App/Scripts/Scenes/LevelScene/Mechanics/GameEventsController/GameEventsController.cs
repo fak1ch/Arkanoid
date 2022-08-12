@@ -44,6 +44,7 @@ namespace GameEventsControllerSpace
         private void RestartGame()
         {
             _data.playerPlatform.RestartPlayerPlatform();
+            _playerHeath.RestoreHealth();
 
             _levelSpawner.RecreateLevel();
 
