@@ -10,16 +10,16 @@ namespace BallSpace
     {
         public event Action OnCurrentBallsZero;
 
-        private BallManagerData _data;
-        private ObjectPool<MovableComponent> _pool;
+        private readonly BallManagerData _data;
+        private readonly ObjectPool<MovableComponent> _pool;
         private float _speed;
 
-        private List<MovableComponent> _currentBalls;
+        private readonly List<MovableComponent> _currentBalls;
 
-        public BallManager(BallManagerData data)
+        public BallManager(BallManagerData data, ObjectPool<MovableComponent> pool)
         {
             _data = data;
-            _pool = new ObjectPool<MovableComponent>(_data.poolData.Size, _data.poolData.container, _data.ballPrefab);
+            _pool = pool;
             _currentBalls = new List<MovableComponent>();
             _speed = _data.startBallSpeed;
         }
@@ -34,28 +34,31 @@ namespace BallSpace
 
         public void PlaceNewBallToPlayerPlatform()
         {
-            var ball = _pool.GetElement();
+            var ball = GetBallFromPool();
             _data.playerPlatform.PrepareBallToLaunch(ball);
             _currentBalls.Add(ball);
         }
 
         public void SpawnBallAtPositionWithDirection(Vector2 position, Vector2 moveDirection)
         {
-            var ball = _pool.GetElement();
-            ball.transform.parent = null;
+            var ball = GetBallFromPool();
             ball.transform.position = position;
             ball.Rigidbody2D.velocity = moveDirection;
             _currentBalls.Add(ball);
         }
 
-        public void DestroyBall(MovableComponent ball)
+        private MovableComponent GetBallFromPool()
         {
-            if (_currentBalls.Contains(ball))
-            {
-                _currentBalls.Remove(ball);
-            }
+            var ball = _pool.GetElement();
+            ball.Speed = _speed;
+            ball.gameObject.SetActive(true);
 
-            _pool.ReturnElementToPool(ball);
+            return ball;
+        }
+        
+        private void DestroyBall(MovableComponent ball)
+        {
+            ReturnBallToPool(ball);
 
             if (_currentBalls.Count == 0)
             {
@@ -64,35 +67,41 @@ namespace BallSpace
             }
         }
 
+        private void ReturnBallToPool(MovableComponent ball)
+        {
+            ball.gameObject.SetActive(false);
+            ball.Speed = _data.startBallSpeed;
+            ball.Rigidbody2D.velocity = Vector2.zero;
+            
+            _currentBalls.Remove(ball);
+            _pool.ReturnElementToPool(ball);
+        }
+        
         public void DoJumpSpeedForAllBalls()
         {
             _speed = Mathf.Clamp(_speed + _data.speedJump, _data.startBallSpeed, _data.maxBallSpeed);
 
-            var balls = _pool.GetAllElementsFromPool();
-            for(int i = 0; i < balls.Count; i++)
+            foreach (var ball in _currentBalls)
             {
-                balls[i].Speed = _speed;
+                ball.Speed = _speed;
             }
         }
 
         private void SetSpeedToAllBalls(float newSpeed)
         {
-            var balls = _pool.GetAllElementsFromPool();
-            for (int i = 0; i < balls.Count; i++)
+            foreach (var ball in _currentBalls)
             {
-                balls[i].Speed = newSpeed;
+                ball.Speed = newSpeed;
             }
         }
 
         public void ReturnAllBallsToPool()
         {
-            var balls = _pool.GetAllElementsFromPool();
             _speed = _data.startBallSpeed;
-
-            for (int i = 0; i < balls.Count; i++)
+            
+            for (int i = _currentBalls.Count - 1; i >= 0; i--)
             {
-                balls[i].Speed = _speed;
-                _pool.ReturnElementToPool(balls[i]);
+                ReturnBallToPool(_currentBalls[i]);
             }
 
             _currentBalls.Clear();
@@ -100,17 +109,17 @@ namespace BallSpace
 
         public void StopAllBalls()
         {
-            for(int i = 0; i < _currentBalls.Count; i++)
+            foreach (var ball in _currentBalls)
             {
-                _currentBalls[i].GameOnPause = true;
+                ball.GameOnPause = true;
             }
         }
 
         public void BallsContinueMove()
         {
-            for (int i = 0; i < _currentBalls.Count; i++)
+            foreach (var ball in _currentBalls)
             {
-                _currentBalls[i].GameOnPause = false;
+                ball.GameOnPause = false;
             }
         }
     }

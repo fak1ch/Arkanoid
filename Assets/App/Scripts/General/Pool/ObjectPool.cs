@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -7,66 +7,48 @@ namespace Pool
 {
     public class ObjectPool<T> where T : Component
     {
-        private int _size;
-        private Transform _container;
-        private T _prefab;
+        private readonly int _size;
+        private readonly Transform _container;
+        private readonly T _prefab;
 
-        private List<T> _pool;
+        private readonly Queue<T> _pool;
 
-        public ObjectPool(int size, Transform poolContainer, T prefab)
+        public ObjectPool(PoolData<T> poolData)
         {
-            _size = size;
-            _container = poolContainer;
-            _prefab = prefab;
-            _pool = new List<T>(_size);
+            _size = poolData.size;
+            _container = poolData.container;
+            _prefab = poolData.prefab;
+            _pool = new Queue<T>(_size);
         }
 
         public void Initialize()
         {
             for (int i = 0; i < _size; i++)
             {
-                AddElementToPool(_prefab);
+                CreateElementInPool(_prefab);
             }
         }
-
-        private T AddElementToPool(T element)
+        
+        private void CreateElementInPool(T element)
         {
-            var obj = Object.Instantiate(_prefab, _container);
+            var obj = Object.Instantiate(element, _container);
             obj.gameObject.SetActive(false);
-            _pool.Add(obj);
-
-            return obj;
+            _pool.Enqueue(obj);
         }
 
         public T GetElement()
         {
-            for(int i = 0; i < _pool.Count; i++)
-            {
-                if (_pool[i].gameObject.activeSelf == false)
-                {
-                    _pool[i].gameObject.SetActive(true);
-                    return _pool[i];
-                }
-            }
-
-            var element = AddElementToPool(_prefab);
-            element.gameObject.SetActive(true);
-
-            return element;
+            if (_pool.Count == 0)
+                CreateElementInPool(_prefab);
+            
+            return _pool.Dequeue();
         }
 
         public void ReturnElementToPool(T element)
         {
-            if (_pool.Contains(element))
-            {
-                element.gameObject.SetActive(false);
+            if (element.transform.parent != _container)
                 element.transform.parent = _container;
-            }
-        }
-
-        public List<T> GetAllElementsFromPool()
-        {
-            return _pool;
+            _pool.Enqueue(element);
         }
     }
 }

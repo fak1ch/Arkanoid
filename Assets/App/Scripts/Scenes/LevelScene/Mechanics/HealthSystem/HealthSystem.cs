@@ -60,5 +60,10 @@ namespace HealthSystemSpace
                 _health = _maxValue;
             }
         }
+
+        public void RestoreHealth()
+        {
+            _health = _maxValue;
+        }
     }
 }

@@ -4,18 +4,21 @@ using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 
-namespace ParserJson
+namespace ParserJsonSpace
 {
     public class JsonParser<T>
     {
-        private T _data = default(T);
+        private T _data;
 
-        public JsonParser() { }
+        public JsonParser()
+        {
+            _data = default(T);
+        }
 
         public void SaveLevelDataToFile(T dataClass, string path)
         {
             _data = dataClass;
-            string json = JsonConvert.SerializeObject(dataClass, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(dataClass, Formatting.Indented);
 
             try
             {

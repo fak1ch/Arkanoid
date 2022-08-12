@@ -1,9 +1,12 @@
 ﻿using Architecture;
 using BallSpace;
+using Blocks;
 using GameEventsControllerSpace;
 using InputSystems;
 using LevelGeneration;
+using ParserJsonSpace;
 using Player;
+using Pool;
 using UnityEngine;
 
 namespace Installers.LevelScene
@@ -23,15 +26,19 @@ namespace Installers.LevelScene
             var inputSystem = new InputSystem(_inputSystemSettings);
             var playerController = new PlayerController(_playerSettings, inputSystem);
 
-            var ballManager = new BallManager(_ballManagerData);
+            var ballPool = new ObjectPool<MovableComponent>(_ballManagerData.poolData);
+            var ballManager = new BallManager(_ballManagerData, ballPool);
 
+            _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.LevelPath);
+            _levelSpawnerSettings.poolData.size = _levelSpawnerSettings.levelData.Size;
+            var blockPool = new ObjectPool<Block>(_levelSpawnerSettings.poolData);
             var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
-            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager);
+            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager, blockPool);
 
             var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
 
             var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, playerController, levelSpawner);
-
+ 
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);
             appHandler.AddBehaviour(ballManager);
@@ -39,6 +46,12 @@ namespace Installers.LevelScene
             appHandler.AddBehaviour(levelSpawner);
             appHandler.AddBehaviour(playerHealth);
             appHandler.AddBehaviour(gameEventsController);
+        }
+        
+        private LevelData LoadLevelDataFromJson(string levelDataPath)
+        {
+            var jsonParser = new JsonParser<LevelData>();
+            return jsonParser.LoadLevelDataFromFile(levelDataPath);
         }
     }
 }
