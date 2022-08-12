@@ -15,6 +15,8 @@ namespace Player
         private Vector2 _startPosition;
         private bool _canLaunchBall = true;
 
+        public bool GameOnPause { get; set; }
+        
         private void Start()
         {
             _startPosition = transform.position;
@@ -53,7 +55,7 @@ namespace Player
 
         private void CheckActionToLaunchBall()
         {
-            if (_currentPinnedBall != null)
+            if (_currentPinnedBall != null && GameOnPause == false)
             {
                 if (Input.GetKeyUp(KeyCode.Mouse0) && _canLaunchBall == true)
                 {

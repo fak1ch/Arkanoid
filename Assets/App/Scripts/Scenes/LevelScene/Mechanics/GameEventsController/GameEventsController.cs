@@ -50,22 +50,27 @@ namespace GameEventsControllerSpace
 
             _ballManager.ReturnAllBallsToPool();
             _ballManager.PlaceNewBallToPlayerPlatform();
+            
+            UnpauseTheGame();
         }
 
         private void GameOver()
         {
+            PauseTheGame();
             _data.mainUi.OpenGameOverMenu();
         }
 
         private void PauseTheGame()
         {
             _playerController.GameOnPause = true;
+            _data.playerPlatform.GameOnPause = true;
             _ballManager.StopAllBalls();
         }
 
         private void UnpauseTheGame()
         {
             _playerController.GameOnPause = false;
+            _data.playerPlatform.GameOnPause = false;
             _ballManager.BallsContinueMove();
         }
     }
