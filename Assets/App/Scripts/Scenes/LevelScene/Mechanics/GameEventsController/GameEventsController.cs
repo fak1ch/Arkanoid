@@ -39,6 +39,7 @@ namespace GameEventsControllerSpace
             _data.mainUi.OnRestartGame += RestartGame;
             _data.mainUi.OnPauseTheGame += PauseTheGame;
             _data.mainUi.OnUnpauseTheGame += UnpauseTheGame;
+            _levelSpawner.OnNoMoreBlocks += GamePassed;
         }
 
         private void RestartGame()
@@ -60,6 +61,12 @@ namespace GameEventsControllerSpace
             _data.mainUi.OpenGameOverMenu();
         }
 
+        private void GamePassed()
+        {
+            PauseTheGame();
+            _data.mainUi.OpenYouWinMenu();
+        }
+        
         private void PauseTheGame()
         {
             _playerController.GameOnPause = true;

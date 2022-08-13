@@ -1,8 +1,6 @@
-﻿using Architecture;
-using Player;
+﻿using Player;
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace BallSpace
 {
@@ -30,7 +28,7 @@ namespace BallSpace
 
         public float Speed
         {
-            get { return _movableInfo.speed; }
+            get => _movableInfo.speed;
             set
             {
                 if (value >= 0)
@@ -40,12 +38,12 @@ namespace BallSpace
 
         public bool GameOnPause
         {
-            get { return _gameOnPause; }
+            get => _gameOnPause;
             set
             {
                 _gameOnPause = value;
 
-                if (value == true)
+                if (value)
                 {
                     _velocityUntilPauseGame = _movableInfo.rigidbody2D.velocity;
                     _movableInfo.rigidbody2D.velocity = Vector2.zero;
@@ -63,6 +61,10 @@ namespace BallSpace
             if (_gameOnPause == false)
             {
                 NormalizeVelocity();
+            }
+            else
+            {
+                _movableInfo.rigidbody2D.velocity = Vector2.zero;
             }
         }
 

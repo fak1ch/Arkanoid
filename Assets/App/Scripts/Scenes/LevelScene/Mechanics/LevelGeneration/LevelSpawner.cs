@@ -1,3 +1,4 @@
+using System;
 using Architecture;
 using BallSpace;
 using Blocks;
@@ -10,12 +11,15 @@ namespace LevelGeneration
 {
     public class LevelSpawner : CustomBehaviour
     {
+        public event Action OnNoMoreBlocks;
+
         private LevelSpawnerData _data;
         private BallManager _ballManager;
         private ObjectPool<Block> _pool;
         private List<List<Block>> _blocks;
 
         private Vector2 _cellSize;
+        private int _blockCount;
         
         public LevelSpawner(LevelSpawnerData settings, BallManager ballManager, ObjectPool<Block> pool)
         {
@@ -23,6 +27,7 @@ namespace LevelGeneration
             _ballManager = ballManager;
             _pool = pool;
             _blocks = new List<List<Block>>(_data.levelData.blocksCountColumn);
+            _blockCount = _data.levelData.Size;
         }
 
         public override void Initialize()
@@ -40,6 +45,12 @@ namespace LevelGeneration
             block.transform.localScale = new Vector3(0, 0, 0);
             block.OnBlockDestroy -= BlockDestroy;
             _pool.ReturnElementToPool(block);
+
+            _blockCount--;
+            if (_blockCount == 0)
+            {
+                OnNoMoreBlocks?.Invoke();
+            }
         }
 
         public Block GetBlockFromPool()
