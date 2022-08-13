@@ -19,7 +19,7 @@ namespace ButtonSpace
         {
             base.OnEnable();
 
-            _onClick = serializedObject.FindProperty("onClickMy");
+            _onClick = serializedObject.FindProperty("onClickEvent");
         }
 
         public override void OnInspectorGUI()

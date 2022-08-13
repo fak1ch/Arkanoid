@@ -15,13 +15,22 @@ namespace Blocks
         private HealthSystem _healthSystem;
         private int _healthImageIndex;
 
-        private void Start()
+        private void Awake()
         {
             _healthImageIndex = _data.health.Count - 1;
             _healthSystem = new HealthSystem(_data.minHealth, _data.health.Count);
             _data.blockImage.sprite = _data.blockSprite;
-            _healthSystem.OnHealthEqualsMinValue += BlockDestroy;
             RefreshDamageSprite();
+        }
+
+        private void OnEnable()
+        {
+            _healthSystem.OnHealthEqualsMinValue += BlockDestroy;
+        }
+
+        private void OnDisable()
+        {
+            _healthSystem.OnHealthEqualsMinValue -= BlockDestroy;
         }
 
         private void BlockDestroy()

@@ -3,16 +3,17 @@ using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
+using Object = System.Object;
 
 namespace ParserJsonSpace
 {
-    public class JsonParser<T>
+    public class JsonParser<T> where T : class, new()
     {
         private T _data;
 
         public JsonParser()
         {
-            _data = default(T);
+            _data = new T();
         }
 
         public void SaveLevelDataToFile(T dataClass, string path)
@@ -37,7 +38,10 @@ namespace ParserJsonSpace
                 UnityWebRequest www = UnityWebRequest.Get(path);
                 www.SendWebRequest();
 
-                _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
+                if (www.downloadHandler.isDone)
+                {
+                    _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
+                }
             }
             catch (Exception e)
             {
