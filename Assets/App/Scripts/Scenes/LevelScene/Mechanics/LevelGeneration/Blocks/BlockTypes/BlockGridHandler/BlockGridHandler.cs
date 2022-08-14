@@ -7,7 +7,7 @@ namespace Blocks.BlockTypesSpace
         private int _blockX;
         private int _blockY;
         private Block[,] _blocks;
-        private List<Block> _blocksForDestroy = new List<Block>();
+        private List<Block> _blocksForDestroy;
         
         public BlockGridHandler(int currentBlockX, int currentBlockY, Block[,] blocks, List<Block> blockForDestroy)
         {

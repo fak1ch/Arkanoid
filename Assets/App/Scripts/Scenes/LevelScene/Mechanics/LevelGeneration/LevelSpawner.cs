@@ -2,9 +2,7 @@ using System;
 using Architecture;
 using BallSpace;
 using Blocks;
-using ParserJsonSpace;
 using Blocks.BlockTypesSpace;
-using Pool;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -137,22 +135,6 @@ namespace LevelGeneration
             }
 
             _blocksCount = _maxBlocksCount;
-        }
-        
-        private void SaveCurrentMapToJson()
-        {
-            _data.levelData.blockTypes = new BlockTypes[_blocks.GetLength(0), _blocks.GetLength(1)];
-            
-            for (int i = 0; i < _blocks.GetLength(0); i++)
-            {
-                for(int k = 0; k < _blocks.GetLength(1); k++)
-                {
-                    _data.levelData.blockTypes[i, k] = _blocks[i, k].BlockType;
-                }
-            }
-            
-            var jsonParser = new JsonParser<LevelData>();
-            jsonParser.SaveLevelDataToFile(_data.levelData, StaticLevelPath.LevelPath);
         }
     }
 }
