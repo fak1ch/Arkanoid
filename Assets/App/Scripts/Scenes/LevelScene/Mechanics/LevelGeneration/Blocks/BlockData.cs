@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blocks.BlockTypesSpace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,5 +18,8 @@ namespace Blocks
         public int minHealth;
         public List<BlockHealthData> health;
         public Image blockBreakImage;
+
+        [Space(10)] 
+        public BlockTypes blockType;
     }
 }

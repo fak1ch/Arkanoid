@@ -9,9 +9,9 @@ namespace LevelGeneration
     [Serializable]
     public class LevelSpawnerData
     {
-        public PoolData<Block> poolData;
         public GridLayoutGroup blockContainer;
         public LevelData levelData;
+        public BlockScriptableObject blocksConfig;
         public Canvas canvas;
     }
 }

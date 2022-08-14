@@ -9,6 +9,6 @@ namespace LevelGeneration
 {
     public static class StaticLevelPath
     {
-        public static string LevelPath = Application.streamingAssetsPath + "/LevelData.json";
+        public static string LevelPath = Application.streamingAssetsPath + "/Level2.json";
     }
 }
