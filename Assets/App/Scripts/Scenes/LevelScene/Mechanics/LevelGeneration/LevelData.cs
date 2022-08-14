@@ -1,13 +1,17 @@
 ﻿using System;
+using Blocks;
+using Blocks.BlockTypesSpace;
 
 namespace LevelGeneration
 {
     [Serializable]
     public class LevelData
     {
-        public int blocksCountRow = 1;
-        public int blocksCountColumn = 1;
+        public int blocksCountColumn = 5;
+        public int blocksCountRow = 5;
 
-        public int Size => blocksCountColumn * blocksCountRow;
+        public BlockTypes[,] blockTypes;
+
+        public int Size => blocksCountRow * blocksCountColumn;
     }
 }

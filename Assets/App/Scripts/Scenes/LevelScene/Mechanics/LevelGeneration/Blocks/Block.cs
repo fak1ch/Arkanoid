@@ -1,7 +1,9 @@
 ﻿using BallSpace;
 using HealthSystemSpace;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Blocks.BlockTypesSpace;
 using UnityEngine;
 
 namespace Blocks
@@ -10,47 +12,56 @@ namespace Blocks
     {
         public event Action<Block> OnBlockDestroy;
 
-        [SerializeField] private BlockData _data;
+        [SerializeField] private BlockData _blockData;
 
-        private HealthSystem _healthSystem;
+        protected HealthSystem _healthSystem;
+        protected Block[,] _blocks;
         private int _healthImageIndex;
 
-        private void Awake()
+        public bool IsDestroyed { get; set; }
+        public bool IsImmortality { get; set; }
+        public int IndexColumn { get; private set; }
+        public int IndexRow { get; private set; }
+        public BlockTypes BlockType => _blockData.blockType;
+
+        protected virtual void Awake()
         {
-            _healthImageIndex = _data.health.Count - 1;
-            _healthSystem = new HealthSystem(_data.minHealth, _data.health.Count);
-            _data.blockImage.sprite = _data.blockSprite;
+            _healthImageIndex = _blockData.health.Count - 1;
+            _healthSystem = new HealthSystem(_blockData.minHealth, _blockData.health.Count);
+            _healthSystem.OnHealthEqualsMinValue += DestroyBlock;
+            _blockData.blockImage.sprite = _blockData.blockSprite;
             RefreshDamageSprite();
         }
 
-        private void OnEnable()
+        public void DestroyBlock()
         {
-            _healthSystem.OnHealthEqualsMinValue += BlockDestroy;
-        }
-
-        private void OnDisable()
-        {
-            _healthSystem.OnHealthEqualsMinValue -= BlockDestroy;
-        }
-
-        private void BlockDestroy()
-        {
-            PlayDestroyEffect();
+            if (IsDestroyed) return;
+            
+            IsDestroyed = true;
+            transform.localScale = new Vector3(0, 0, 0);
+            RunAdditionalLogic();
             OnBlockDestroy?.Invoke(this);
         }
-
-        private void PlayDestroyEffect()
+        
+        public void RestoreBlock()
         {
-
+            IsDestroyed = false;
+            _healthImageIndex = _blockData.health.Count - 1;
+            _healthSystem.RestoreHealth();
+            RefreshDamageSprite();
+            
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
-        public void SetBoxColliderSize(Vector2 newSize)
+        protected virtual void RunAdditionalLogic()
         {
-            _data.boxCollider.size = newSize;
+            
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (IsImmortality) return;
+            
             if (collision.gameObject.TryGetComponent(out Ball ball))
             {
                 _healthSystem.TakeDamage(ball.Damage);
@@ -60,18 +71,22 @@ namespace Blocks
 
         private void RefreshDamageSprite()
         {
-            _data.blockBreakImage.sprite = _data.health[_healthImageIndex].damageSprite;
+            _blockData.blockBreakImage.sprite = _blockData.health[_healthImageIndex].damageSprite;
 
             if (_healthImageIndex > 0)
                 _healthImageIndex--;
         }
 
-        public void RestoreHealth()
+        public void SetBoxColliderSize(Vector2 newSize)
         {
-            _healthImageIndex = _data.health.Count - 1;
-            _healthSystem.RestoreHealth();
-            
-            RefreshDamageSprite();
+            _blockData.boxCollider.size = newSize;
+        }
+
+        public void SetBlocksMassive(Block[,] blocks, int indexColumn, int indexRow)
+        {
+            _blocks = blocks;
+            IndexColumn = indexColumn;
+            IndexRow = indexRow;
         }
     }
 }

@@ -407,7 +407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118923893
 GameObject:
@@ -4705,7 +4705,7 @@ Transform:
   m_Children:
   - {fileID: 1988672168}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1608241257
 EdgeCollider2D:
@@ -4737,10 +4737,8 @@ EdgeCollider2D:
   - {x: 0.7685029, y: 0.5227108}
   - {x: 0.7464997, y: 0.49521136}
   - {x: 0.739897, y: 0.49419236}
-  - {x: 0.36648786, y: 0.6295311}
-  - {x: 0.13619226, y: 0.7}
-  - {x: -0.0034006462, y: 0.7}
-  - {x: -0.114182316, y: 0.7}
+  - {x: 0.15, y: 0.57}
+  - {x: -0.15, y: 0.57}
   - {x: -0.65221655, y: 0.49515438}
   - {x: -0.7312612, y: 0.49159837}
   - {x: -0.74966747, y: 0.51823664}
@@ -5772,14 +5770,11 @@ MonoBehaviour:
       scaleFactor: {x: 1, y: 0}
     canvas: {fileID: 635465241}
   _levelSpawnerSettings:
-    poolData:
-      size: 10
-      container: {fileID: 898227704}
-      prefab: {fileID: 2530908874892444128, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
     blockContainer: {fileID: 898227705}
     levelData:
-      blocksCountRow: 4
-      blocksCountColumn: 4
+      blocksCountColumn: 2
+      blocksCountRow: 5
+    blocksConfig: {fileID: 11400000, guid: b7a1453111265ff49be19a2a391dec4b, type: 2}
     canvas: {fileID: 635465241}
   _ballManagerData:
     poolData:
@@ -5790,7 +5785,7 @@ MonoBehaviour:
     bottomWall: {fileID: 317404761}
     startBallSpeed: 2
     maxBallSpeed: 10
-    speedJump: 0.05
+    speedJump: 0.1
   _playerHealthData:
     minHealth: -1
     maxHealth: 3

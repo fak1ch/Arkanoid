@@ -28,14 +28,10 @@ namespace Installers.LevelScene
 
             var ballPool = new ObjectPool<MovableComponent>(_ballManagerData.poolData);
             var ballManager = new BallManager(_ballManagerData, ballPool);
-            
-            
-            _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.LevelPath);
 
-            _levelSpawnerSettings.poolData.size = _levelSpawnerSettings.levelData.Size;
-            var blockPool = new ObjectPool<Block>(_levelSpawnerSettings.poolData);
+            _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.LevelPath);
             var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
-            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager, blockPool);
+            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager);
 
             var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
 

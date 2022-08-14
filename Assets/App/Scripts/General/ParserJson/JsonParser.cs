@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.Networking;
@@ -38,10 +39,9 @@ namespace ParserJsonSpace
                 UnityWebRequest www = UnityWebRequest.Get(path);
                 www.SendWebRequest();
 
-                if (www.downloadHandler.isDone)
-                {
-                    _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
-                }
+                CheckDownloadHandler(www);
+                
+                _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
             }
             catch (Exception e)
             {
@@ -49,6 +49,14 @@ namespace ParserJsonSpace
             }
 
             return _data;
+        }
+
+        private async void CheckDownloadHandler(UnityWebRequest www)
+        {
+            while (!www.downloadHandler.isDone)
+            {
+                await Task.Yield();
+            }
         }
     }
 }
