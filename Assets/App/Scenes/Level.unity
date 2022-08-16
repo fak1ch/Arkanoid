@@ -1639,6 +1639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f967b9223dc574b8433ae4484928ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 519420031}
+  _borders: {x: 0.25, y: 0.25}
 --- !u!61 &317404762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1725,7 +1727,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1366}
+  m_Size: {x: 1360, y: 1366}
   m_EdgeRadius: 0
 --- !u!1 &386376431
 GameObject:
@@ -4619,6 +4621,8 @@ GameObject:
   - component: {fileID: 1608241255}
   - component: {fileID: 1608241254}
   - component: {fileID: 1608241257}
+  - component: {fileID: 1608241259}
+  - component: {fileID: 1608241260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4638,7 +4642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3121b67f7c005b44a3e64c2262f3062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 1608241258}
   _ballPointTransform: {fileID: 1988672168}
   _timeUntilCanLaunchBall: 0.1
 --- !u!212 &1608241255
@@ -4700,7 +4703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608241253}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.36, z: 0}
+  m_LocalPosition: {x: 0, y: -4.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1988672168}
@@ -4773,6 +4776,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 6
+--- !u!70 &1608241259
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608241253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0030421398, y: 0.315841}
+  m_Size: {x: 1.5885923, y: 0.36309722}
+  m_Direction: 1
+--- !u!70 &1608241260
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608241253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000000025303706, y: -0.021226289}
+  m_Size: {x: 0.3424541, y: 0.3424541}
+  m_Direction: 0
 --- !u!1 &1645931015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5758,15 +5793,20 @@ MonoBehaviour:
   _playerSettings:
     speed: 95
     rigidbody2D: {fileID: 1608241258}
+    playerPlatform: {fileID: 1608241254}
   _wallLimitersSettings:
     wallsData:
     - collider: {fileID: 318189982}
-      scaleFactor: {x: 0, y: 1}
+      offsetFactor: {x: 0.5, y: 0}
+      scaleFactor: {x: 1, y: 1}
     - collider: {fileID: 118923896}
-      scaleFactor: {x: 0, y: 1}
+      offsetFactor: {x: -0.5, y: 0}
+      scaleFactor: {x: 1, y: 1}
     - collider: {fileID: 439240973}
-      scaleFactor: {x: 1, y: 0}
+      offsetFactor: {x: 0, y: 0.5}
+      scaleFactor: {x: 1, y: 1}
     - collider: {fileID: 317404762}
+      offsetFactor: {x: 0, y: 0}
       scaleFactor: {x: 1, y: 0}
     canvas: {fileID: 635465241}
   _levelSpawnerSettings:
@@ -5793,7 +5833,6 @@ MonoBehaviour:
     healthView: {fileID: 212794538}
   _gameEventsControllerData:
     mainUi: {fileID: 1727095099}
-    playerPlatform: {fileID: 1608241254}
 --- !u!114 &1873474723
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,11 +1,18 @@
-﻿namespace Blocks.BlockTypesSpace
+﻿using System;
+
+namespace Blocks.BlockTypesSpace
 {
-    public enum BlockTypes
+    public enum BlockColors
     {
         Red,
         Green,
         Blue,
         Yellow,
+    }
+    
+    public enum BlockTypes
+    {
+        ColorBlock,
         ImmortalBlock,
         StandartTNT,
         VerticalTNT,
@@ -22,39 +29,16 @@
             _blockList = blockList;
         }
 
-        public Block GetBlockByEnum(BlockTypes blockTypes)
+        public Block GetBlockById(int id)
         {
             Block block = null;
             
-            switch (blockTypes)
+            foreach (var b in _blockList.blocks)
             {
-                case BlockTypes.Red:
-                    block = _blockList.redBlock;
-                    break;
-                case BlockTypes.Green:
-                    block = _blockList.greenBlock;
-                    break;
-                case BlockTypes.Blue:
-                    block = _blockList.blueBlock;
-                    break;
-                case BlockTypes.Yellow:
-                    block = _blockList.yellowBlock;
-                    break;
-                case BlockTypes.ImmortalBlock:
-                    block = _blockList.immortalBlock;
-                    break;
-                case BlockTypes.StandartTNT:
-                    block = _blockList.standartTNT;
-                    break;
-                case BlockTypes.HorizontalTNT:
-                    block = _blockList.horizontalTNT;
-                    break;
-                case BlockTypes.VerticalTNT:
-                    block = _blockList.verticalTNT;
-                    break;
-                case BlockTypes.ColorBomb:
-                    block = _blockList.colorBomb;
-                    break;
+                if (b.id == id)
+                {
+                    block = b.block;
+                }
             }
 
             return block;

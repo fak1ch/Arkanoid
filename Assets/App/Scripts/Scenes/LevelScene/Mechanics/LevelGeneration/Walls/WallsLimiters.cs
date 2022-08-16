@@ -1,3 +1,4 @@
+using System;
 using Architecture;
 using UnityEngine;
 
@@ -23,10 +24,15 @@ namespace LevelGeneration
 
             for (int i = 0; i < _wallLimitersData.wallsData.Length; i++)
             {
-                float width = (cameraSize.x * _wallLimitersData.wallsData[i].scaleFactor.x) + 1;
-                float height = (cameraSize.y * _wallLimitersData.wallsData[i].scaleFactor.y) + 1;
-                Vector2 newSize = new Vector2(width, height);
-                _wallLimitersData.wallsData[i].collider.size = newSize;
+                float maxValueSize = Math.Max(cameraSize.x, cameraSize.y);
+                Vector2 newSize = new Vector2(maxValueSize, maxValueSize);
+
+                var offsetFactor = _wallLimitersData.wallsData[i].offsetFactor;
+                var scaleFactor = _wallLimitersData.wallsData[i].scaleFactor;
+                var collider = _wallLimitersData.wallsData[i].collider;
+                
+                collider.size = (newSize * scaleFactor) + Vector2.one;
+                collider.offset = new Vector2(newSize.x, newSize.y) * offsetFactor;
             }
         }
     }

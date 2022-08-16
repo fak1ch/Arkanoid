@@ -118,18 +118,10 @@ namespace BallSpace
 
         private void NormalizeVelocity()
         {
-            _movableInfo.rigidbody2D.velocity = _movableInfo.rigidbody2D.velocity.normalized * _movableInfo.speed;
-            _velocityForReflection = _movableInfo.rigidbody2D.velocity;
-        }
-
-        private Vector2 ClampVector2(Vector2 vector)
-        {
-            float max = Mathf.Max(vector.x, vector.y);
-
-            vector.x /= max;
-            vector.y /= max;
-
-            return vector;
+            var velocity = _movableInfo.rigidbody2D.velocity;
+            velocity = velocity.normalized * _movableInfo.speed;
+            _movableInfo.rigidbody2D.velocity = velocity;
+            _velocityForReflection = velocity;
         }
 
         private float ConvertVectorToDegreeAngle(Vector2 vector)
@@ -140,21 +132,10 @@ namespace BallSpace
         private Vector2 ConvertAngeToDirection(float angle)
         {
             Vector2 direction = Vector2.zero;
-            direction.x = Mathf.Abs((float)Math.Sin(angle / Mathf.Rad2Deg));
-            direction.y = Mathf.Abs((float)Math.Cos(angle / Mathf.Rad2Deg));
-
-            direction.x *= GetNumberSign(_movableInfo.rigidbody2D.velocity.x);
-            direction.y *= GetNumberSign(_movableInfo.rigidbody2D.velocity.y);
+            direction.y = (float)Math.Cos(angle / Mathf.Rad2Deg);
+            direction.x = (float)Math.Sin(angle / Mathf.Rad2Deg);
 
             return direction;
-        }
-
-        private int GetNumberSign(float value)
-        {
-            if (value == 0)
-                return 1;
-
-            return (int)(value / Mathf.Abs(value)); ;
         }
     }
 }

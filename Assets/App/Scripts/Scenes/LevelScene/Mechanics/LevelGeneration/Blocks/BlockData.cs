@@ -21,5 +21,7 @@ namespace Blocks
 
         [Space(10)] 
         public BlockTypes blockType;
+        public BlockColors blockColor;
+        public int blockId;
     }
 }

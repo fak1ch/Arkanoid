@@ -14,7 +14,8 @@ namespace LevelGeneration
 
         private LevelSpawnerData _data;
         private BallManager _ballManager;
-        private Block[,] _blocks;
+        private BlockContainer _blockContainer;
+        private Block[][] _blocks;
 
         private Vector2 _cellSize;
         private int _blocksCount;
@@ -24,7 +25,10 @@ namespace LevelGeneration
         {
             _data = settings;
             _ballManager = ballManager;
-            _blocks = new Block[_data.levelData.blocksCountColumn, _data.levelData.blocksCountRow];
+            _blockContainer = new BlockContainer(_data.blocksConfig);
+
+            _blocks = InitializeArrayInArray<Block>(_data.levelData.blocksIndexesArray.Length,
+                _data.levelData.blocksIndexesArray[0].Length);
         }
 
         public override void Initialize()
@@ -34,22 +38,22 @@ namespace LevelGeneration
 
             CalculateMaxBlocksCount();
             CreateBlocks();
-            
-            //SaveCurrentMapToJson();
         }
 
-        public void BlockDestroy(Block block)
+        private void BlockDestroy(Block block)
         {
             _ballManager.DoJumpSpeedForAllBalls();
 
-            _blocksCount--;
-            if (_blocksCount < 0)
+            if (block.BlockType != BlockTypes.ImmortalBlock)
+                _blocksCount--;
+
+            if (_blocksCount == 0)
             {
                 OnNoMoreBlocks?.Invoke();
             }
         }
 
-        public Block CreateBlock(Block blockPrefab)
+        private Block CreateBlock(Block blockPrefab)
         {
             var block = Object.Instantiate(blockPrefab, _data.blockContainer.transform);
             
@@ -83,16 +87,14 @@ namespace LevelGeneration
 
         private void CreateBlocks()
         {
-            var blockContainer = new BlockContainer(_data.blocksConfig);
-            
-            for (int i = 0; i < _data.levelData.blocksCountColumn; i++)
+            for (int i = 0; i < _data.levelData.blocksIndexesArray.Length; i++)
             {
-                for(int k = 0; k < _data.levelData.blocksCountRow; k++)
+                for(int k = 0; k < _data.levelData.blocksIndexesArray[i].Length; k++)
                 {
-                    var blockPrefab = blockContainer.GetBlockByEnum(_data.levelData.blockTypes[i, k]);
+                    var blockPrefab = _blockContainer.GetBlockById(_data.levelData.blocksIndexesArray[i][k]);
                     var block = CreateBlock(blockPrefab);
                     block.SetBlocksMassive(_blocks, i, k);
-                    _blocks[i, k] = block;
+                    _blocks[i][k] = block;
                 }
             }
         }
@@ -105,11 +107,11 @@ namespace LevelGeneration
 
         private void RestoreAllBlocks()
         {
-            for (int i = 0; i < _blocks.GetLength(0); i++)
+            for (int i = 0; i < _blocks.Length; i++)
             {
-                for(int k = 0; k < _blocks.GetLength(1); k++)
+                for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    RestoreBlock(_blocks[i,k]);
+                    RestoreBlock(_blocks[i][k]);
                 }
             }
         }
@@ -123,11 +125,13 @@ namespace LevelGeneration
         {
             _maxBlocksCount = _data.levelData.Size;
 
-            for (int i = 0; i < _data.levelData.blockTypes.GetLength(0); i++)
+            for (int i = 0; i < _data.levelData.blocksIndexesArray.Length; i++)
             {
-                for (int k = 0; k < _data.levelData.blockTypes.GetLength(1); k++)
+                for (int k = 0; k < _data.levelData.blocksIndexesArray[i].Length; k++)
                 {
-                    if (_data.levelData.blockTypes[i, k] == BlockTypes.ImmortalBlock)
+                    int id = _data.levelData.blocksIndexesArray[i][k];
+                    
+                    if (_blockContainer.GetBlockById(id).BlockType == BlockTypes.ImmortalBlock)
                     {
                         _maxBlocksCount--;
                     }
@@ -135,6 +139,18 @@ namespace LevelGeneration
             }
 
             _blocksCount = _maxBlocksCount;
+        }
+
+        private T[][] InitializeArrayInArray<T>(int width, int height)
+        {
+            var array = new T[width][];
+            
+            for (int i = 0; i < width; i++)
+            {
+                array[i] = new T[height];
+            }
+
+            return array;
         }
     }
 }

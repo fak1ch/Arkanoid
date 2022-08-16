@@ -12,12 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a529390ee742d7846e8684db82d3e9, type: 3}
   m_Name: BlocksConfig
   m_EditorClassIdentifier: 
-  redBlock: {fileID: 4716735297676059207, guid: 196a4d6f05b0fbd4b807ac7ef284a9b8, type: 3}
-  greenBlock: {fileID: 634626424102416616, guid: cd8c4249b99154e46a5fe9ca37dffd7c, type: 3}
-  blueBlock: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
-  yellowBlock: {fileID: 4410748637842165478, guid: 7d1a9c9eec1a8c54da629cf6dc052c8a, type: 3}
-  immortalBlock: {fileID: 5730787474352583629, guid: f31d81d9ba75de14ba4768f887a788c8, type: 3}
-  standartTNT: {fileID: 2227762661744812145, guid: 07f7c0a0b08c360448302700ec2d4204, type: 3}
-  verticalTNT: {fileID: 952993408, guid: 204b95ea5f1b85f4db7e9e94d649d50c, type: 3}
-  horizontalTNT: {fileID: 2063884073998047619, guid: 590484463a86a7c4baa4764a3fc395db, type: 3}
-  colorBomb: {fileID: 6562622529513559079, guid: 1c81c8f432ef1c742a0f9fd99cc6921d, type: 3}
+  blocks:
+  - id: 0
+    block: {fileID: 4716735297676059207, guid: 196a4d6f05b0fbd4b807ac7ef284a9b8, type: 3}
+    type: 0
+    poolSpawnCount: 5
+  - id: 1
+    block: {fileID: 634626424102416616, guid: cd8c4249b99154e46a5fe9ca37dffd7c, type: 3}
+    type: 0
+    poolSpawnCount: 5
+  - id: 2
+    block: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
+    type: 0
+    poolSpawnCount: 5
+  - id: 3
+    block: {fileID: 4410748637842165478, guid: 7d1a9c9eec1a8c54da629cf6dc052c8a, type: 3}
+    type: 0
+    poolSpawnCount: 5
+  - id: 4
+    block: {fileID: 5730787474352583629, guid: f31d81d9ba75de14ba4768f887a788c8, type: 3}
+    type: 1
+    poolSpawnCount: 5
+  - id: 5
+    block: {fileID: 2227762661744812145, guid: 07f7c0a0b08c360448302700ec2d4204, type: 3}
+    type: 2
+    poolSpawnCount: 5
+  - id: 6
+    block: {fileID: 5256129639693103378, guid: 204b95ea5f1b85f4db7e9e94d649d50c, type: 3}
+    type: 3
+    poolSpawnCount: 5
+  - id: 7
+    block: {fileID: 558936780788480839, guid: 590484463a86a7c4baa4764a3fc395db, type: 3}
+    type: 4
+    poolSpawnCount: 5
+  - id: 8
+    block: {fileID: 6562622529513559079, guid: 1c81c8f432ef1c742a0f9fd99cc6921d, type: 3}
+    type: 5
+    poolSpawnCount: 5

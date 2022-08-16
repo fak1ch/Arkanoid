@@ -15,7 +15,7 @@ namespace Blocks
         [SerializeField] private BlockData _blockData;
 
         protected HealthSystem _healthSystem;
-        protected Block[,] _blocks;
+        protected Block[][] _blocks;
         private int _healthImageIndex;
 
         public bool IsDestroyed { get; set; }
@@ -23,6 +23,8 @@ namespace Blocks
         public int IndexColumn { get; private set; }
         public int IndexRow { get; private set; }
         public BlockTypes BlockType => _blockData.blockType;
+        public int Id => _blockData.blockId;
+        public BlockColors Color => _blockData.blockColor;
 
         protected virtual void Awake()
         {
@@ -82,7 +84,7 @@ namespace Blocks
             _blockData.boxCollider.size = newSize;
         }
 
-        public void SetBlocksMassive(Block[,] blocks, int indexColumn, int indexRow)
+        public void SetBlocksMassive(Block[][] blocks, int indexColumn, int indexRow)
         {
             _blocks = blocks;
             IndexColumn = indexColumn;

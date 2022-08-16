@@ -1,4 +1,6 @@
-﻿using Blocks.BlockTypesSpace;
+﻿using System;
+using System.Collections.Generic;
+using Blocks.BlockTypesSpace;
 using UnityEngine;
 
 namespace Blocks
@@ -6,14 +8,15 @@ namespace Blocks
     [CreateAssetMenu(fileName = "New block", menuName = "Blocks")]
     public class BlockScriptableObject : ScriptableObject
     {
-        public Block redBlock;
-        public Block greenBlock;
-        public Block blueBlock;
-        public Block yellowBlock;
-        public ImmortalBlock immortalBlock;
-        public StandartTNT standartTNT;
-        public VerticalTNT verticalTNT;
-        public HorizontalTNT horizontalTNT;
-        public ColorBomb colorBomb;
+        public BlockInformation[] blocks;
+    }
+    
+    [Serializable]
+    public class BlockInformation
+    {
+        public int id;
+        public Block block;
+        public BlockTypes type;
+        public int poolSpawnCount;
     }
 }
