@@ -4,7 +4,6 @@ using LevelGeneration;
 using Player;
 using System;
 using UISpace;
-using UnityEngine;
 
 namespace GameEventsControllerSpace
 {
@@ -12,7 +11,6 @@ namespace GameEventsControllerSpace
     public class GameEventsControllerData
     {
         public MainUI mainUi;
-        public PlayerPlatform playerPlatform;
     }
 
     public class GameEventsController : CustomBehaviour
@@ -44,7 +42,7 @@ namespace GameEventsControllerSpace
 
         private void RestartGame()
         {
-            _data.playerPlatform.RestartPlayerPlatform();
+            _playerController.RestartPlayerPlatform();
             _playerHeath.RestoreHealth();
 
             _levelSpawner.RecreateLevel();
@@ -69,16 +67,18 @@ namespace GameEventsControllerSpace
         
         private void PauseTheGame()
         {
-            _playerController.GameOnPause = true;
-            _data.playerPlatform.GameOnPause = true;
-            _ballManager.StopAllBalls();
+            SetupGameInactive(true);
         }
 
         private void UnpauseTheGame()
         {
-            _playerController.GameOnPause = false;
-            _data.playerPlatform.GameOnPause = false;
-            _ballManager.BallsContinueMove();
+            SetupGameInactive(false);
+        }
+
+        private void SetupGameInactive(bool value)
+        {
+            _playerController.GameOnPause = value;
+            _ballManager.SetupBallInactive(value);
         }
     }
 }

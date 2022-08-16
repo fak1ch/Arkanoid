@@ -17,6 +17,8 @@ namespace InputSystems
 
     public class InputSystem : CustomBehaviour
     {
+        public event Action OnButtonLaunchBallUnpressed;
+        
         private InputSystemInfo _inputSystemInfo;
 
         private bool _gameOnPause = true;
@@ -51,8 +53,18 @@ namespace InputSystems
             {
                 InputHorizontal = GetSmoothInputValue(InputHorizontal, 0); 
             }
+            
+            CheckButtonLaunchBall();
         }
 
+        private void CheckButtonLaunchBall()
+        {
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                OnButtonLaunchBallUnpressed?.Invoke();
+            }
+        }
+        
         private void MoveTargetToPosition(float targetPositionX, float neededPositionX)
         {
             float smoothEndValue = neededPositionX - targetPositionX;

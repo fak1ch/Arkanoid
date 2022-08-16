@@ -26,10 +26,19 @@ namespace BallSpace
 
         public override void Initialize()
         {
+            _data.bottomWall.SetCurrentBallsList(_currentBalls);
             _pool.Initialize();
             _data.bottomWall.OnTriggerWithBall += DestroyBall;
             SetSpeedToAllBalls(_data.startBallSpeed);
             PlaceNewBallToPlayerPlatform();
+        }
+
+        public override void Tick()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlaceNewBallToPlayerPlatform();
+            }
         }
 
         public void PlaceNewBallToPlayerPlatform()
@@ -98,28 +107,20 @@ namespace BallSpace
         public void ReturnAllBallsToPool()
         {
             _speed = _data.startBallSpeed;
-            
-            for (int i = _currentBalls.Count - 1; i >= 0; i--)
+
+            while (_currentBalls.Count > 0)
             {
-                ReturnBallToPool(_currentBalls[i]);
+                ReturnBallToPool(_currentBalls[0]);
             }
 
             _currentBalls.Clear();
         }
 
-        public void StopAllBalls()
+        public void SetupBallInactive(bool value)
         {
             foreach (var ball in _currentBalls)
             {
-                ball.GameOnPause = true;
-            }
-        }
-
-        public void BallsContinueMove()
-        {
-            foreach (var ball in _currentBalls)
-            {
-                ball.GameOnPause = false;
+                ball.GameOnPause = value;
             }
         }
     }

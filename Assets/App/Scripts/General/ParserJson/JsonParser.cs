@@ -36,12 +36,9 @@ namespace ParserJsonSpace
         {
             try
             {
-                UnityWebRequest www = UnityWebRequest.Get(path);
-                www.SendWebRequest();
-
-                CheckDownloadHandler(www);
+                var jsonTextFile = Resources.Load<TextAsset>(path);
                 
-                _data = JsonConvert.DeserializeObject<T>(www.downloadHandler.text);
+                _data = JsonConvert.DeserializeObject<T>(jsonTextFile.text);
             }
             catch (Exception e)
             {
@@ -49,14 +46,6 @@ namespace ParserJsonSpace
             }
 
             return _data;
-        }
-
-        private async void CheckDownloadHandler(UnityWebRequest www)
-        {
-            while (!www.downloadHandler.isDone)
-            {
-                await Task.Yield();
-            }
         }
     }
 }

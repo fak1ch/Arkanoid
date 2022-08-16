@@ -11,6 +11,7 @@ namespace Player
     {
         public float speed;
         public Rigidbody2D rigidbody2D;
+        public PlayerPlatform playerPlatform;
     }
 
     public class PlayerController : CustomBehaviour
@@ -19,15 +20,15 @@ namespace Player
         private InputSystem _inputSystem;
         private bool _gameOnPause;
         private Vector2 _velocityUntilPauseGame;
+        private Vector2 _startPosition;
 
         public bool GameOnPause
         {
-            get { return _gameOnPause; }
             set
             {
                 _gameOnPause = value;
 
-                if (value == true)
+                if (value)
                 {
                     _velocityUntilPauseGame = _playerControllerInfo.rigidbody2D.velocity;
                     _playerControllerInfo.rigidbody2D.velocity = Vector2.zero;
@@ -44,6 +45,17 @@ namespace Player
         {
             _playerControllerInfo = playerSettings;
             _inputSystem = inputSystem;
+            _inputSystem.OnButtonLaunchBallUnpressed += LaunchBall;
+        }
+
+        public override void Initialize()
+        {
+            _startPosition = _playerControllerInfo.rigidbody2D.position;
+        }
+
+        private void LaunchBall()
+        {
+            _playerControllerInfo.playerPlatform.LaunchBall();
         }
 
         public override void FixedTick()
@@ -54,6 +66,11 @@ namespace Player
                 newVelocity.x = _inputSystem.InputHorizontal * Time.fixedDeltaTime * _playerControllerInfo.speed;
                 _playerControllerInfo.rigidbody2D.velocity = newVelocity;
             }
+        }
+        
+        public void RestartPlayerPlatform()
+        {
+            _playerControllerInfo.rigidbody2D.position = _startPosition;
         }
     }
 }

@@ -7,6 +7,7 @@ namespace LevelGeneration
     public class WallData
     {
         public BoxCollider2D collider;
+        public Vector2 offsetFactor;
         public Vector2 scaleFactor;
     }
 }
