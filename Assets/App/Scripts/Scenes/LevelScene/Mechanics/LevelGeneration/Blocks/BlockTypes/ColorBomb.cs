@@ -11,7 +11,7 @@ namespace Blocks.BlockTypesSpace
         
         private void Start()
         {
-            _selectable = new CellSelectableColorBomb(this, _blocks);
+            _selectable = new CellSelectableColorBomb(this, blocks);
         }
 
         protected override void RunAdditionalLogic()

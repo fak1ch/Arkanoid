@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7876965036555872724}
   - component: {fileID: 7876965036555872723}
   - component: {fileID: 4410748637842165478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: YellowBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 7876965036787311093}
   - component: {fileID: 7876965036787311095}
   - component: {fileID: 7876965036787311094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -29,7 +29,7 @@ namespace Blocks.BlockTypesSpace
                 ResetMassiveToZero(moveMap);
 
                 moveMap[blockX][blockY] = 1;
-                BlockColors blockColor = _blocksNeighbors[i].Color;
+                BlockColors blockColor = _blocksNeighbors[i].BlockInformation.color;
                 int neededColorBlocksCount = 0;
 
                 while (true)
@@ -86,7 +86,7 @@ namespace Blocks.BlockTypesSpace
             for (int i = 0; i < blocksNeighbors.Count; i++)
             {
                 int cellValue = moveMap[blocksNeighbors[i].IndexColumn][blocksNeighbors[i].IndexRow];
-                if (blocksNeighbors[i].Color == neededColor && cellValue == 0 && blocksNeighbors[i].IsDestroyed == false)
+                if (blocksNeighbors[i].BlockInformation.color == neededColor && cellValue == 0 && blocksNeighbors[i].IsDestroyed == false)
                 {
                     moveMap[blocksNeighbors[i].IndexColumn][blocksNeighbors[i].IndexRow] = 1;
                     neededColorBlocksCount++;
@@ -114,7 +114,7 @@ namespace Blocks.BlockTypesSpace
             
             for (int i = 0; i < _blocksNeighbors.Count; i++)
             {
-                if (_blocksNeighbors[i].BlockType == BlockTypes.ColorBlock)
+                if (_blocksNeighbors[i].BlockInformation.type == BlockTypes.ColorBlock)
                     newBlocksNeighbors.Add(_blocksNeighbors[i]);
             }
             

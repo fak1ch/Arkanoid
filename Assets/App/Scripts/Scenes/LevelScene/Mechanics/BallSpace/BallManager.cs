@@ -1,6 +1,7 @@
 ﻿using Architecture;
 using Pool;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,13 @@ namespace BallSpace
         private readonly BallManagerData _data;
         private readonly ObjectPool<MovableComponent> _pool;
         private float _speed;
+        private Coroutine _speedBonusCoroutine;
+        private Coroutine _ballFuryCorutine;
+
+        private float _speedUntilBoost;
+        private float _speedJumpsValue;
+        private int _blockLayerId;
+        private int _ballLayerId;
 
         private readonly List<MovableComponent> _currentBalls;
 
@@ -22,23 +30,16 @@ namespace BallSpace
             _pool = pool;
             _currentBalls = new List<MovableComponent>();
             _speed = _data.startBallSpeed;
+            _blockLayerId = (int)Mathf.Log(_data.blockLayer.value, 2);
+            _ballLayerId = (int)Mathf.Log(_data.ballLayer.value, 2);
         }
 
         public override void Initialize()
         {
             _data.bottomWall.SetCurrentBallsList(_currentBalls);
-            _pool.Initialize();
             _data.bottomWall.OnTriggerWithBall += DestroyBall;
             SetSpeedToAllBalls(_data.startBallSpeed);
             PlaceNewBallToPlayerPlatform();
-        }
-
-        public override void Tick()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                PlaceNewBallToPlayerPlatform();
-            }
         }
 
         public void PlaceNewBallToPlayerPlatform()
@@ -85,22 +86,22 @@ namespace BallSpace
             _currentBalls.Remove(ball);
             _pool.ReturnElementToPool(ball);
         }
-        
+
         public void DoJumpSpeedForAllBalls()
         {
+            _speedJumpsValue += _data.speedJump;
             _speed = Mathf.Clamp(_speed + _data.speedJump, _data.startBallSpeed, _data.maxBallSpeed);
 
-            foreach (var ball in _currentBalls)
-            {
-                ball.Speed = _speed;
-            }
+            SetSpeedToAllBalls(_speed);
         }
 
         private void SetSpeedToAllBalls(float newSpeed)
         {
+            _speed = Mathf.Clamp(newSpeed, _data.startBallSpeed, _data.maxBallSpeed);
+
             foreach (var ball in _currentBalls)
             {
-                ball.Speed = newSpeed;
+                ball.Speed = _speed;
             }
         }
 
@@ -121,6 +122,60 @@ namespace BallSpace
             foreach (var ball in _currentBalls)
             {
                 ball.GameOnPause = value;
+            }
+        }
+
+        public void ChangeBallsSpeedForTime(float addSpeedValue, float seconds)
+        {
+            if (_speedBonusCoroutine == null)
+                _speedUntilBoost = _speed;
+            else 
+                _data.coroutineManager.StopCoroutine(_speedBonusCoroutine);
+            
+            _speedBonusCoroutine = _data.coroutineManager.StartCoroutine(SpeedBonusRoutine(addSpeedValue, seconds));
+        }
+        
+        public void ActivateBonusBallOfFury(float duration)
+        {
+            if (_ballFuryCorutine != null)
+                _data.coroutineManager.StopCoroutine(_ballFuryCorutine);
+            
+            _ballFuryCorutine = _data.coroutineManager.StartCoroutine(BallOfFuryBonusRoutine(duration));
+        }
+        
+        private IEnumerator SpeedBonusRoutine(float addSpeedValue, float duration)
+        {
+            SetSpeedToAllBalls(_speed + addSpeedValue);
+            _speedJumpsValue = 0;
+
+            yield return new WaitForSeconds(duration);
+            
+            SetSpeedToAllBalls(_speedUntilBoost + _speedJumpsValue);
+            _speedBonusCoroutine = null;
+        }
+        
+        private IEnumerator BallOfFuryBonusRoutine(float duration)
+        {
+            SetToAllBallsBallFuryFlag(true);
+            SetIgnoreLayerCollision(true);
+            
+            yield return new WaitForSeconds(duration);
+            
+            SetIgnoreLayerCollision(false);
+            SetToAllBallsBallFuryFlag(false);
+            _ballFuryCorutine = null;
+        }
+
+        private void SetIgnoreLayerCollision(bool value)
+        {
+            Physics2D.IgnoreLayerCollision(_blockLayerId, _ballLayerId, value);
+        }
+
+        private void SetToAllBallsBallFuryFlag(bool value)
+        {
+            foreach (var ball in _currentBalls)
+            {
+                ball.SetBallFuryTriggerActive(value);
             }
         }
     }

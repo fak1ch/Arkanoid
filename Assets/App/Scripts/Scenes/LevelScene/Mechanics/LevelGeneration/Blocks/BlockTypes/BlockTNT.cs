@@ -12,7 +12,7 @@ namespace Blocks.BlockTypesSpace
         
         protected virtual void Start()
         {
-            _cellSelectable = new CellSelectable(this, _blocks);
+            _cellSelectable = new CellSelectable(this, blocks);
         }
 
         protected override void RunAdditionalLogic()

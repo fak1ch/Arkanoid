@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 287566427201220576}
   - component: {fileID: 287566427201220578}
   - component: {fileID: 287566427201220579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 287566427280156609}
   - component: {fileID: 287566427280156614}
   - component: {fileID: 4716735297676059207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,3 +224,5 @@ MonoBehaviour:
     - damageSprite: {fileID: 21300000, guid: 3ecfd681602ff4944b39bf4b74783b1a, type: 3}
     blockBreakImage: {fileID: 287566427201220579}
     blockType: 0
+    blockColor: 0
+    blockId: 0

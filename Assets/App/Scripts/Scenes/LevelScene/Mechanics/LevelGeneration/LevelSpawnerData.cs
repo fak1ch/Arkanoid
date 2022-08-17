@@ -10,6 +10,7 @@ namespace LevelGeneration
     public class LevelSpawnerData
     {
         public GridLayoutGroup blockContainer;
+        public Transform blockPoolContainer;
         public LevelData levelData;
         public BlockScriptableObject blocksConfig;
         public Canvas canvas;

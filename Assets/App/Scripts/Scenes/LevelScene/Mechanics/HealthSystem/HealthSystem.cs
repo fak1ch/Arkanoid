@@ -27,31 +27,18 @@ namespace HealthSystemSpace
 
         public void TakeDamage(int damage)
         {
-            if (damage < 0)
-            {
-                Debug.LogError("You send minus value");
-                return;
-            }
-
             if (_health - damage > _minValue)
             {
                 _health -= damage;
             }
             else
             {
-                _health = _minValue;
-                OnHealthEqualsMinValue?.Invoke();
+                EquateHealthToMinValue();
             }
         }
 
         public void AddHealth(int value)
         {
-            if (value < 0)
-            {
-                Debug.LogError("You send minus value");
-                return;
-            }
-
             if (_health + value <= _maxValue)
             {
                 _health += value;
@@ -65,6 +52,12 @@ namespace HealthSystemSpace
         public void RestoreHealth()
         {
             _health = _maxValue;
+        }
+
+        public void EquateHealthToMinValue()
+        {
+            _health = _minValue;
+            OnHealthEqualsMinValue?.Invoke();
         }
     }
 }

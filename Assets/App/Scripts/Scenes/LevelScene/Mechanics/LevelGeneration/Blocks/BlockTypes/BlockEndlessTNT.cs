@@ -4,7 +4,7 @@
     {
         protected override void Start()
         {
-            _cellSelectable = new CellSelectableEndless(this, _blocks);
+            _cellSelectable = new CellSelectableEndless(this, blocks);
         }
     }
 }

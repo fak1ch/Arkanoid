@@ -1,6 +1,9 @@
 ﻿using Player;
 using System;
+using Blocks;
+using Pool;
 using UnityEngine;
+using Object = System.Object;
 
 namespace BallSpace
 {
@@ -14,18 +17,18 @@ namespace BallSpace
 
         [Space(10)]
         public Rigidbody2D rigidbody2D;
+        public GameObject ballFuryTrigger;
     }
 
     public class MovableComponent : MonoBehaviour
     {
         [SerializeField] private MovableInfo _movableInfo;
-
+        
         private Vector2 _velocityForReflection;
         private Vector2 _velocityUntilPauseGame;
         private bool _gameOnPause;
 
         public Rigidbody2D Rigidbody2D => _movableInfo.rigidbody2D;
-
         public float Speed
         {
             get => _movableInfo.speed;
@@ -35,7 +38,6 @@ namespace BallSpace
                     _movableInfo.speed = value;
             }
         }
-
         public bool GameOnPause
         {
             get => _gameOnPause;
@@ -136,6 +138,11 @@ namespace BallSpace
             direction.x = (float)Math.Sin(angle / Mathf.Rad2Deg);
 
             return direction;
+        }
+
+        public void SetBallFuryTriggerActive(bool value)
+        {
+            _movableInfo.ballFuryTrigger.SetActive(value);
         }
     }
 }

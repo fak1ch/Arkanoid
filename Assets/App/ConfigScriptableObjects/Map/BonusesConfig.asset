@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1ca2b519f244879446898b71e92d38, type: 3}
+  m_Name: BonusesConfig
+  m_EditorClassIdentifier: 
+  bonuses:
+  - id: 0
+    prefab: {fileID: 4017521632689923391, guid: d2558ba5c0dc24d43b119b929521747b, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 1
+    prefab: {fileID: 6933754340633775447, guid: 86067866948f73841a315bb23bb209f2, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 2
+    prefab: {fileID: 6916110108282920944, guid: 66fa1cfad1b371849a7dbaa7f3c56125, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 3
+    prefab: {fileID: 6329675215038587454, guid: 9f12861e40a839e41a3bdbd2113a5d7c, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 4
+    prefab: {fileID: 4087732362806547289, guid: d2099990dcaefe94f8776bcb1610be1e, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 5
+    prefab: {fileID: 2513839580266831201, guid: fea7827f48ff332418af88d2796de329, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 6
+    prefab: {fileID: 8357747551487858384, guid: 8f086f02fbe0d1c43bcd947105caea79, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 7
+    prefab: {fileID: 6117751912492399879, guid: d7e7da8cf21238040ae6c247dbfa8edf, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 8
+    prefab: {fileID: 898535842, guid: a0fe601d7b5912e45bc649da4425c30e, type: 3}
+    poolSize: 10
+    spawnChance: 5
+  - id: 9
+    prefab: {fileID: -2419605651353542334, guid: 816d9a51d1b7a3e4c95ab0b3c69c52d6, type: 3}
+    poolSize: 10
+    spawnChance: 5
