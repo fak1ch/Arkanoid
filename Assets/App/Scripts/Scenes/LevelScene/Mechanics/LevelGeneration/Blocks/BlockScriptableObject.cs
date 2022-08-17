@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
 using Blocks.BlockTypesSpace;
 using UnityEngine;
 
@@ -12,11 +12,9 @@ namespace Blocks
     }
     
     [Serializable]
-    public class BlockInformation
+    public class BlockInformation : PoolObjectInformation<Block>
     {
-        public int id;
-        public Block block;
         public BlockTypes type;
-        public int poolSpawnCount;
+        public BlockColors color;
     }
 }

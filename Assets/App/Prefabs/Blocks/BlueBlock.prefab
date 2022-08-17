@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 895101621}
   - component: {fileID: 895101623}
   - component: {fileID: 895101622}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 950968980}
   - component: {fileID: 950968979}
   - component: {fileID: 5742684913094438068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlueBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

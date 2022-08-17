@@ -40,7 +40,18 @@ namespace Player
         private void TakeDamage()
         {
             _healthSystem.TakeDamage(_data.damageForPassBall);
+            RefreshPlayerHealthView();
+        }
 
+        public void AddHealth(int value)
+        {
+            _healthSystem.AddHealth(value);
+            RefreshPlayerHealthView();
+        }
+
+        public void MinusHealth(int value)
+        {
+            _healthSystem.TakeDamage(value);
             RefreshPlayerHealthView();
         }
 

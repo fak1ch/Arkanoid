@@ -4,12 +4,12 @@ using BallSpace;
 using Blocks;
 using Blocks.BlockTypesSpace;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace LevelGeneration 
 {
     public class LevelSpawner : CustomBehaviour
     {
+        public event Action<Vector2> OnBlockDestroyed;
         public event Action OnNoMoreBlocks;
 
         private LevelSpawnerData _data;
@@ -21,11 +21,11 @@ namespace LevelGeneration
         private int _blocksCount;
         private int _maxBlocksCount;
         
-        public LevelSpawner(LevelSpawnerData settings, BallManager ballManager)
+        public LevelSpawner(LevelSpawnerData settings, BallManager ballManager, BlockContainer blockContainer)
         {
             _data = settings;
             _ballManager = ballManager;
-            _blockContainer = new BlockContainer(_data.blocksConfig);
+            _blockContainer = blockContainer;
 
             _blocks = InitializeArrayInArray<Block>(_data.levelData.blocksIndexesArray.Length,
                 _data.levelData.blocksIndexesArray[0].Length);
@@ -35,16 +35,17 @@ namespace LevelGeneration
         {
             _cellSize = CalculateCellSize();
             _data.blockContainer.cellSize = _cellSize;
-
-            CalculateMaxBlocksCount();
+            
             CreateBlocks();
+            CalculateMaxBlocksCount();
         }
 
         private void BlockDestroy(Block block)
         {
+            OnBlockDestroyed?.Invoke(block.transform.position);
             _ballManager.DoJumpSpeedForAllBalls();
 
-            if (block.BlockType != BlockTypes.ImmortalBlock)
+            if (block.BlockInformation.type != BlockTypes.ImmortalBlock)
                 _blocksCount--;
 
             if (_blocksCount == 0)
@@ -53,16 +54,16 @@ namespace LevelGeneration
             }
         }
 
-        private Block CreateBlock(Block blockPrefab)
+        private void InitializeBlock(Block block, int indexX, int indexY)
         {
-            var block = Object.Instantiate(blockPrefab, _data.blockContainer.transform);
-            
+            block.SetBlocksMassive(_blocks, indexX, indexY);
+            _blocks[indexX][indexY] = block;
+
+            block.transform.SetParent(_data.blockContainer.transform);
             block.SetBoxColliderSize(_cellSize);
             block.OnBlockDestroy += BlockDestroy;
             block.transform.localScale = new Vector3(1, 1, 1);
             block.gameObject.SetActive(true);
-
-            return block;
         }
 
         private Vector2 CalculateCellSize()
@@ -91,10 +92,8 @@ namespace LevelGeneration
             {
                 for(int k = 0; k < _data.levelData.blocksIndexesArray[i].Length; k++)
                 {
-                    var blockPrefab = _blockContainer.GetBlockById(_data.levelData.blocksIndexesArray[i][k]);
-                    var block = CreateBlock(blockPrefab);
-                    block.SetBlocksMassive(_blocks, i, k);
-                    _blocks[i][k] = block;
+                    var block = _blockContainer.GetObjectFromPoolById(_data.levelData.blocksIndexesArray[i][k]);
+                    InitializeBlock(block, i, k);
                 }
             }
         }
@@ -125,13 +124,11 @@ namespace LevelGeneration
         {
             _maxBlocksCount = _data.levelData.Size;
 
-            for (int i = 0; i < _data.levelData.blocksIndexesArray.Length; i++)
+            for (int i = 0; i < _blocks.Length; i++)
             {
-                for (int k = 0; k < _data.levelData.blocksIndexesArray[i].Length; k++)
+                for (int k = 0; k < _blocks[i].Length; k++)
                 {
-                    int id = _data.levelData.blocksIndexesArray[i][k];
-                    
-                    if (_blockContainer.GetBlockById(id).BlockType == BlockTypes.ImmortalBlock)
+                    if (_blocks[i][k].BlockInformation.type == BlockTypes.ImmortalBlock)
                     {
                         _maxBlocksCount--;
                     }

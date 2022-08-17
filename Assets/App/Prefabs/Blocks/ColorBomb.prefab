@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3220904441907412312}
   - component: {fileID: 3220904441907412314}
   - component: {fileID: 3220904441907412315}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3220904441828537721}
   - component: {fileID: 3220904441828537726}
   - component: {fileID: 6562622529513559079}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ColorBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,6 +224,7 @@ MonoBehaviour:
     - damageSprite: {fileID: 21300000, guid: 3ecfd681602ff4944b39bf4b74783b1a, type: 3}
     blockBreakImage: {fileID: 3220904441907412315}
     blockType: 5
+    blockColor: 0
     blockId: 8
   _directions:
   - {x: 1, y: 0}

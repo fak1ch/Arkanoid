@@ -19,9 +19,10 @@ namespace Pool
             _container = poolData.container;
             _prefab = poolData.prefab;
             _pool = new Queue<T>(_size);
+            Initialize();
         }
 
-        public void Initialize()
+        private void Initialize()
         {
             for (int i = 0; i < _size; i++)
             {
@@ -40,7 +41,7 @@ namespace Pool
         {
             if (_pool.Count == 0)
                 CreateElementInPool(_prefab);
-            
+
             return _pool.Dequeue();
         }
 

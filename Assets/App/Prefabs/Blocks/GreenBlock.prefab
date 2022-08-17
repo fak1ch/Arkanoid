@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8974865664454767125}
   - component: {fileID: 8974865664454767122}
   - component: {fileID: 634626424102416616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GreenBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8974865664264747572}
   - component: {fileID: 8974865664264747574}
   - component: {fileID: 8974865664264747575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

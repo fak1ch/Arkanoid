@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7711726396899735773}
   - component: {fileID: 7711726396899735770}
   - component: {fileID: 558936780788480839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HorizontalTNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 7711726396724392188}
   - component: {fileID: 7711726396724392190}
   - component: {fileID: 7711726396724392191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

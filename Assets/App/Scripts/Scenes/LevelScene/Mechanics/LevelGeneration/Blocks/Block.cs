@@ -14,23 +14,21 @@ namespace Blocks
 
         [SerializeField] private BlockData _blockData;
 
-        protected HealthSystem _healthSystem;
-        protected Block[][] _blocks;
+        protected HealthSystem healthSystem;
+        protected Block[][] blocks;
         private int _healthImageIndex;
 
         public bool IsDestroyed { get; set; }
         public bool IsImmortality { get; set; }
         public int IndexColumn { get; private set; }
         public int IndexRow { get; private set; }
-        public BlockTypes BlockType => _blockData.blockType;
-        public int Id => _blockData.blockId;
-        public BlockColors Color => _blockData.blockColor;
+        public BlockInformation BlockInformation { get; set; }
 
         protected virtual void Awake()
         {
             _healthImageIndex = _blockData.health.Count - 1;
-            _healthSystem = new HealthSystem(_blockData.minHealth, _blockData.health.Count);
-            _healthSystem.OnHealthEqualsMinValue += DestroyBlock;
+            healthSystem = new HealthSystem(_blockData.minHealth, _blockData.health.Count);
+            healthSystem.OnHealthEqualsMinValue += DestroyBlock;
             _blockData.blockImage.sprite = _blockData.blockSprite;
             RefreshDamageSprite();
         }
@@ -49,7 +47,7 @@ namespace Blocks
         {
             IsDestroyed = false;
             _healthImageIndex = _blockData.health.Count - 1;
-            _healthSystem.RestoreHealth();
+            healthSystem.RestoreHealth();
             RefreshDamageSprite();
             
             transform.localScale = new Vector3(1, 1, 1);
@@ -66,7 +64,7 @@ namespace Blocks
             
             if (collision.gameObject.TryGetComponent(out Ball ball))
             {
-                _healthSystem.TakeDamage(ball.Damage);
+                healthSystem.TakeDamage(ball.Damage);
                 RefreshDamageSprite();
             }
         }
@@ -84,9 +82,9 @@ namespace Blocks
             _blockData.boxCollider.size = newSize;
         }
 
-        public void SetBlocksMassive(Block[][] blocks, int indexColumn, int indexRow)
+        public void SetBlocksMassive(Block[][] blocks1, int indexColumn, int indexRow)
         {
-            _blocks = blocks;
+            blocks = blocks1;
             IndexColumn = indexColumn;
             IndexRow = indexRow;
         }

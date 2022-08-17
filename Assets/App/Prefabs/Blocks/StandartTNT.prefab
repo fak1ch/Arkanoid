@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8338981654101494179}
   - component: {fileID: 8338981654101494180}
   - component: {fileID: 2227762661744812145}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StandartTNT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
     - damageSprite: {fileID: 21300000, guid: 3ecfd681602ff4944b39bf4b74783b1a, type: 3}
     blockBreakImage: {fileID: 8338981654295773569}
     blockType: 2
+    blockColor: 0
     blockId: 5
   _directions:
   - {x: 0, y: 1}
@@ -170,7 +171,7 @@ GameObject:
   - component: {fileID: 8338981654295773570}
   - component: {fileID: 8338981654295773568}
   - component: {fileID: 8338981654295773569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDamageImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}

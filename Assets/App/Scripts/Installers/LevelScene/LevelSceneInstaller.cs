@@ -1,6 +1,8 @@
-﻿using Architecture;
+﻿using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
+using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
+using Architecture;
 using BallSpace;
-using Blocks;
+using Blocks.BlockTypesSpace;
 using GameEventsControllerSpace;
 using InputSystems;
 using LevelGeneration;
@@ -20,6 +22,7 @@ namespace Installers.LevelScene
         [SerializeField] private BallManagerData _ballManagerData;
         [SerializeField] private PlayerHealthData _playerHealthData;
         [SerializeField] private GameEventsControllerData _gameEventsControllerData;
+        [SerializeField] private BonusManagerData _bonusManagerData;
 
         public override void Install(AppHandler appHandler)
         {
@@ -30,12 +33,16 @@ namespace Installers.LevelScene
             var ballManager = new BallManager(_ballManagerData, ballPool);
 
             _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.LevelPath);
+            var blockContainer = new BlockContainer(_levelSpawnerSettings.blocksConfig.blocks, _levelSpawnerSettings.blockPoolContainer);
             var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
-            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager);
+            var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager, blockContainer);
 
             var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
 
             var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, playerController, levelSpawner);
+
+            var bonusContainer = new BonusContainer(_bonusManagerData.bonusList.bonuses, _bonusManagerData.bonusContainer);
+            var bonusManager = new BonusManager(_bonusManagerData, bonusContainer, levelSpawner, playerHealth, ballManager, playerController);
  
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);
@@ -44,6 +51,7 @@ namespace Installers.LevelScene
             appHandler.AddBehaviour(levelSpawner);
             appHandler.AddBehaviour(playerHealth);
             appHandler.AddBehaviour(gameEventsController);
+            appHandler.AddBehaviour(bonusManager);
         }
         
         private LevelData LoadLevelDataFromJson(string levelDataPath)
