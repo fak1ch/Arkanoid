@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2205888855084987730}
   - component: {fileID: 2205888855084987734}
   - component: {fileID: 2205888855084987728}
-  - component: {fileID: -1287295304454641131}
   - component: {fileID: 2592469577744352074}
+  - component: {fileID: -1287295304454641131}
   m_Layer: 0
   m_Name: BonusReductionPlatform
   m_TagString: Untagged
@@ -133,6 +133,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62952435, y: 0.24495462}
   m_EdgeRadius: 0
+--- !u!114 &2592469577744352074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205888855084987735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088c76643e60418f951e00c51f5185d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: -1287295304454641131}
+  _platformSizeIndex: 0
+  _duration: 2
 --- !u!114 &-1287295304454641131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,17 +161,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
---- !u!114 &2592469577744352074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2205888855084987735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088c76643e60418f951e00c51f5185d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _platformSizeIndex: 0
-  _duration: 2

@@ -1,5 +1,6 @@
 ﻿using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
+using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusKinds;
 using Architecture;
 using BallSpace;
 using Blocks.BlockTypesSpace;
@@ -22,7 +23,8 @@ namespace Installers.LevelScene
         [SerializeField] private BallManagerData _ballManagerData;
         [SerializeField] private PlayerHealthData _playerHealthData;
         [SerializeField] private GameEventsControllerData _gameEventsControllerData;
-        [SerializeField] private BonusManagerData _bonusManagerData;
+        [SerializeField] private BonusSpawnerData _bonusSpawnerData;
+        [SerializeField] private BonusesActivatorData _bonusesActivatorData;
 
         public override void Install(AppHandler appHandler)
         {
@@ -39,11 +41,18 @@ namespace Installers.LevelScene
 
             var playerHealth = new PlayerHealth(_playerHealthData, ballManager);
 
-            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, playerController, levelSpawner);
-
-            var bonusContainer = new BonusContainer(_bonusManagerData.bonusList.bonuses, _bonusManagerData.bonusContainer);
-            var bonusManager = new BonusManager(_bonusManagerData, bonusContainer, levelSpawner, playerHealth, ballManager, playerController);
+            _bonusesActivatorData.playerHealth = playerHealth;
+            _bonusesActivatorData.playerController = playerController;
+            _bonusesActivatorData.ballManager = ballManager;
+            var bonusesActivator = new BonusesActivator(_bonusesActivatorData);
+            _bonusSpawnerData.bonusData.bonusesActivator = bonusesActivator;
+            var bonusContainer = new BonusContainer(_bonusSpawnerData.bonusList.bonuses, _bonusSpawnerData.bonusContainer);
+            var bonusSpawner = new BonusSpawner(_bonusSpawnerData, bonusContainer, levelSpawner);
+            var bonusManager = new BonusManager(bonusesActivator);
  
+            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, 
+                playerController, levelSpawner, bonusSpawner, bonusManager, inputSystem);
+            
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);
             appHandler.AddBehaviour(ballManager);
@@ -51,6 +60,7 @@ namespace Installers.LevelScene
             appHandler.AddBehaviour(levelSpawner);
             appHandler.AddBehaviour(playerHealth);
             appHandler.AddBehaviour(gameEventsController);
+            appHandler.AddBehaviour(bonusSpawner);
             appHandler.AddBehaviour(bonusManager);
         }
         

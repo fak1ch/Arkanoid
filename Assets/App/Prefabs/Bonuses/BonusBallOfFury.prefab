@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3240eef3a28a4f2b8df0b8f3e747bf13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movement: {fileID: -3348937131227967701}
   _duration: 3
 --- !u!114 &-3348937131227967701
 MonoBehaviour:

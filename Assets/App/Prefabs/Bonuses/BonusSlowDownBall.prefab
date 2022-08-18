@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 771965345778611583}
   - component: {fileID: 771965345778611579}
   - component: {fileID: 771965345778611581}
-  - component: {fileID: 8932491754629359481}
   - component: {fileID: 898535842}
+  - component: {fileID: 8932491754629359481}
   m_Layer: 0
   m_Name: BonusSlowDownBall
   m_TagString: Untagged
@@ -133,6 +133,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62952435, y: 0.24495462}
   m_EdgeRadius: 0
+--- !u!114 &898535842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771965345778611578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aee7362d1042dc8063660d33ae408a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 8932491754629359481}
+  _duration: 2
+  _addSpeedValue: -2
 --- !u!114 &8932491754629359481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,17 +161,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
---- !u!114 &898535842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771965345778611578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71aee7362d1042dc8063660d33ae408a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 2
-  _addSpeedValue: -2

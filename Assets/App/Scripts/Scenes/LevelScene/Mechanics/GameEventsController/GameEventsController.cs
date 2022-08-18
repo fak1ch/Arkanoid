@@ -3,6 +3,9 @@ using BallSpace;
 using LevelGeneration;
 using Player;
 using System;
+using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
+using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
+using InputSystems;
 using UISpace;
 
 namespace GameEventsControllerSpace
@@ -18,17 +21,24 @@ namespace GameEventsControllerSpace
         private GameEventsControllerData _data;
         private PlayerHealth _playerHeath;
         private BallManager _ballManager;
+        private BonusSpawner _bonusSpawner;
+        private BonusManager _bonusManager;
         private PlayerController _playerController;
         private LevelSpawner _levelSpawner;
+        private InputSystem _inputSystem;
 
         public GameEventsController(GameEventsControllerData data, PlayerHealth playerHealth,
-            BallManager ballManager, PlayerController playerController, LevelSpawner levelSpawner)
+            BallManager ballManager, PlayerController playerController, LevelSpawner levelSpawner, 
+            BonusSpawner bonusSpawner, BonusManager bonusManager, InputSystem inputSystem)
         {
             _data = data;
             _playerHeath = playerHealth;
             _ballManager = ballManager;
             _playerController = playerController;
             _levelSpawner = levelSpawner;
+            _bonusSpawner = bonusSpawner;
+            _bonusManager = bonusManager;
+            _inputSystem = inputSystem;
         }
 
         public override void Initialize()
@@ -49,6 +59,9 @@ namespace GameEventsControllerSpace
 
             _ballManager.ReturnAllBallsToPool();
             _ballManager.PlaceNewBallToPlayerPlatform();
+            
+            _bonusManager.StopAllBonuses();
+            _bonusSpawner.DestroyAllBonuses();
             
             UnpauseTheGame();
         }
@@ -79,6 +92,9 @@ namespace GameEventsControllerSpace
         {
             _playerController.GameOnPause = value;
             _ballManager.SetupBallInactive(value);
+            _bonusSpawner.SetBonusesInactive(value);
+            _bonusManager.GameOnPause = value;
+            _inputSystem.GameOnPause = value;
         }
     }
 }

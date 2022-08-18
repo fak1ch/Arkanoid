@@ -22,14 +22,12 @@ namespace Player
 
         private MovableComponent _currentPinnedBall;
         private bool _canLaunchBall = true;
-        private Coroutine _changeSizeCoroutine;
 
-        public void SetPlatformSize(int index, float duration)
+        public int DefaultSizeIndex => _defaultSizeIndex;
+
+        public void SetPlatformSize(int index)
         {
-            if (_changeSizeCoroutine != null)
-                StopCoroutine(_changeSizeCoroutine);
-            
-            _changeSizeCoroutine = StartCoroutine(ChangePlatformSizeRoutine(_sizes[index], duration));
+            ChangePlatformSize(_sizes[index]);
         }
 
         private void ChangePlatformSize(PlatformSizeInfo sizeInfo)
@@ -79,14 +77,6 @@ namespace Player
             _canLaunchBall = false;
             yield return new WaitForSeconds(_timeUntilCanLaunchBall);
             _canLaunchBall = true;
-        }
-
-        private IEnumerator ChangePlatformSizeRoutine(PlatformSizeInfo sizeInfo, float duration)
-        {
-            ChangePlatformSize(sizeInfo);
-            yield return new WaitForSeconds(duration);
-            ChangePlatformSize(_sizes[_defaultSizeIndex]);
-            _changeSizeCoroutine = null;
         }
     }
 }

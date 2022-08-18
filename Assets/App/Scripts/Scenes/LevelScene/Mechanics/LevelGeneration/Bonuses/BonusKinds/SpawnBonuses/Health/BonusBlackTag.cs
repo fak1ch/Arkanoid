@@ -2,14 +2,14 @@
 
 namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
-    public class BonusChangeSpeedPlatform: Bonus
+    public class BonusBlackTag: Bonus
     {
         [SerializeField] private float _duration;
-        [SerializeField] private float _addSpeedValue;
+        [SerializeField] private int _minusHealthValue;
         
         protected override void ActivateBonus()
         {
-            bonusData.playerController.AddSpeed(_addSpeedValue, _duration);
+            bonusData.bonusesActivator.ActivateBlackTagBonus(_duration, _minusHealthValue);
         }
     }
 }

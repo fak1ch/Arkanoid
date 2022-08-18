@@ -20,29 +20,24 @@ namespace InputSystems
         public event Action OnButtonLaunchBallUnpressed;
         
         private InputSystemInfo _inputSystemInfo;
-
-        private bool _gameOnPause = true;
+        
         public float InputHorizontal { get; private set; } = 0;
+        public bool GameOnPause { get; set; }
 
         public InputSystem(InputSystemInfo settings)
         {
             _inputSystemInfo = settings;
         }
 
-        public override void Initialize()
-        {
-            _gameOnPause = false;
-        }
-
         public override void Tick()
         {
-            if (_gameOnPause == false)
+            if (GameOnPause == false)
                 UpdateInput();
             else
                 InputHorizontal = 0;
         }
 
-        public void UpdateInput()
+        private void UpdateInput()
         {
             if (Input.GetMouseButton(0))
             {

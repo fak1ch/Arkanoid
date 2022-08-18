@@ -10,7 +10,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         
         protected override void ActivateBonus()
         {
-            bonusData.ballManager.ChangeBallsSpeedForTime(_addSpeedValue, _duration);
+            bonusData.bonusesActivator.ActivateChangeBallSpeed(_addSpeedValue, _duration);
         }
     }
 }
