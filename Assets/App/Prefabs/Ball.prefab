@@ -221,7 +221,7 @@ MonoBehaviour:
   _movableInfo:
     speed: 2
     startDirection: {x: 0, y: 1}
-    plusMinusAngle: 2
+    plusMinusAngle: 5
     correctionAngles: 00000000b40000005a000000a6ffffff4cffffff
     rigidbody2D: {fileID: 6478197079195923081}
     ballFuryTrigger: {fileID: 4805217780386719689}

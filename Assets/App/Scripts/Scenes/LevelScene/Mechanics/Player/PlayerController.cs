@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 using App.Scripts.General.CoroutineManager;
-using BallSpace;
 
 namespace Player
 {
@@ -21,7 +20,7 @@ namespace Player
 
     public class PlayerController : CustomBehaviour
     {
-        private PlayerControllerInfo _playerControllerInfo;
+        private PlayerControllerInfo _data;
         private InputSystem _inputSystem;
         private bool _gameOnPause;
         private Vector2 _velocityUntilPauseGame;
@@ -38,12 +37,12 @@ namespace Player
 
                 if (value)
                 {
-                    _velocityUntilPauseGame = _playerControllerInfo.rigidbody2D.velocity;
-                    _playerControllerInfo.rigidbody2D.velocity = Vector2.zero;
+                    _velocityUntilPauseGame = _data.rigidbody2D.velocity;
+                    _data.rigidbody2D.velocity = Vector2.zero;
                 }
                 else
                 {
-                    _playerControllerInfo.rigidbody2D.velocity = _velocityUntilPauseGame;
+                    _data.rigidbody2D.velocity = _velocityUntilPauseGame;
                     _velocityUntilPauseGame = Vector2.zero;
                 }
             }
@@ -51,25 +50,28 @@ namespace Player
 
         public PlayerController(PlayerControllerInfo playerSettings, InputSystem inputSystem)
         {
-            _playerControllerInfo = playerSettings;
+            _data = playerSettings;
             _inputSystem = inputSystem;
             _inputSystem.OnButtonLaunchBallUnpressed += LaunchBall;
         }
 
         public override void Initialize()
         {
-            _startPosition = _playerControllerInfo.rigidbody2D.position;
-            _speed = _playerControllerInfo.startSpeed;
+            _startPosition = _data.rigidbody2D.position;
+            _speed = _data.startSpeed;
         }
 
         private void LaunchBall()
         {
-            _playerControllerInfo.playerPlatform.LaunchBall();
+            _data.playerPlatform.LaunchBall();
         }
 
         public void AddSpeed(float value, float duration)
         {
-            _speedBonusCoroutine = _playerControllerInfo.coroutineManager.StartCoroutine(SpeedBonusRoutine(value, duration));
+            if (_speedBonusCoroutine != null)
+                _data.coroutineManager.StopCoroutine(_speedBonusCoroutine);
+            
+            _speedBonusCoroutine = _data.coroutineManager.StartCoroutine(SpeedBonusRoutine(value, duration));
         }
 
         private IEnumerator SpeedBonusRoutine(float addSpeedValue, float duration)
@@ -78,27 +80,28 @@ namespace Player
 
             yield return new WaitForSeconds(duration);
             
-            SetSpeedToPlatform(_playerControllerInfo.startSpeed);
+            SetSpeedToPlatform(_data.startSpeed);
+            _speedBonusCoroutine = null;
         }
         
         private void SetSpeedToPlatform(float newSpeed)
         {
-            _speed = Mathf.Clamp(newSpeed, _playerControllerInfo.minSpeed, _playerControllerInfo.maxSpeed);
+            _speed = Mathf.Clamp(newSpeed, _data.minSpeed, _data.maxSpeed);
         }
         
         public override void FixedTick()
         {
             if (_gameOnPause == false)
             {
-                Vector2 newVelocity = _playerControllerInfo.rigidbody2D.velocity;
+                Vector2 newVelocity = _data.rigidbody2D.velocity;
                 newVelocity.x = _inputSystem.InputHorizontal * Time.fixedDeltaTime * _speed;
-                _playerControllerInfo.rigidbody2D.velocity = newVelocity;
+                _data.rigidbody2D.velocity = newVelocity;
             }
         }
         
         public void RestartPlayerPlatform()
         {
-            _playerControllerInfo.rigidbody2D.position = _startPosition;
+            _data.rigidbody2D.position = _startPosition;
         }
     }
 }

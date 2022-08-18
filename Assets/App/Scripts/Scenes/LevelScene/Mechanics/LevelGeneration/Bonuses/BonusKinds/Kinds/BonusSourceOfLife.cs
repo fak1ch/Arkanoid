@@ -8,7 +8,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         
         protected override void ActivateBonus()
         {
-            bonusData.playerHealth.AddHealth(_addHealthValue);
+            bonusData.playerHealth.AddHealth(_addHealthValue); 
         }
     }
 }

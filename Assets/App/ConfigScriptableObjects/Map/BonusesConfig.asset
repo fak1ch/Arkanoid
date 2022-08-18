@@ -42,7 +42,7 @@ MonoBehaviour:
     poolSize: 10
     spawnChance: 5
   - id: 7
-    prefab: {fileID: 6117751912492399879, guid: d7e7da8cf21238040ae6c247dbfa8edf, type: 3}
+    prefab: {fileID: 2592469577744352074, guid: d7e7da8cf21238040ae6c247dbfa8edf, type: 3}
     poolSize: 10
     spawnChance: 5
   - id: 8
