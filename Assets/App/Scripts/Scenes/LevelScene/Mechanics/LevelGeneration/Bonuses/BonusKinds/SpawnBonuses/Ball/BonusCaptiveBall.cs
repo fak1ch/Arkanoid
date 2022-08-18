@@ -15,7 +15,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 
         protected override void ActivateBonus()
         {
-            bonusData.ballManager.SpawnBallAtPositionWithDirection(transform.position, GetRandomDirection());
+            bonusData.bonusesActivator.ActivateCaptiveBallBonus(0, transform.position, GetRandomDirection());
         }
 
         private Vector2 GetRandomDirection()

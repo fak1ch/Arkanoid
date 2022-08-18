@@ -23,6 +23,9 @@ namespace Player
         private HealthSystem _healthSystem;
         private BallManager _ballManager;
 
+        public int CurrentHealth => _healthSystem.CurrentHealth;
+        public int MinHealth => _healthSystem.MinHealth;
+
         public PlayerHealth(PlayerHealthData playerHealthData, BallManager ballManager)
         {
             _data = playerHealthData;

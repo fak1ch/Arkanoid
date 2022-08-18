@@ -9,7 +9,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         
         protected override void ActivateBonus()
         {
-            bonusData.playerPlatform.SetPlatformSize(_platformSizeIndex, _duration);
+            bonusData.bonusesActivator.ActivateResizePlatformBonus(_platformSizeIndex, _duration);
         }
     }
 }

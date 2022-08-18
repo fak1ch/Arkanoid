@@ -2,12 +2,14 @@
 
 namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
-    public class BonusBallOfFury: Bonus
+    public class BonusChangeSpeedPlatform: Bonus
     {
         [SerializeField] private float _duration;
+        [SerializeField] private float _addSpeedValue;
+        
         protected override void ActivateBonus()
         {
-            bonusData.ballManager.ActivateBonusBallOfFury(_duration);
+            bonusData.bonusesActivator.ActivatePlatformSpeedBonus(_addSpeedValue, _duration);
         }
     }
 }

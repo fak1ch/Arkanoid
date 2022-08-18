@@ -6077,9 +6077,9 @@ MonoBehaviour:
     blockLayer:
       serializedVersion: 2
       m_Bits: 128
-    startBallSpeed: 2
-    maxBallSpeed: 10
-    speedJump: 0.1
+    startBallSpeed: 4
+    maxBallSpeed: 12
+    speedJump: 0.2
   _playerHealthData:
     minHealth: -1
     maxHealth: 3
@@ -6087,13 +6087,20 @@ MonoBehaviour:
     healthView: {fileID: 212794538}
   _gameEventsControllerData:
     mainUi: {fileID: 1727095099}
-  _bonusManagerData:
+  _bonusSpawnerData:
     bonusData:
-      playerPlatform: {fileID: 1608241254}
       mainCamera: {fileID: 519420031}
-      cameraBottomYOffset: 0.5
+      cameraBottomYOffset: 1
     bonusList: {fileID: 11400000, guid: b50e033ae78bf2e47bd958f460d66b84, type: 2}
     bonusContainer: {fileID: 1909826787}
+  _bonusesActivatorData:
+    playerPlatform: {fileID: 1608241254}
+    blockLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    ballLayer:
+      serializedVersion: 2
+      m_Bits: 64
 --- !u!114 &1873474723
 MonoBehaviour:
   m_ObjectHideFlags: 0

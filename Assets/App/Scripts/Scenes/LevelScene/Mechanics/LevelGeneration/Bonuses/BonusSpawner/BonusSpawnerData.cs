@@ -6,7 +6,7 @@ using UnityEngine;
 namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
 {
     [Serializable]
-    public class BonusManagerData
+    public class BonusSpawnerData
     {
         public BonusData bonusData;
         public BonusScriptableObject bonusList;

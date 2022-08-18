@@ -7,6 +7,10 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
     public abstract class Bonus : MonoBehaviour
     {
+        public event Action<Bonus> OnDestroy;
+
+        [SerializeField] private BonusMovement _movement;
+        
         private ObjectPool<Bonus> _pool;
         protected BonusData bonusData;
 
@@ -50,12 +54,18 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         public void ReturnToPool()
         {
             _pool.ReturnElementToPool(this);
+            OnDestroy?.Invoke(this);
             gameObject.SetActive(false);
         }
 
         public void SetBonusData(BonusData bonusData1)
         {
             bonusData = bonusData1;
+        }
+
+        public void SetMovableComponentInactive(bool value)
+        {
+            _movement.enabled = !value;
         }
     }
 }

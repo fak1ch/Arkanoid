@@ -14,13 +14,6 @@ namespace BallSpace
         private readonly BallManagerData _data;
         private readonly ObjectPool<MovableComponent> _pool;
         private float _speed;
-        private Coroutine _speedBonusCoroutine;
-        private Coroutine _ballFuryCorutine;
-
-        private float _speedUntilBoost;
-        private float _speedJumpsValue;
-        private int _blockLayerId;
-        private int _ballLayerId;
 
         private readonly List<MovableComponent> _currentBalls;
 
@@ -30,8 +23,6 @@ namespace BallSpace
             _pool = pool;
             _currentBalls = new List<MovableComponent>();
             _speed = _data.startBallSpeed;
-            _blockLayerId = (int)Mathf.Log(_data.blockLayer.value, 2);
-            _ballLayerId = (int)Mathf.Log(_data.ballLayer.value, 2);
         }
 
         public override void Initialize()
@@ -89,7 +80,6 @@ namespace BallSpace
 
         public void DoJumpSpeedForAllBalls()
         {
-            _speedJumpsValue += _data.speedJump;
             _speed = Mathf.Clamp(_speed + _data.speedJump, _data.startBallSpeed, _data.maxBallSpeed);
 
             SetSpeedToAllBalls(_speed);
@@ -103,6 +93,13 @@ namespace BallSpace
             {
                 ball.Speed = _speed;
             }
+        }
+
+        public void AddValueToSpeedAllBalls(float addValueSpeed)
+        {
+            _speed += addValueSpeed;
+            
+            SetSpeedToAllBalls(_speed);
         }
 
         public void ReturnAllBallsToPool()
@@ -124,54 +121,8 @@ namespace BallSpace
                 ball.GameOnPause = value;
             }
         }
-
-        public void ChangeBallsSpeedForTime(float addSpeedValue, float seconds)
-        {
-            if (_speedBonusCoroutine == null)
-                _speedUntilBoost = _speed;
-            else 
-                _data.coroutineManager.StopCoroutine(_speedBonusCoroutine);
-            
-            _speedBonusCoroutine = _data.coroutineManager.StartCoroutine(SpeedBonusRoutine(addSpeedValue, seconds));
-        }
         
-        public void ActivateBonusBallOfFury(float duration)
-        {
-            if (_ballFuryCorutine != null)
-                _data.coroutineManager.StopCoroutine(_ballFuryCorutine);
-            
-            _ballFuryCorutine = _data.coroutineManager.StartCoroutine(BallOfFuryBonusRoutine(duration));
-        }
-        
-        private IEnumerator SpeedBonusRoutine(float addSpeedValue, float duration)
-        {
-            SetSpeedToAllBalls(_speed + addSpeedValue);
-            _speedJumpsValue = 0;
-
-            yield return new WaitForSeconds(duration);
-            
-            SetSpeedToAllBalls(_speedUntilBoost + _speedJumpsValue);
-            _speedBonusCoroutine = null;
-        }
-        
-        private IEnumerator BallOfFuryBonusRoutine(float duration)
-        {
-            SetToAllBallsBallFuryFlag(true);
-            SetIgnoreLayerCollision(true);
-            
-            yield return new WaitForSeconds(duration);
-            
-            SetIgnoreLayerCollision(false);
-            SetToAllBallsBallFuryFlag(false);
-            _ballFuryCorutine = null;
-        }
-
-        private void SetIgnoreLayerCollision(bool value)
-        {
-            Physics2D.IgnoreLayerCollision(_blockLayerId, _ballLayerId, value);
-        }
-
-        private void SetToAllBallsBallFuryFlag(bool value)
+        public void SetToAllBallsBallFuryFlag(bool value)
         {
             foreach (var ball in _currentBalls)
             {

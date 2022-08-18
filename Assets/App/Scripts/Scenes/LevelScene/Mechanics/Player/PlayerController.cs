@@ -27,8 +27,6 @@ namespace Player
         private Vector2 _startPosition;
         private float _speed;
 
-        private Coroutine _speedBonusCoroutine;
-
         public bool GameOnPause
         {
             set
@@ -66,24 +64,11 @@ namespace Player
             _data.playerPlatform.LaunchBall();
         }
 
-        public void AddSpeed(float value, float duration)
+        public void AddSpeed(float value)
         {
-            if (_speedBonusCoroutine != null)
-                _data.coroutineManager.StopCoroutine(_speedBonusCoroutine);
-            
-            _speedBonusCoroutine = _data.coroutineManager.StartCoroutine(SpeedBonusRoutine(value, duration));
+            SetSpeedToPlatform(_speed + value);
         }
 
-        private IEnumerator SpeedBonusRoutine(float addSpeedValue, float duration)
-        {
-            SetSpeedToPlatform(_speed + addSpeedValue);
-
-            yield return new WaitForSeconds(duration);
-            
-            SetSpeedToPlatform(_data.startSpeed);
-            _speedBonusCoroutine = null;
-        }
-        
         private void SetSpeedToPlatform(float newSpeed)
         {
             _speed = Mathf.Clamp(newSpeed, _data.minSpeed, _data.maxSpeed);
