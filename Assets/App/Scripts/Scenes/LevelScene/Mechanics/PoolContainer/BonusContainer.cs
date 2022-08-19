@@ -13,24 +13,11 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
             _bonusList = bonusList;
         }
 
-        public Bonus GetRandomBonus()
+        public override Bonus GetObjectFromPoolById(int id)
         {
-            foreach (var bonusInfo in _bonusList)
-            {
-                if (CheckEventProbability(bonusInfo.spawnChance))
-                {
-                    var bonus = GetObjectFromPoolById(bonusInfo.id);
-                    bonus.SetPool(pools[bonusInfo.id]);
-                    return bonus;
-                }
-            }
-
-            return null;
-        }
-        
-        private bool CheckEventProbability(float percentProbability)
-        {
-            return Random.Range(0, 101) <= percentProbability;
+            var bonus = base.GetObjectFromPoolById(id);
+            bonus.SetPool(pools[id]);
+            return bonus;
         }
     }
 }

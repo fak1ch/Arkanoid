@@ -9,7 +9,7 @@ namespace LevelGeneration
 {
     public class LevelSpawner : CustomBehaviour
     {
-        public event Action<Vector2> OnBlockDestroyed;
+        public event Action<Vector2, int> OnBlockDestroyed;
         public event Action OnNoMoreBlocks;
 
         private LevelSpawnerData _data;
@@ -42,7 +42,7 @@ namespace LevelGeneration
 
         private void BlockDestroy(Block block)
         {
-            OnBlockDestroyed?.Invoke(block.transform.position);
+            OnBlockDestroyed?.Invoke(block.transform.position, block.BlockInformation.bonusId);
             _ballManager.DoJumpSpeedForAllBalls();
 
             if (block.BlockInformation.type != BlockTypes.ImmortalBlock)

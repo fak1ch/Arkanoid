@@ -15,6 +15,6 @@ namespace Blocks
     [Serializable]
     public class BonusInformation : PoolObjectInformation<Bonus>
     {
-        public float spawnChance;
+        
     }
 }
