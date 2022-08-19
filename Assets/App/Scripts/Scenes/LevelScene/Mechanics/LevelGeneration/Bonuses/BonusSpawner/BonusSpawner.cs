@@ -31,11 +31,10 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace
             _levelSpawner.OnBlockDestroyed += TrySpawnBonus;
         }
 
-        private void TrySpawnBonus(Vector2 position)
+        private void TrySpawnBonus(Vector2 position, int bonusId)
         {
-            var bonus = _bonusContainer.GetRandomBonus();
-            
-            if (bonus == null) return;
+            if (bonusId == -1) return;
+            var bonus = _bonusContainer.GetObjectFromPoolById(bonusId);
 
             bonus.SetBonusData(_data.bonusData);
             bonus.gameObject.SetActive(true);

@@ -16,5 +16,6 @@ namespace Blocks
     {
         public BlockTypes type;
         public BlockColors color;
+        public int bonusId = -1;
     }
 }

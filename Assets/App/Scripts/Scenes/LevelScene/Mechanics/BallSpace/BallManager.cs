@@ -14,6 +14,7 @@ namespace BallSpace
         private readonly BallManagerData _data;
         private readonly ObjectPool<MovableComponent> _pool;
         private float _speed;
+        private bool _gameOnPause;
 
         private readonly List<MovableComponent> _currentBalls;
 
@@ -52,6 +53,7 @@ namespace BallSpace
         {
             var ball = _pool.GetElement();
             ball.Speed = _speed;
+            ball.GameOnPause = _gameOnPause;
             ball.gameObject.SetActive(true);
 
             return ball;
@@ -116,6 +118,8 @@ namespace BallSpace
 
         public void SetupBallInactive(bool value)
         {
+            _gameOnPause = value;
+            
             foreach (var ball in _currentBalls)
             {
                 ball.GameOnPause = value;
