@@ -11,17 +11,12 @@ namespace Blocks
     {
         public BoxCollider2D boxCollider;
         public Image blockImage;
+        public RectTransform rectTransform;
         public Sprite blockSprite;
-        public Color color;
 
         [Space(10)]
         public int minHealth;
         public List<BlockHealthData> health;
         public Image blockBreakImage;
-
-        [Space(10)] 
-        public BlockTypes blockType;
-        public BlockColors blockColor;
-        public int blockId;
     }
 }

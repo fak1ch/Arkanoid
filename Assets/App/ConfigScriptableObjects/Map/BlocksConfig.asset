@@ -67,3 +67,9 @@ MonoBehaviour:
     type: 5
     color: 0
     bonusId: 9
+  - id: 9
+    prefab: {fileID: 5598521569077256121, guid: 62c0f09162ba8104e9ad599b365e7763, type: 3}
+    poolSize: 10
+    type: 6
+    color: 0
+    bonusId: 9

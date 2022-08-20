@@ -14,42 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonuses:
   - id: 0
-    prefab: {fileID: 4017521632689923391, guid: d2558ba5c0dc24d43b119b929521747b, type: 3}
+    prefab: {fileID: 7625754582247106752, guid: d2558ba5c0dc24d43b119b929521747b, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 1
-    prefab: {fileID: 6933754340633775447, guid: 86067866948f73841a315bb23bb209f2, type: 3}
+    prefab: {fileID: 8392127172743029878, guid: 86067866948f73841a315bb23bb209f2, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 2
-    prefab: {fileID: 6916110108282920944, guid: 66fa1cfad1b371849a7dbaa7f3c56125, type: 3}
+    prefab: {fileID: 1758945852589180007, guid: 66fa1cfad1b371849a7dbaa7f3c56125, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 3
-    prefab: {fileID: 6329675215038587454, guid: 9f12861e40a839e41a3bdbd2113a5d7c, type: 3}
+    prefab: {fileID: 6445809905982684422, guid: 9f12861e40a839e41a3bdbd2113a5d7c, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 4
-    prefab: {fileID: 4087732362806547289, guid: d2099990dcaefe94f8776bcb1610be1e, type: 3}
+    prefab: {fileID: 4763797500073447847, guid: d2099990dcaefe94f8776bcb1610be1e, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 5
-    prefab: {fileID: 2513839580266831201, guid: fea7827f48ff332418af88d2796de329, type: 3}
+    prefab: {fileID: 8173038512813696114, guid: fea7827f48ff332418af88d2796de329, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 6
-    prefab: {fileID: 8357747551487858384, guid: 8f086f02fbe0d1c43bcd947105caea79, type: 3}
+    prefab: {fileID: 318322367295960006, guid: 8f086f02fbe0d1c43bcd947105caea79, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 7
-    prefab: {fileID: 2592469577744352074, guid: d7e7da8cf21238040ae6c247dbfa8edf, type: 3}
+    prefab: {fileID: 5375282880854528940, guid: d7e7da8cf21238040ae6c247dbfa8edf, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 8
-    prefab: {fileID: 898535842, guid: a0fe601d7b5912e45bc649da4425c30e, type: 3}
+    prefab: {fileID: 8713995149290431864, guid: a0fe601d7b5912e45bc649da4425c30e, type: 3}
     poolSize: 10
-    spawnChance: 5
   - id: 9
-    prefab: {fileID: -2419605651353542334, guid: 816d9a51d1b7a3e4c95ab0b3c69c52d6, type: 3}
+    prefab: {fileID: 6181645433621412647, guid: 816d9a51d1b7a3e4c95ab0b3c69c52d6, type: 3}
     poolSize: 10
-    spawnChance: 5

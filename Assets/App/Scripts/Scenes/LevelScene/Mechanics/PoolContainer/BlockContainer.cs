@@ -24,6 +24,7 @@ namespace Blocks.BlockTypesSpace
         VerticalTNT,
         HorizontalTNT,
         ColorBomb,
+        EmptyBlock,
     };
 
     public class BlockContainer : PoolContainer<Block>
@@ -42,10 +43,15 @@ namespace Blocks.BlockTypesSpace
 
         public override Block GetObjectFromPoolById(int id)
         {
-            var element = base.GetObjectFromPoolById(id);
-            element.BlockInformation = GetBlockInfoById(id);
+            var block = base.GetObjectFromPoolById(id);
+            block.BlockInformation = GetBlockInfoById(id);
 
-            return element;
+            return block;
+        }
+
+        public BlockInformation GetBlockInfoByType(BlockTypes type)
+        {
+            return _blockList.FirstOrDefault(blockInfo => blockInfo.type == type);
         }
     }
 }

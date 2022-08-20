@@ -1,11 +1,13 @@
 ﻿using System;
+using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
+using Blocks;
 using Player;
 using Pool;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
-    public abstract class Bonus : MonoBehaviour
+    public abstract class Bonus : MonoBehaviour, IInformation<Bonus>
     {
         public event Action<Bonus> OnDestroy;
 
@@ -13,8 +15,10 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         
         private ObjectPool<Bonus> _pool;
         protected BonusData bonusData;
-
         private float _bottomCameraY;
+        
+        public BonusInformation BonusInformation { get; set; }
+        public PoolObjectInformation<Bonus> PoolObjectInformation => BonusInformation;
 
         protected abstract void ActivateBonus();
 

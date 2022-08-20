@@ -39,5 +39,10 @@ namespace LevelGeneration
         {
             return pools[id].GetElement();
         }
+
+        public virtual void ReturnObjectToPool(T obj, int id)
+        {
+            pools[id].ReturnElementToPool(obj);
+        }
     }
 }
