@@ -3,17 +3,20 @@ using HealthSystemSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
 using Blocks.BlockTypesSpace;
 using UnityEngine;
 
 namespace Blocks
 {
-    public class Block : MonoBehaviour
+    public class Block : MonoBehaviour, IInformation<Block>
     {
         public event Action<Block> OnBlockDestroy;
 
         [SerializeField] private BlockData _blockData;
-
+        [SerializeField] private BlockInformation _blockInformation;
+        [SerializeField] private int _bonusId = -1;
+        
         protected HealthSystem healthSystem;
         protected Block[][] blocks;
         private int _healthImageIndex;
@@ -22,7 +25,20 @@ namespace Blocks
         public bool IsImmortality { get; set; }
         public int IndexColumn { get; private set; }
         public int IndexRow { get; private set; }
-        public BlockInformation BlockInformation { get; set; }
+
+        public int BonusId
+        {
+            get => _bonusId;
+            set => _bonusId = value;
+        }
+
+        public BlockInformation BlockInformation
+        {
+            get => _blockInformation;
+            set => _blockInformation = value;
+        }
+        public PoolObjectInformation<Block> PoolObjectInformation => BlockInformation;
+        public BlockData BlockData => _blockData;
 
         protected virtual void Awake()
         {
@@ -88,5 +104,10 @@ namespace Blocks
             IndexColumn = indexColumn;
             IndexRow = indexRow;
         }
+    }
+
+    public interface IInformation<T>
+    {
+        public PoolObjectInformation<T> PoolObjectInformation { get; }
     }
 }

@@ -48,7 +48,7 @@ namespace Pool
         public void ReturnElementToPool(T element)
         {
             if (element.transform.parent != _container)
-                element.transform.parent = _container;
+                element.transform.SetParent(_container);
             _pool.Enqueue(element);
         }
     }

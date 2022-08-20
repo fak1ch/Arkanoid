@@ -1,4 +1,5 @@
 ﻿using System;
+using Blocks;
 using Blocks.BlockTypesSpace;
 
 namespace LevelGeneration
@@ -6,11 +7,11 @@ namespace LevelGeneration
     [Serializable]
     public class LevelData
     {
-        public int blocksCountColumn = 5;
-        public int blocksCountRow = 5;
+        public int BlocksCountColumn => blocksMap.Length;
+        public int BlocksCountRow => blocksMap[0].Length;
 
-        public int[][] blocksIndexesArray;
+        public BlockJsonData[][] blocksMap;
 
-        public int Size => blocksCountRow * blocksCountColumn;
+        public int Size => BlocksCountRow * BlocksCountColumn;
     }
 }

@@ -26,9 +26,6 @@ namespace LevelGeneration
             _data = settings;
             _ballManager = ballManager;
             _blockContainer = blockContainer;
-
-            _blocks = InitializeArrayInArray<Block>(_data.levelData.blocksIndexesArray.Length,
-                _data.levelData.blocksIndexesArray[0].Length);
         }
 
         public override void Initialize()
@@ -42,10 +39,10 @@ namespace LevelGeneration
 
         private void BlockDestroy(Block block)
         {
-            OnBlockDestroyed?.Invoke(block.transform.position, block.BlockInformation.bonusId);
+            OnBlockDestroyed?.Invoke(block.transform.position, block.BonusId);
             _ballManager.DoJumpSpeedForAllBalls();
 
-            if (block.BlockInformation.type != BlockTypes.ImmortalBlock)
+            if (block.BlockInformation.type != BlockTypes.ImmortalBlock && block.BlockInformation.type != BlockTypes.EmptyBlock)
                 _blocksCount--;
 
             if (_blocksCount == 0)
@@ -70,8 +67,8 @@ namespace LevelGeneration
         {
             float newBlockWidth = Screen.width / _data.canvas.scaleFactor;
             newBlockWidth -= _data.blockContainer.padding.left + _data.blockContainer.padding.right;
-            newBlockWidth -= _data.blockContainer.spacing.x * (_data.levelData.blocksCountColumn - 1);
-            newBlockWidth /= _data.levelData.blocksCountColumn;
+            newBlockWidth -= _data.blockContainer.spacing.x * (_data.levelData.BlocksCountColumn - 1);
+            newBlockWidth /= _data.levelData.BlocksCountColumn;
 
             float percent = GetPercent(0, _data.blockContainer.cellSize.x, newBlockWidth);
 
@@ -88,11 +85,16 @@ namespace LevelGeneration
 
         private void CreateBlocks()
         {
-            for (int i = 0; i < _data.levelData.blocksIndexesArray.Length; i++)
+            _blocks = new Block[_data.levelData.BlocksCountColumn][];
+            
+            for (int i = 0; i < _blocks.Length; i++)
             {
-                for(int k = 0; k < _data.levelData.blocksIndexesArray[i].Length; k++)
+                _blocks[i] = new Block[_data.levelData.BlocksCountRow];
+                
+                for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    var block = _blockContainer.GetObjectFromPoolById(_data.levelData.blocksIndexesArray[i][k]);
+                    var block = _blockContainer.GetObjectFromPoolById(_data.levelData.blocksMap[i][k].blockId);
+                    block.BonusId = _data.levelData.blocksMap[i][k].bonusId;
                     InitializeBlock(block, i, k);
                 }
             }
@@ -132,22 +134,15 @@ namespace LevelGeneration
                     {
                         _maxBlocksCount--;
                     }
+                    
+                    if (_blocks[i][k].BlockInformation.type == BlockTypes.EmptyBlock)
+                    {
+                        _maxBlocksCount--;
+                    }
                 }
             }
 
             _blocksCount = _maxBlocksCount;
-        }
-
-        private T[][] InitializeArrayInArray<T>(int width, int height)
-        {
-            var array = new T[width][];
-            
-            for (int i = 0; i < width; i++)
-            {
-                array[i] = new T[height];
-            }
-
-            return array;
         }
     }
 }
