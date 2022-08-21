@@ -7,7 +7,7 @@ namespace MainMenuSceneSpace
     {
         public void PlayButtonEvent()
         {
-            SceneManager.LoadScene("Level");
+            SceneManager.LoadScene("SelectingPack");
         }
     }
 }

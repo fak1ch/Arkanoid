@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/App/Scenes/MainMenu.unity
     guid: 50d4c8ff166d5d04b928d44fb9ca667d
   - enabled: 1
+    path: Assets/App/Scenes/SelectingPack.unity
+    guid: 7b88fa6d6d225cb47b1621275e83d7f5
+  - enabled: 1
     path: Assets/App/Scenes/Level.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using App.Scripts.Scenes.LevelCreator;
+using App.Scripts.Scenes.LevelCreatorSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
@@ -32,6 +32,8 @@ public class LevelCreator : MonoBehaviour
     private Block _currentSelectedBlock;
     private Bonus _currentSelectedBonus;
     private CustomGrid _blockGrid;
+    
+    public BlockJsonData[][] GetConvertedGridToArray => _blockGrid.ConvertCurrentGridToArray();
     
     private void Start()
     {
@@ -78,7 +80,7 @@ public class LevelCreator : MonoBehaviour
         };
 
         JsonParser<LevelData> jsonParser = new JsonParser<LevelData>();
-        jsonParser.SaveLevelDataToFile(levelData, StaticLevelPath.LevelPath);
+        jsonParser.SaveDataToFile(levelData, StaticLevelPath.levelPath);
     }
     
     private void CheckGridParent()

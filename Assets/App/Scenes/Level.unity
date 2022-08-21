@@ -3612,6 +3612,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1055907369}
+  - {fileID: 1909826787}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4908,7 +4909,7 @@ Transform:
   - {fileID: 298917352}
   - {fileID: 1988672168}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1608241257
 EdgeCollider2D:
@@ -5214,7 +5215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671555345
 GameObject:
@@ -6058,9 +6059,6 @@ MonoBehaviour:
   _levelSpawnerSettings:
     blockContainer: {fileID: 898227705}
     blockPoolContainer: {fileID: 1290735141}
-    levelData:
-      blocksCountColumn: 2
-      blocksCountRow: 5
     blocksConfig: {fileID: 11400000, guid: b7a1453111265ff49be19a2a391dec4b, type: 2}
     canvas: {fileID: 635465241}
   _ballManagerData:
@@ -6213,12 +6211,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909826786}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1034033309}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1932314356
 GameObject:
@@ -6354,6 +6352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0b08fbddd83c340b01b0cf0cd80d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
 --- !u!1 &1966497351
 GameObject:
   m_ObjectHideFlags: 0

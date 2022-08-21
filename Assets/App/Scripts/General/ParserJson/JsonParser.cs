@@ -17,22 +17,28 @@ namespace ParserJsonSpace
             _data = new T();
         }
 
-        public void SaveLevelDataToFile(T dataClass, string path)
+        public bool SaveDataToFile(T dataClass, string path)
         {
+            FileInfo file = new FileInfo(path);
+            file.Directory.Create();
+
             _data = dataClass;
             var json = JsonConvert.SerializeObject(dataClass, Formatting.Indented);
-
+            
             try
             {
                 File.WriteAllText(path, json);
+                return true;
             }
             catch (Exception e)
             {
                 Debug.LogError("JsonParser + " + e.Message);
             }
+
+            return false;
         }
 
-        public T LoadLevelDataFromFile(string path)
+        public T LoadDataFromFile(string path)
         {
             try
             {
@@ -42,7 +48,7 @@ namespace ParserJsonSpace
             }
             catch (Exception e)
             {
-                Debug.LogError("JsonParser loadFromFile: error" + e.Message);
+                Debug.LogWarning("File not exist, returned default data" + e.Message);
             }
 
             return _data;
