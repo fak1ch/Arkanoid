@@ -34,7 +34,7 @@ namespace Installers.LevelScene
             var ballPool = new ObjectPool<MovableComponent>(_ballManagerData.poolData);
             var ballManager = new BallManager(_ballManagerData, ballPool);
 
-            _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.FileName);
+            _levelSpawnerSettings.levelData = LoadLevelDataFromJson(StaticLevelPath.levelPath);
             var blockContainer = new BlockContainer(_levelSpawnerSettings.blocksConfig.blocks, _levelSpawnerSettings.blockPoolContainer);
             var wallsLimiters = new WallsLimiters(_wallLimitersSettings);
             var levelSpawner = new LevelSpawner(_levelSpawnerSettings, ballManager, blockContainer);
@@ -67,7 +67,7 @@ namespace Installers.LevelScene
         private LevelData LoadLevelDataFromJson(string levelDataPath)
         {
             var jsonParser = new JsonParser<LevelData>();
-            return jsonParser.LoadLevelDataFromFile(levelDataPath);
+            return jsonParser.LoadDataFromFile(levelDataPath);
         }
     }
 }

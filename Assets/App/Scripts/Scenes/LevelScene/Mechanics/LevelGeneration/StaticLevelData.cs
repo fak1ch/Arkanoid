@@ -9,7 +9,7 @@ namespace LevelGeneration
 {
     public static class StaticLevelPath
     {
-        public static readonly string LevelPath = Application.dataPath + @"\App\Resources\Level1.json";
-        public static readonly string FileName = "Level1";
+        public static string levelPath;
+        public static int packId;
     }
 }

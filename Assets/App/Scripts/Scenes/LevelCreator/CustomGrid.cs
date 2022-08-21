@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace App.Scripts.Scenes.LevelCreator
+namespace App.Scripts.Scenes.LevelCreatorSpace
 {
     [Serializable]
     public class CustomGridData
