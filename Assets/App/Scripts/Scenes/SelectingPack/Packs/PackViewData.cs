@@ -12,6 +12,6 @@ namespace App.Scripts.Scenes.SelectingPack
         public Color textLevelColor;
         public Sprite leftSprite;
         public Sprite rightSprite;
-        public Sprite panelSprite;
+        public Sprite panelSprite; 
     }
 }
