@@ -13,8 +13,8 @@ namespace App.Scripts.Scenes.SelectingPack
     [Serializable]
     public class PackInformation
     {
-        public int id;
-        public string name;
+        public int Id;
+        public string Name;
         public Sprite sprite;
     }
 }

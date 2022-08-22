@@ -32,8 +32,8 @@ namespace App.Scripts.Scenes.SelectingPack
 
         public PackRepository(PackInformation info)
         {
-            _id = info.id;
-            _packName = info.name;
+            _id = info.Id;
+            _packName = info.Name;
             _jsonParser = new JsonParser<LevelData>();
             _jsonPath = Application.dataPath + @"\App\Resources\" + _packName;
             _currentLevelIndexPlayerPrefsKey = _packName + "CurrentLevelIndex";

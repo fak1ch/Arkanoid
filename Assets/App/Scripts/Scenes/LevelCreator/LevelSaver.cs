@@ -52,7 +52,7 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
         
         private PackInformation GetPackInfoById(int id)
         {
-            return _packScriptableObject.packs.FirstOrDefault(info => info.id == id);
+            return _packScriptableObject.packs.FirstOrDefault(info => info.Id == id);
         }
     }
 }
