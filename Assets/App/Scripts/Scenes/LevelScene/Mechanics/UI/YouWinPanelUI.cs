@@ -25,7 +25,7 @@ namespace UISpace
         
         private PackInformation GetPackInfoById(int id)
         {
-            return _packScriptableObject.packs.FirstOrDefault(info => info.Id == id);
+            return _packScriptableObject.packs.FirstOrDefault(info => info.id == id);
         }
     }
 }

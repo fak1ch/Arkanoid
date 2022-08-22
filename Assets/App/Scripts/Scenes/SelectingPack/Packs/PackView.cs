@@ -64,7 +64,7 @@ namespace App.Scripts.Scenes.SelectingPack
             _rightImage.sprite = data.rightSprite;
             _panelImage.sprite = data.panelSprite;
             _levelText.text = $"{_currentLevelNumber}/{_maxLevelNumber}";
-            _packNameText.text = _packInformation.Name;
+            _packNameText.text = _packInformation.name;
             _galaxyText.color = data.textNameColor;
             _packNameText.color = data.textNameColor;
             _levelText.color = data.textLevelColor;
