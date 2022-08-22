@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e77e4c11684136952f016a2af0e6ec, type: 3}
+  m_Name: PacksConig
+  m_EditorClassIdentifier: 
+  packs:
+  - Id: 0
+    Name: SIGARA
+    sprite: {fileID: 21300000, guid: 169c603f3a284b247ba7ca5de7b2cf46, type: 3}
+  - Id: 1
+    Name: SOMBRARO
+    sprite: {fileID: 21300000, guid: dc27a8398b7d027469819a65896d40c3, type: 3}
+  - Id: 2
+    Name: VILNUS
+    sprite: {fileID: 21300000, guid: 05d2ce97202a49e48981039d4f475a1d, type: 3}

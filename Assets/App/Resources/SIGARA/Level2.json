@@ -1,0 +1,49 @@
+{
+  "blocksMap": [
+    [
+      {
+        "blockId": 4,
+        "bonusId": -1
+      },
+      {
+        "blockId": 1,
+        "bonusId": -1
+      },
+      {
+        "blockId": 4,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 0,
+        "bonusId": -1
+      },
+      {
+        "blockId": 5,
+        "bonusId": -1
+      },
+      {
+        "blockId": 3,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 4,
+        "bonusId": -1
+      },
+      {
+        "blockId": 2,
+        "bonusId": -1
+      },
+      {
+        "blockId": 4,
+        "bonusId": -1
+      }
+    ]
+  ],
+  "BlocksCountColumn": 3,
+  "BlocksCountRow": 3,
+  "Size": 9
+}
