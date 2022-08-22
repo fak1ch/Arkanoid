@@ -1,0 +1,117 @@
+{
+  "blocksMap": [
+    [
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 2,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      }
+    ],
+    [
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      },
+      {
+        "blockId": 9,
+        "bonusId": -1
+      }
+    ]
+  ],
+  "BlocksCountColumn": 5,
+  "BlocksCountRow": 5,
+  "Size": 25
+}
