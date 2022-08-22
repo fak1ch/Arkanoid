@@ -14,6 +14,9 @@ namespace App.Scripts.Scenes.SelectingPack
 
         private void Start()
         {
+            Application.targetFrameRate = 120;
+            QualitySettings.vSyncCount = 0;
+        
             InitializePacks();
         }
 
