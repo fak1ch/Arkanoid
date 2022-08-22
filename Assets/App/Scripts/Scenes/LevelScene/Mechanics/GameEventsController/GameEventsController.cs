@@ -57,12 +57,12 @@ namespace GameEventsControllerSpace
 
             _levelSpawner.RecreateLevel();
 
-            _ballManager.ReturnAllBallsToPool();
-            _ballManager.PlaceNewBallToPlayerPlatform();
-            
             _bonusManager.StopAllBonuses();
             _bonusSpawner.DestroyAllBonuses();
             
+            _ballManager.ReturnAllBallsToPool();
+            _ballManager.PlaceNewBallToPlayerPlatform();
+
             UnpauseTheGame();
         }
 

@@ -9,7 +9,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         
         protected override void ActivateBonus()
         {
-            bonusData.bonusesActivator.ActivatePlatformSpeedBonus(_addSpeedValue, _duration);
+            bonusData.bonusesActivator.ActivatePlatformSpeedBonus(_duration, _addSpeedValue);
         }
     }
 }

@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _customGridData:
-    gridSize: {x: 5, y: 5}
+    gridSize: {x: 10, y: 10}
     blockParent: {fileID: 953518413}
     emptyBlock: {fileID: 5598521569077256121, guid: 62c0f09162ba8104e9ad599b365e7763, type: 3}
     canvas: {fileID: 922472016}

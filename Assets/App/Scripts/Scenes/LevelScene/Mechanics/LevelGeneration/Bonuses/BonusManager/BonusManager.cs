@@ -72,7 +72,12 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
                 bonus.Value.InterruptBonus();
             }
         }
-        
+
+        public override void Dispose()
+        {
+            StopAllBonuses();
+        }
+
         public void DeleteBonus(TimeBonus timeBonus)
         {
             _noneActiveBonuses.Add(timeBonus);
