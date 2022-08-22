@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 223140971341779875}
   _duration: 2
-  _addSpeedValue: -2
+  _addSpeedValue: -5
 --- !u!114 &223140971341779875
 MonoBehaviour:
   m_ObjectHideFlags: 0

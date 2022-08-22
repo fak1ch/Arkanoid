@@ -35,6 +35,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
 
         public void InterruptBonus()
         {
+            EndBonus();
             OnBonusEnd?.Invoke(this);
         }
         
@@ -43,7 +44,6 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             if (_currentTime <= 0 && _isOpen)
             {
                 _isOpen = false;
-                EndBonus();
                 InterruptBonus();
             }
             else
