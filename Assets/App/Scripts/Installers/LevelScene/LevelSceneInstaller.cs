@@ -1,6 +1,8 @@
-﻿using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
+﻿using System;
+using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusKinds;
+using App.Scripts.Scenes.SelectingPack;
 using Architecture;
 using BallSpace;
 using Blocks.BlockTypesSpace;
@@ -25,6 +27,8 @@ namespace Installers.LevelScene
         [SerializeField] private GameEventsControllerData _gameEventsControllerData;
         [SerializeField] private BonusSpawnerData _bonusSpawnerData;
         [SerializeField] private BonusesActivatorData _bonusesActivatorData;
+
+        [SerializeField] private DebugLevelData _debugLevelData;
 
         public override void Install(AppHandler appHandler)
         {
@@ -66,8 +70,23 @@ namespace Installers.LevelScene
         
         private LevelData LoadLevelDataFromJson(string levelDataPath)
         {
+            if (StaticLevelPath.packId == -1)
+            {
+                var packInfo = _debugLevelData.packScriptableObject.GetPackById(_debugLevelData.packId);
+                var packRepository = new PackRepository(packInfo);
+                levelDataPath = packRepository.GetLevelPathByIndex(_debugLevelData.levelIndex);
+            }
+            
             var jsonParser = new JsonParser<LevelData>();
             return jsonParser.LoadDataFromFile(levelDataPath);
         }
+    }
+
+    [Serializable]
+    public class DebugLevelData
+    {
+        public PackScriptableObject packScriptableObject;
+        public int packId = -1;
+        public int levelIndex = -1;
     }
 }

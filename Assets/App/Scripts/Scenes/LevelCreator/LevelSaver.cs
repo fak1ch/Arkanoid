@@ -19,8 +19,8 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
 
         private LevelData ConvertCurrentMapToLevelData()
         {
-            BlockJsonData[][] blocksMap = _levelCreator.GetConvertedGridToArray;
-        
+            int[][] blocksMap = _levelCreator.GetConvertedGridToArray;
+
             LevelData levelData = new LevelData
             {
                 blocksMap = blocksMap
@@ -32,7 +32,7 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
         public void AddLevelInPackToEnd()
         {
             var levelData = ConvertCurrentMapToLevelData();
-            
+
             var packRepository = new PackRepository(GetPackInfoById(Convert.ToInt32(_packIdInputField.text)));
             packRepository.AddLevelInPackToEnd(levelData);
         }

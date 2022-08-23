@@ -1,117 +1,48 @@
 {
   "blocksMap": [
     [
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      }
+      15,
+      15,
+      15,
+      15
     ],
     [
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      }
+      15,
+      6,
+      5,
+      6
     ],
     [
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 2,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      }
+      15,
+      7,
+      15,
+      6
     ],
     [
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      }
+      15,
+      6,
+      15,
+      7
     ],
     [
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      },
-      {
-        "blockId": 9,
-        "bonusId": -1
-      }
+      6,
+      5,
+      15,
+      5
+    ],
+    [
+      7,
+      1,
+      15,
+      7
+    ],
+    [
+      5,
+      14,
+      15,
+      6
     ]
   ],
-  "BlocksCountColumn": 5,
-  "BlocksCountRow": 5,
-  "Size": 25
+  "BlocksCountColumn": 7,
+  "BlocksCountRow": 4
 }

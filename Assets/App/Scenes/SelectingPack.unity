@@ -442,6 +442,7 @@ MonoBehaviour:
   rectTransform: {fileID: 192357186}
   buttonImage: {fileID: 192357187}
   settings: {fileID: 11400000, guid: 57e9f0d372e712048925cc71e702e965, type: 2}
+  mainCamera: {fileID: 0}
 --- !u!1 &212187391
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,9 +797,9 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.3
+  m_Elasticity: 0.1
   m_Inertia: 1
-  m_DecelerationRate: 0.135
+  m_DecelerationRate: 0
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 222944984}
   m_HorizontalScrollbar: {fileID: 0}
@@ -824,9 +825,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1215,6 +1216,7 @@ MonoBehaviour:
   _packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
   _packViewPrefab: {fileID: 1828440501455706451, guid: dc7ebb9959a92f44b9ae0bd9534fc243, type: 3}
   _packParent: {fileID: 1247927591}
+  _mainCamera: {fileID: 519420031}
 --- !u!4 &734121918
 Transform:
   m_ObjectHideFlags: 0

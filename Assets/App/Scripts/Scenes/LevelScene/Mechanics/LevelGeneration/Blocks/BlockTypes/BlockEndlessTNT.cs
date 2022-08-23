@@ -4,6 +4,7 @@
     {
         protected override void Start()
         {
+            base.Start();
             _cellSelectable = new CellSelectableEndless(this, blocks);
         }
     }

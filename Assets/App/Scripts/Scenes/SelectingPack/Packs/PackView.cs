@@ -1,4 +1,5 @@
 ﻿using System;
+using ButtonSpace;
 using LevelGeneration;
 using TMPro;
 using UnityEngine;
@@ -26,7 +27,8 @@ namespace App.Scripts.Scenes.SelectingPack
         private int _currentLevelNumber;
         private int _maxLevelNumber;
         private bool _canStartLevel = true;
-
+        private bool _packComplete = false;
+        
         public bool PackIsComplete => _packRepository.IsComplete;
         public bool PackClosed { get; private set; } = false;
         
@@ -36,10 +38,11 @@ namespace App.Scripts.Scenes.SelectingPack
             _packRepository = new PackRepository(packInformation);
 
             _currentLevelNumber = _packRepository.CurrentLevelIndex;
-            _maxLevelNumber = _packRepository.MaxLevelIndex;
+            _maxLevelNumber = _packRepository.LevelCount;
 
             if (PackIsComplete)
             {
+                Debug.Log(PackIsComplete);
                 MakePackAsComplete();
             }
             else
@@ -51,6 +54,11 @@ namespace App.Scripts.Scenes.SelectingPack
         public void StartLevel()
         {
             if (_canStartLevel == false) return;
+
+            if (_packComplete)
+            {
+                _packRepository.ClearProgress();
+            }
 
             StaticLevelPath.levelPath = _packRepository.GetLevelPath();
             SceneManager.LoadScene("Level");
@@ -87,8 +95,8 @@ namespace App.Scripts.Scenes.SelectingPack
         public void MakePackAsComplete()
         {
             ChangePackViewByIndex(2);
-
-            _canStartLevel = false;
+            
+            _packComplete = true;
         }
     }
 }

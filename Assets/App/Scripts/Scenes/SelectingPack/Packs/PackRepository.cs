@@ -5,91 +5,100 @@ using UnityEngine;
 
 namespace App.Scripts.Scenes.SelectingPack
 {
-    [Serializable]
-    public class PackRepositoryData
-    {
-        public int maxLevelIndex = 0;
-    }
-    
     public class PackRepository
     {
         private const string LevelFileName = @"\Level";
-        private const string PackRepositoryFileName = @"\PackRepository";
-        
+
         private int _id;
         private string _packName;
+        private PackInformation _packInformation;
         
         private string _jsonPath;
         private JsonParser<LevelData> _jsonParser;
         
         private string _currentLevelIndexPlayerPrefsKey;
+        private string _packCompleteKey;
         private int _currentLevelIndex;
-        private int _maxLevelIndex;
+        private int _levelCount = 0; 
 
         public bool IsComplete { get; private set; }
         public int CurrentLevelIndex => _currentLevelIndex;
-        public int MaxLevelIndex => _maxLevelIndex;
+        public int LevelCount => _levelCount;
 
         public PackRepository(PackInformation info)
         {
             _id = info.Id;
             _packName = info.Name;
+            _packInformation = info;
             _jsonParser = new JsonParser<LevelData>();
-            _jsonPath = Application.dataPath + @"\App\Resources\" + _packName;
+            _jsonPath = $@"{Application.dataPath}\App\Resources\{_packName}";
             _currentLevelIndexPlayerPrefsKey = _packName + "CurrentLevelIndex";
-
-            var jsonParserPackRepository = new JsonParser<PackRepositoryData>();
-            var data = jsonParserPackRepository.LoadDataFromFile(_packName + PackRepositoryFileName);
-            _maxLevelIndex = data.maxLevelIndex;
+            _packCompleteKey = _packName + "Complete";
+            
+            _levelCount = info.levelCount;
             _currentLevelIndex = PlayerPrefs.GetInt(_currentLevelIndexPlayerPrefsKey, 0);
+
+            if (_currentLevelIndex > _levelCount)
+                _levelCount = _currentLevelIndex;
 
             InitializePack();
         }
 
         private void InitializePack()
         {
-            IsComplete = _currentLevelIndex == _maxLevelIndex;
+            IsComplete = _currentLevelIndex == _levelCount;
+
+            int value = PlayerPrefs.GetInt(_packCompleteKey, 0);
+            IsComplete = value == 1;
         }
 
         public string GetLevelPath()
         {
+            if (IsComplete) ClearProgress();
+            
             StaticLevelPath.packId = _id;
-            return _packName + LevelFileName + $"{_currentLevelIndex + 1}";
+            return $"{_packName}{LevelFileName}{_currentLevelIndex + 1}";
+        }
+         
+        public string GetLevelPathByIndex(int index)
+        {
+            return $"{_packName}{LevelFileName}{index}";
         }
         
         public void LevelComplete()
         {
             _currentLevelIndex++;
+            IsComplete = _currentLevelIndex == _levelCount;
+            SaveIndexes();
+        }
+
+        public void ClearProgress()
+        {
+            _currentLevelIndex = 0;
             SaveIndexes();
         }
         
         public void AddLevelInPackToEnd(LevelData levelData)
         {
-            if (_jsonParser.SaveDataToFile(levelData, _jsonPath + LevelFileName + $"{_maxLevelIndex + 1}" + ".json"))
+            if (_jsonParser.SaveDataToFile(levelData, $"{_jsonPath}{LevelFileName}{_levelCount + 1}.json"))
             {
-                _maxLevelIndex++;
-            }
-            
+                _levelCount++;
+            } 
+
             SaveIndexes();
         }
         
         public void ReplaceLevelInPack(LevelData levelData, int levelNumber)
         {
-            _jsonParser.SaveDataToFile(levelData, _jsonPath + LevelFileName + $"{levelNumber}" + ".json");
+            _jsonParser.SaveDataToFile(levelData, $"{_jsonPath}{LevelFileName}{levelNumber}.json");
             SaveIndexes();
         }
         
-        private void SaveIndexes()
+        private void SaveIndexes() 
         {
-            var jsonParserPackRepository = new JsonParser<PackRepositoryData>();
-            var data = new PackRepositoryData()
-            {
-                maxLevelIndex = _maxLevelIndex,
-            };
-            jsonParserPackRepository.SaveDataToFile(data,_jsonPath + PackRepositoryFileName + ".json");
-            _maxLevelIndex = data.maxLevelIndex;
-            
+            _packInformation.levelCount = _levelCount;
             PlayerPrefs.SetInt(_currentLevelIndexPlayerPrefsKey, _currentLevelIndex);
+            PlayerPrefs.SetInt(_packCompleteKey, IsComplete ? 1 : 0);
         }
     }
 }

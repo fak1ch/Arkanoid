@@ -13,15 +13,17 @@ namespace Blocks.BlockTypesSpace
         protected readonly Block thisBlock;
         protected readonly List<Block> blocksForDestroy;
 
-        public CellSelectable(Block block, Block[][] blocks)
+        public CellSelectable(Block block, Block[][] blocks1)
         {
+            if (blocks1 == null) return;
+            
             blockX = block.IndexColumn;
             blockY = block.IndexRow;
             thisBlock = block;
-            this.blocks = blocks;
+            blocks = blocks1;
             blocksForDestroy = new List<Block>();
-            width = this.blocks.Length;
-            height = this.blocks[0].Length;
+            width = blocks.Length;
+            height = blocks[0].Length;
         }
 
         public virtual List<Block> GetBlocks(Vector2[] directions)

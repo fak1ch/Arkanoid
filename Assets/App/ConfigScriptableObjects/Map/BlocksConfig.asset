@@ -18,58 +18,110 @@ MonoBehaviour:
     poolSize: 10
     type: 0
     color: 1
-    bonusId: 1
+    bonusId: 0
+    maxHealth: 2
   - id: 1
+    prefab: {fileID: 4716735297676059207, guid: 196a4d6f05b0fbd4b807ac7ef284a9b8, type: 3}
+    poolSize: 10
+    type: 0
+    color: 1
+    bonusId: 1
+    maxHealth: 2
+  - id: 2
+    prefab: {fileID: 4716735297676059207, guid: 196a4d6f05b0fbd4b807ac7ef284a9b8, type: 3}
+    poolSize: 10
+    type: 0
+    color: 1
+    bonusId: 2
+    maxHealth: 2
+  - id: 3
     prefab: {fileID: 634626424102416616, guid: cd8c4249b99154e46a5fe9ca37dffd7c, type: 3}
     poolSize: 10
     type: 0
     color: 2
-    bonusId: 2
-  - id: 2
+    bonusId: 3
+    maxHealth: 2
+  - id: 4
+    prefab: {fileID: 634626424102416616, guid: cd8c4249b99154e46a5fe9ca37dffd7c, type: 3}
+    poolSize: 10
+    type: 0
+    color: 2
+    bonusId: 4
+    maxHealth: 2
+  - id: 5
     prefab: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
     poolSize: 10
     type: 0
     color: 3
-    bonusId: 3
-  - id: 3
+    bonusId: 5
+    maxHealth: 2
+  - id: 6
+    prefab: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
+    poolSize: 10
+    type: 0
+    color: 3
+    bonusId: 6
+    maxHealth: 2
+  - id: 7
+    prefab: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
+    poolSize: 10
+    type: 0
+    color: 3
+    bonusId: 7
+    maxHealth: 2
+  - id: 8
     prefab: {fileID: 4410748637842165478, guid: 7d1a9c9eec1a8c54da629cf6dc052c8a, type: 3}
     poolSize: 10
     type: 0
     color: 4
-    bonusId: 4
-  - id: 4
+    bonusId: 8
+    maxHealth: 2
+  - id: 9
+    prefab: {fileID: 4410748637842165478, guid: 7d1a9c9eec1a8c54da629cf6dc052c8a, type: 3}
+    poolSize: 10
+    type: 0
+    color: 4
+    bonusId: 9
+    maxHealth: 2
+  - id: 10
     prefab: {fileID: 5730787474352583629, guid: f31d81d9ba75de14ba4768f887a788c8, type: 3}
     poolSize: 10
     type: 1
     color: 0
-    bonusId: 5
-  - id: 5
+    bonusId: -1
+    maxHealth: 2
+  - id: 11
     prefab: {fileID: 2227762661744812145, guid: 07f7c0a0b08c360448302700ec2d4204, type: 3}
     poolSize: 10
     type: 2
     color: 0
-    bonusId: 6
-  - id: 6
+    bonusId: -1
+    maxHealth: 1
+  - id: 12
     prefab: {fileID: 5256129639693103378, guid: 204b95ea5f1b85f4db7e9e94d649d50c, type: 3}
     poolSize: 10
     type: 3
     color: 0
-    bonusId: 7
-  - id: 7
+    bonusId: -1
+    maxHealth: 1
+  - id: 13
     prefab: {fileID: 558936780788480839, guid: 590484463a86a7c4baa4764a3fc395db, type: 3}
     poolSize: 10
     type: 4
     color: 0
-    bonusId: 8
-  - id: 8
+    bonusId: -1
+    maxHealth: 1
+  - id: 14
     prefab: {fileID: 6562622529513559079, guid: 1c81c8f432ef1c742a0f9fd99cc6921d, type: 3}
     poolSize: 10
     type: 5
     color: 0
-    bonusId: 9
-  - id: 9
+    bonusId: -1
+    maxHealth: 1
+  - id: 15
     prefab: {fileID: 5598521569077256121, guid: 62c0f09162ba8104e9ad599b365e7763, type: 3}
     poolSize: 10
     type: 6
     color: 0
-    bonusId: 9
+    bonusId: -1
+    maxHealth: 2

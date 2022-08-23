@@ -21,29 +21,20 @@ public class LevelCreator : MonoBehaviour
     
     [SerializeField] private BlockScriptableObject _blocksInformation;
     [SerializeField] private GridLayoutGroupParent _blocksParent;
-    
-    [SerializeField] private BonusScriptableObject _bonusesInformation;
-    [SerializeField] private GridLayoutGroupParent _bonusesParent;
 
     private BlockContainer _blockContainer;
-    private BonusContainer _bonusContainer;
     private List<Block> _blocksPalette = new List<Block>();
-    private List<Bonus> _bonusesPalette = new List<Bonus>();
     private Block _currentSelectedBlock;
-    private Bonus _currentSelectedBonus;
     private CustomGrid _blockGrid;
     
-    public BlockJsonData[][] GetConvertedGridToArray => _blockGrid.ConvertCurrentGridToArray();
+    public int[][] GetConvertedGridToArray => _blockGrid.ConvertCurrentGridToArray();
     
     private void Start()
     {
         _blockContainer = new BlockContainer(_blocksInformation.blocks, _blocksParent.transform);
-        _bonusContainer = new BonusContainer(_bonusesInformation.bonuses, _bonusesParent.transform);
         _customGridData.blockContainer = _blockContainer;
         _blockGrid = new CustomGrid(_customGridData);
         InitializePalette(_blocksInformation.blocks, _blocksParent.transform, _blockContainer, _blocksPalette);
-        InitializePalette(_bonusesInformation.bonuses, _bonusesParent.transform, _bonusContainer, _bonusesPalette);
-        SetActiveFlagBonusComponent(false);
 
         StartCoroutine(SetGridLayoutGroupActiveRoutine(false, _gridLayoutTimeUntilActive));
     }
@@ -55,7 +46,6 @@ public class LevelCreator : MonoBehaviour
         {
             var component = poolContainer.GetObjectFromPoolById(info.id);
             component.transform.SetParent(parent);
-            component.enabled = false;
             component.gameObject.SetActive(true);
             listContainer.Add(component);
         }
@@ -63,16 +53,15 @@ public class LevelCreator : MonoBehaviour
     
     private void Update()
     {
-        if (_currentSelectedBlock != null || _currentSelectedBonus != null)
+        if (_currentSelectedBlock != null)
             CheckGridParent();
         
         CheckPalette(ref _currentSelectedBlock, _blocksParent, _blocksPalette, _blockContainer);
-        CheckPalette(ref _currentSelectedBonus, _bonusesParent, _bonusesPalette, _bonusContainer);
     }
 
     public void ConvertCurrentMapToLevelData()
     {
-        BlockJsonData[][] blocksMap = _blockGrid.ConvertCurrentGridToArray();
+        int[][] blocksMap = _blockGrid.ConvertCurrentGridToArray();
         
         LevelData levelData = new LevelData
         {
@@ -96,12 +85,6 @@ public class LevelCreator : MonoBehaviour
                 _currentSelectedBlock = null;
             }
 
-            if (_currentSelectedBonus != null)
-            {
-                var block = _blockGrid.GetBlockFromMapByIndexes(indexes);
-                block.BonusId = _currentSelectedBonus.BonusInformation.id;
-            }
-            
             _customGridData.blockParent.PointerOverObject = false;
         }
     }
@@ -113,7 +96,6 @@ public class LevelCreator : MonoBehaviour
         {
             var component = GetNearestToMousePositionFromList(listPalette);
             currentSelectedObject = objectContainer.GetObjectFromPoolById(component.PoolObjectInformation.id);
-            currentSelectedObject.enabled = false;
             currentSelectedObject.transform.SetParent(_canvasMap);
             currentSelectedObject.gameObject.SetActive(true);
         }
@@ -157,14 +139,5 @@ public class LevelCreator : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _blockGrid.SetGridLayoutGroupActive(value);
-    }
-
-    private void SetActiveFlagBonusComponent(bool value)
-    {
-        foreach (var bonus in _bonusesPalette)
-        {
-            bonus.SetMovableComponentInactive(!value);
-            bonus.enabled = value;
-        }
     }
 }

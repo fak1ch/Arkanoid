@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.General.Utils;
 using Blocks;
 using Blocks.BlockTypesSpace;
 using UnityEngine;
@@ -22,11 +23,11 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
     
     public class CustomGrid
     {
-        private Vector2Int _gridSize;
+        private int _rowsCount;
+        private int _columnCount;
         private Canvas _canvas;
         private GridLayoutGroupParent _blockParent;
         private BlockContainer _blockContainer;
-        private Block _emptyBlock;
         private Color _gridColor;
 
         private Block[][] _gridMap;
@@ -34,9 +35,9 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
         public CustomGrid(CustomGridData customGridData)
         {
             _canvas = customGridData.canvas;
-            _gridSize = customGridData.gridSize;
+            _rowsCount = customGridData.gridSize.x;
+            _columnCount = customGridData.gridSize.y;
             _blockParent = customGridData.blockParent;
-            _emptyBlock = customGridData.emptyBlock;
             _gridColor = customGridData.gridColor;
             _blockContainer = customGridData.blockContainer;
             InitializeGrid();
@@ -44,19 +45,14 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
 
         private void InitializeGrid()
         {
-            _blockParent.gridLayoutGroup.cellSize = CalculateCellSize();
-            Vector2 sizeDelta = _blockParent._rectTransform.sizeDelta;
-            Vector2 cellSize = _blockParent.gridLayoutGroup.cellSize;
-            var paddings = _blockParent.gridLayoutGroup.padding;
-            float spacingY = _blockParent.gridLayoutGroup.spacing.y;
-            float sizeDeltaY = cellSize.y * _gridSize.y + paddings.top + paddings.bottom + spacingY * _gridSize.y;
-            _blockParent._rectTransform.sizeDelta = new Vector2(sizeDelta.x, sizeDeltaY);
-            
-            _gridMap = new Block[_gridSize.x][];
+            _blockParent.gridLayoutGroup.cellSize = MapMathUtils.CalculateCellSize(
+                _canvas, _blockParent.gridLayoutGroup, _columnCount);
+
+            _gridMap = new Block[_rowsCount][];
 
             for (int i = 0; i < _gridMap.Length; i++)
             {
-                _gridMap[i] = new Block[_gridSize.y];
+                _gridMap[i] = new Block[_columnCount];
 
                 for (int k = 0; k < _gridMap[i].Length; k++)
                 {
@@ -86,32 +82,23 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
             block.gameObject.SetActive(true);
         }
 
-        public Block GetBlockFromMapByIndexes(int[] indexes)
+        public int[][] ConvertCurrentGridToArray()
         {
-            return _gridMap[indexes[0]][indexes[1]];
-        }
-
-        public BlockJsonData[][] ConvertCurrentGridToArray()
-        {
-            BlockJsonData[][] blocksMap = new BlockJsonData[_gridSize.x][];
+            int[][] blocksMap = new int[_rowsCount][];
 
             for (int i = 0; i < blocksMap.Length; i++)
             {
-                blocksMap[i] = new BlockJsonData[_gridSize.y];
+                blocksMap[i] = new int[_columnCount];
 
                 for (int k = 0; k < blocksMap[i].Length; k++)
                 {
-                    blocksMap[i][k] = new BlockJsonData
-                    {
-                        blockId = _gridMap[i][k].BlockInformation.id,
-                        bonusId = _gridMap[i][k].BonusId
-                    };
+                    blocksMap[i][k] = _gridMap[i][k].BlockInformation.id;
                 }
             }
 
             return blocksMap;
         }
-        
+
         public int[] GetNearestIndexesBlockFromMap(Vector2 mouseWorldPosition)
         {
             int[] blockIndexes = new int[2];
@@ -133,26 +120,6 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
             }
 
             return blockIndexes;
-        }
-        
-        private Vector2 CalculateCellSize()
-        {
-            float newBlockWidth = Screen.width / _canvas.scaleFactor;
-            newBlockWidth -= _blockParent.gridLayoutGroup.padding.left + _blockParent.gridLayoutGroup.padding.right;
-            newBlockWidth -= _blockParent.gridLayoutGroup.spacing.x * (_gridSize.x - 1);
-            newBlockWidth /= _gridSize.x;
-
-            float percent = GetPercent(0, _blockParent.gridLayoutGroup.cellSize.x, newBlockWidth);
-
-            return new Vector2(newBlockWidth, _blockParent.gridLayoutGroup.cellSize.y * percent);
-        }
-    
-        private float GetPercent(float a, float b, float value)
-        {
-            if (Mathf.Approximately(b - a, 0))
-                return 0;
-
-            return (value - a) / (b - a);
         }
 
         public void SetGridLayoutGroupActive(bool value)

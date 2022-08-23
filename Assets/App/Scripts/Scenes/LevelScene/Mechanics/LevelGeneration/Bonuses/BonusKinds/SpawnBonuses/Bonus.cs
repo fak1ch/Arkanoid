@@ -4,20 +4,25 @@ using Blocks;
 using Player;
 using Pool;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
     public abstract class Bonus : MonoBehaviour, IInformation<Bonus>
     {
         public event Action<Bonus> OnDestroy;
+        public RectTransform rectTransform;
 
         [SerializeField] private BonusMovement _movement;
-        
+        [SerializeField] private Image _bonusImage;
+        [SerializeField] private BoxCollider2D _boxCollider2D;
+
         private ObjectPool<Bonus> _pool;
         protected BonusData bonusData;
         private float _bottomCameraY;
         
         public BonusInformation BonusInformation { get; set; }
+        public Sprite Sprite => _bonusImage.sprite;
         public PoolObjectInformation<Bonus> PoolObjectInformation => BonusInformation;
 
         protected abstract void ActivateBonus();
@@ -70,6 +75,11 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
         public void SetMovableComponentInactive(bool value)
         {
             _movement.enabled = !value;
+        }
+
+        public void SetBoxCollider2DSize(Vector2 size)
+        {
+            _boxCollider2D.size = size;
         }
     }
 }

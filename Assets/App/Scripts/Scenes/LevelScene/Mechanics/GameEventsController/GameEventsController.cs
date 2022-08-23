@@ -7,6 +7,7 @@ using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using InputSystems;
 using UISpace;
+using UnityEngine;
 
 namespace GameEventsControllerSpace
 {
@@ -56,10 +57,10 @@ namespace GameEventsControllerSpace
             _playerHeath.RestoreHealth();
 
             _levelSpawner.RecreateLevel();
-
+            
             _bonusManager.StopAllBonuses();
             _bonusSpawner.DestroyAllBonuses();
-            
+
             _ballManager.ReturnAllBallsToPool();
             _ballManager.PlaceNewBallToPlayerPlatform();
 

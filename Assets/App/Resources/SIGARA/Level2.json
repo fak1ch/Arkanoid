@@ -1,49 +1,26 @@
 {
   "blocksMap": [
     [
-      {
-        "blockId": 4,
-        "bonusId": -1
-      },
-      {
-        "blockId": 1,
-        "bonusId": -1
-      },
-      {
-        "blockId": 4,
-        "bonusId": -1
-      }
+      7,
+      4,
+      3
     ],
     [
-      {
-        "blockId": 0,
-        "bonusId": -1
-      },
-      {
-        "blockId": 5,
-        "bonusId": -1
-      },
-      {
-        "blockId": 3,
-        "bonusId": -1
-      }
+      5,
+      11,
+      4
     ],
     [
-      {
-        "blockId": 4,
-        "bonusId": -1
-      },
-      {
-        "blockId": 2,
-        "bonusId": -1
-      },
-      {
-        "blockId": 4,
-        "bonusId": -1
-      }
+      6,
+      15,
+      3
+    ],
+    [
+      7,
+      14,
+      4
     ]
   ],
-  "BlocksCountColumn": 3,
-  "BlocksCountRow": 3,
-  "Size": 9
+  "BlocksCountColumn": 4,
+  "BlocksCountRow": 3
 }

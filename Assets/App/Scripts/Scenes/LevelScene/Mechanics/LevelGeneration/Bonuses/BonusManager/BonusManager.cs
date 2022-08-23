@@ -65,6 +65,16 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
             timeBonus.StartBonus();
         }
 
+        public void DeleteBonus(TimeBonus timeBonus)
+        {
+            _noneActiveBonuses.Add(timeBonus);
+        }
+
+        public bool HasBonusById(int id)
+        {
+            return _bonuses.ContainsKey(id);
+        }
+        
         public void StopAllBonuses()
         {
             foreach (var bonus in _bonuses)
@@ -76,16 +86,6 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
         public override void Dispose()
         {
             StopAllBonuses();
-        }
-
-        public void DeleteBonus(TimeBonus timeBonus)
-        {
-            _noneActiveBonuses.Add(timeBonus);
-        }
-
-        public bool HasBonusById(int id)
-        {
-            return _bonuses.ContainsKey(id);
         }
     }
 }
