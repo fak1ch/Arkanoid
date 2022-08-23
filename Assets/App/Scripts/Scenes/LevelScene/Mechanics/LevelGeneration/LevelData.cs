@@ -10,8 +10,6 @@ namespace LevelGeneration
         public int BlocksCountColumn => blocksMap.Length;
         public int BlocksCountRow => blocksMap[0].Length;
 
-        public BlockJsonData[][] blocksMap;
-
-        public int Size => BlocksCountRow * BlocksCountColumn;
+        public int[][] blocksMap;
     }
 }

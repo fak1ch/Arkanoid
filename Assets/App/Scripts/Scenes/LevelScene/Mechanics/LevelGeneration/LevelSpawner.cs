@@ -1,4 +1,5 @@
 using System;
+using App.Scripts.General.Utils;
 using Architecture;
 using BallSpace;
 using Blocks;
@@ -9,7 +10,7 @@ namespace LevelGeneration
 {
     public class LevelSpawner : CustomBehaviour
     {
-        public event Action<Vector2, int> OnBlockDestroyed;
+        public event Action<Block> OnBlockDestroyed;
         public event Action OnNoMoreBlocks;
 
         private LevelSpawnerData _data;
@@ -30,7 +31,9 @@ namespace LevelGeneration
 
         public override void Initialize()
         {
-            _cellSize = CalculateCellSize();
+            _cellSize = MapMathUtils.CalculateCellSize(
+                _data.canvas, _data.blockContainer, _data.levelData.BlocksCountRow);
+            
             _data.blockContainer.cellSize = _cellSize;
             
             CreateBlocks();
@@ -39,7 +42,7 @@ namespace LevelGeneration
 
         private void BlockDestroy(Block block)
         {
-            OnBlockDestroyed?.Invoke(block.transform.position, block.BonusId);
+            OnBlockDestroyed?.Invoke(block);
             _ballManager.DoJumpSpeedForAllBalls();
 
             if (block.BlockInformation.type != BlockTypes.ImmortalBlock && block.BlockInformation.type != BlockTypes.EmptyBlock)
@@ -63,26 +66,6 @@ namespace LevelGeneration
             block.gameObject.SetActive(true);
         }
 
-        private Vector2 CalculateCellSize()
-        {
-            float newBlockWidth = Screen.width / _data.canvas.scaleFactor;
-            newBlockWidth -= _data.blockContainer.padding.left + _data.blockContainer.padding.right;
-            newBlockWidth -= _data.blockContainer.spacing.x * (_data.levelData.BlocksCountColumn - 1);
-            newBlockWidth /= _data.levelData.BlocksCountColumn;
-
-            float percent = GetPercent(0, _data.blockContainer.cellSize.x, newBlockWidth);
-
-            return new Vector2(newBlockWidth, _data.blockContainer.cellSize.y * percent);
-        }
-
-        private float GetPercent(float a, float b, float value)
-        {
-            if (Mathf.Approximately(b - a, 0))
-                return 0;
-
-            return (value - a) / (b - a);
-        }
-
         private void CreateBlocks()
         {
             _blocks = new Block[_data.levelData.BlocksCountColumn][];
@@ -93,8 +76,7 @@ namespace LevelGeneration
                 
                 for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    var block = _blockContainer.GetObjectFromPoolById(_data.levelData.blocksMap[i][k].blockId);
-                    block.BonusId = _data.levelData.blocksMap[i][k].bonusId;
+                    var block = _blockContainer.GetObjectFromPoolById(_data.levelData.blocksMap[i][k]);
                     InitializeBlock(block, i, k);
                 }
             }
@@ -112,19 +94,15 @@ namespace LevelGeneration
             {
                 for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    RestoreBlock(_blocks[i][k]);
+                    _blocks[i][k].RestoreBlock();
                 }
             }
         }
 
-        private void RestoreBlock(Block block)
-        {
-            block.RestoreBlock();
-        }
 
         private void CalculateMaxBlocksCount()
         {
-            _maxBlocksCount = _data.levelData.Size;
+            _maxBlocksCount = _data.levelData.BlocksCountColumn * _data.levelData.BlocksCountRow;
 
             for (int i = 0; i < _blocks.Length; i++)
             {

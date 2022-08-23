@@ -10,8 +10,9 @@ namespace Blocks.BlockTypesSpace
         private List<Block> _blocksForDestroy;
         protected CellSelectable _cellSelectable;
         
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             _cellSelectable = new CellSelectable(this, blocks);
         }
 

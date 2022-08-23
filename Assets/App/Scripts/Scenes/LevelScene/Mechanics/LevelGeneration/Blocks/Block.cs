@@ -3,6 +3,7 @@ using HealthSystemSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.General.Utils;
 using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
 using Blocks.BlockTypesSpace;
 using UnityEngine;
@@ -14,23 +15,16 @@ namespace Blocks
         public event Action<Block> OnBlockDestroy;
 
         [SerializeField] private BlockData _blockData;
-        [SerializeField] private BlockInformation _blockInformation;
-        [SerializeField] private int _bonusId = -1;
-        
+        [SerializeField] private BonusScriptableObject _bonusScriptableObject;
+
+        private BlockInformation _blockInformation;
         protected HealthSystem healthSystem;
         protected Block[][] blocks;
-        private int _healthImageIndex;
 
         public bool IsDestroyed { get; set; }
         public bool IsImmortality { get; set; }
         public int IndexColumn { get; private set; }
         public int IndexRow { get; private set; }
-
-        public int BonusId
-        {
-            get => _bonusId;
-            set => _bonusId = value;
-        }
 
         public BlockInformation BlockInformation
         {
@@ -40,13 +34,11 @@ namespace Blocks
         public PoolObjectInformation<Block> PoolObjectInformation => BlockInformation;
         public BlockData BlockData => _blockData;
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
-            _healthImageIndex = _blockData.health.Count - 1;
-            healthSystem = new HealthSystem(_blockData.minHealth, _blockData.health.Count);
+            healthSystem = new HealthSystem(0, _blockInformation.maxHealth);
             healthSystem.OnHealthEqualsMinValue += DestroyBlock;
-            _blockData.blockImage.sprite = _blockData.blockSprite;
-            RefreshDamageSprite();
+            InitializeBonusImage();
         }
 
         public void DestroyBlock()
@@ -62,10 +54,10 @@ namespace Blocks
         public void RestoreBlock()
         {
             IsDestroyed = false;
-            _healthImageIndex = _blockData.health.Count - 1;
+            
             healthSystem.RestoreHealth();
             RefreshDamageSprite();
-            
+
             transform.localScale = new Vector3(1, 1, 1);
         }
 
@@ -87,12 +79,24 @@ namespace Blocks
 
         private void RefreshDamageSprite()
         {
-            _blockData.blockBreakImage.sprite = _blockData.health[_healthImageIndex].damageSprite;
+            int currentHealth = healthSystem.CurrentHealth;
+            int maxHealth = healthSystem.MaxHealth;
+            int breakSpritesCount = _blockData.breakSprites.Count - 1;
+            float percent = MathUtils.GetPercent(0, maxHealth, currentHealth);
+            int newIndex = Mathf.RoundToInt(breakSpritesCount * percent);
 
-            if (_healthImageIndex > 0)
-                _healthImageIndex--;
+            _blockData.blockBreakImage.sprite = _blockData.breakSprites[newIndex];
         }
 
+        private void InitializeBonusImage()
+        {
+            if (_blockInformation.bonusId == -1) return;
+
+            _blockData.bonusImage.sprite = _bonusScriptableObject.bonuses
+                .FirstOrDefault(info => info.id == _blockInformation.bonusId)
+                ?.prefab.Sprite;
+        }
+        
         public void SetBoxColliderSize(Vector2 newSize)
         {
             _blockData.boxCollider.size = newSize;

@@ -19,8 +19,19 @@ namespace UISpace
         public void ContinueButtonEvent()
         {
             var currentPack = new PackRepository(GetPackInfoById(StaticLevelPath.packId));
-            currentPack.LevelComplete();
-            SceneManager.LoadScene("MainMenu");
+            
+            if (StaticLevelPath.packId != -1)
+                currentPack.LevelComplete();
+
+            if (currentPack.CurrentLevelIndex == currentPack.LevelCount)
+            {
+                SceneManager.LoadScene("SelectingPack");
+            }
+            else
+            {
+                StaticLevelPath.levelPath = currentPack.GetLevelPath();
+                SceneManager.LoadScene("Level");
+            }
         }
         
         private PackInformation GetPackInfoById(int id)

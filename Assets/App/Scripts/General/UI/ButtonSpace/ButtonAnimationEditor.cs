@@ -26,7 +26,7 @@ namespace ButtonSpace
         {
             ButtonAnimation component = (ButtonAnimation)target;
 
-            component.rectTransform = (RectTransform)EditorGUILayout.ObjectField("Rect transofrm", component.rectTransform, typeof(RectTransform), true);
+            component.rectTransform = (RectTransform)EditorGUILayout.ObjectField("Rect transozyfrm", component.rectTransform, typeof(RectTransform), true);
             component.buttonImage = (Image)EditorGUILayout.ObjectField("buttonImage", component.buttonImage, typeof(Image), true);
             component.settings = (ButtonScriptableObject)EditorGUILayout.ObjectField("ButtonSettings", component.settings, typeof(ButtonScriptableObject), true);
 

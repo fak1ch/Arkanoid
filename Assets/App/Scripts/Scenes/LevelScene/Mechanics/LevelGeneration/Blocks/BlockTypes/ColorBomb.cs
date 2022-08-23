@@ -9,8 +9,9 @@ namespace Blocks.BlockTypesSpace
         [SerializeField] private Vector2[] _directions;
         private CellSelectableColorBomb _selectable;
         
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _selectable = new CellSelectableColorBomb(this, blocks);
         }
 

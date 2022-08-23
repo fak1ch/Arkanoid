@@ -4,8 +4,9 @@ namespace Blocks.BlockTypesSpace
 {
     public class ImmortalBlock : Block
     {
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             IsImmortality = true;
         }
     }

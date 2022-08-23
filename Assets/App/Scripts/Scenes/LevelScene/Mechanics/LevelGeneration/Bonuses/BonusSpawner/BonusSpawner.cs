@@ -3,6 +3,7 @@ using App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using Architecture;
 using BallSpace;
+using Blocks;
 using LevelGeneration;
 using Player;
 using UnityEngine;
@@ -31,14 +32,16 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace
             _levelSpawner.OnBlockDestroyed += TrySpawnBonus;
         }
 
-        private void TrySpawnBonus(Vector2 position, int bonusId)
+        private void TrySpawnBonus(Block block)
         {
-            if (bonusId == -1) return;
-            var bonus = _bonusContainer.GetObjectFromPoolById(bonusId);
+            if (block.BlockInformation.bonusId == -1) return;
+            var bonus = _bonusContainer.GetObjectFromPoolById(block.BlockInformation.bonusId);
 
             bonus.SetBonusData(_data.bonusData);
             bonus.gameObject.SetActive(true);
-            bonus.transform.position = position;
+            bonus.transform.position = block.transform.position;
+            bonus.rectTransform.sizeDelta = block.BlockData.rectTransform.sizeDelta;
+            bonus.SetBoxCollider2DSize(block.BlockData.rectTransform.sizeDelta/2);
             bonus.OnDestroy += DestroyBonus;
             _bonuses.Add(bonus);
         }

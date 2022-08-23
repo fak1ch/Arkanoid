@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088c76643e60418f951e00c51f5185d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 8646487068445402559}
   _movement: {fileID: 522419383076977395}
+  _bonusImage: {fileID: 8646487068445402558}
+  _boxCollider2D: {fileID: 8646487068445402550}
   _platformSizeIndex: 0
   _duration: 2
 --- !u!114 &522419383076977395

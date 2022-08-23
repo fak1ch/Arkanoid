@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ce0754ca4e49cc9d9ee5bf8259caef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 4802022816965036382}
   _movement: {fileID: 1916343725814875153}
+  _bonusImage: {fileID: 4802022816965036380}
+  _boxCollider2D: {fileID: 4802022816965036383}
   _directions:
   - {x: 1, y: 1}
   - {x: -1, y: -1}
