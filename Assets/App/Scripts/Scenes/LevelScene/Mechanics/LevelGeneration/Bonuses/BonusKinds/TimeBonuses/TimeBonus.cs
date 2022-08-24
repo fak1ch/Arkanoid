@@ -23,7 +23,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             
         }
 
-        public virtual void EndBonus()
+        protected virtual void EndBonus()
         {
             
         }

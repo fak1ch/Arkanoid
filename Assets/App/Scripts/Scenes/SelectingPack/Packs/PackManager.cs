@@ -9,8 +9,7 @@ namespace App.Scripts.Scenes.SelectingPack
         [SerializeField] private PackScriptableObject _packScriptableObject;
         [SerializeField] private PackView _packViewPrefab;
         [SerializeField] private Transform _packParent;
-        [SerializeField] private Camera _mainCamera;
-        
+
         private List<PackView> _packs = new List<PackView>();
 
         private void Start()

@@ -21,7 +21,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             _playerController.AddSpeed(_addSpeedValue);
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             _playerController.AddSpeed(_addSpeedValue * -1);
         }

@@ -42,6 +42,7 @@ namespace LevelGeneration
 
         private void BlockDestroy(Block block)
         {
+            block.OnBlockDestroy -= BlockDestroy;
             OnBlockDestroyed?.Invoke(block);
             _ballManager.DoJumpSpeedForAllBalls();
 
@@ -62,7 +63,6 @@ namespace LevelGeneration
             block.transform.SetParent(_data.blockContainer.transform);
             block.SetBoxColliderSize(_cellSize);
             block.OnBlockDestroy += BlockDestroy;
-            block.transform.localScale = new Vector3(1, 1, 1);
             block.gameObject.SetActive(true);
         }
 
@@ -95,6 +95,7 @@ namespace LevelGeneration
                 for(int k = 0; k < _blocks[i].Length; k++)
                 {
                     _blocks[i][k].RestoreBlock();
+                    _blocks[i][k].OnBlockDestroy += BlockDestroy;
                 }
             }
         }

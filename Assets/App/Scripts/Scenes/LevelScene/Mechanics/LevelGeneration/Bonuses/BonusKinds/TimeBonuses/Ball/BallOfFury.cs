@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             _ballManager.SetToAllBallsBallFuryFlag(true);
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             Physics2D.IgnoreLayerCollision(_blockLayerId, _ballLayerId, false);
             _ballManager.SetToAllBallsBallFuryFlag(false);

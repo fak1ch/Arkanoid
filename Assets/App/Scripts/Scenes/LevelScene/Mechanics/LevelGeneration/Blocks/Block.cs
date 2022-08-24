@@ -6,6 +6,7 @@ using System.Linq;
 using App.Scripts.General.Utils;
 using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
 using Blocks.BlockTypesSpace;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Blocks
@@ -46,8 +47,9 @@ namespace Blocks
             if (IsDestroyed) return;
             
             IsDestroyed = true;
-            transform.localScale = new Vector3(0, 0, 0);
+            transform.DOScale(0, _blockData.animDuration);
             RunAdditionalLogic();
+            healthSystem.OnHealthEqualsMinValue -= DestroyBlock;
             OnBlockDestroy?.Invoke(this);
         }
         
@@ -56,9 +58,10 @@ namespace Blocks
             IsDestroyed = false;
             
             healthSystem.RestoreHealth();
+            healthSystem.OnHealthEqualsMinValue += DestroyBlock;
             RefreshDamageSprite();
 
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.DOScale(1, _blockData.animDuration);
         }
 
         protected virtual void RunAdditionalLogic()

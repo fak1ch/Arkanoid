@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Blocks.BlockTypesSpace
     public class ColorBomb : Block
     {
         [SerializeField] private Vector2[] _directions;
+        [SerializeField] private float _timeBetweenDestroys;
         private CellSelectableColorBomb _selectable;
         
         protected override void Start()
@@ -18,11 +20,18 @@ namespace Blocks.BlockTypesSpace
         protected override void RunAdditionalLogic()
         {
             var blocksForDestroy = _selectable.GetBlocks(_directions);
+            StartCoroutine(DestroyBlocks(blocksForDestroy));
+        }
 
+        private IEnumerator DestroyBlocks(List<Block> blocksForDestroy)
+        {
             foreach (var b in blocksForDestroy)
             {
                 b.DestroyBlock();
+                yield return new WaitForSeconds(_timeBetweenDestroys);
             }
+            
+            blocksForDestroy.Clear();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             _playerHealth.AddHealth(_healthValue);
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             
         }

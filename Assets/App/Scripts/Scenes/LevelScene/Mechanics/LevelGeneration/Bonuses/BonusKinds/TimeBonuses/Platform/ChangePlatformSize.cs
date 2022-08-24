@@ -25,7 +25,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             _playerPlatform.SetPlatformSize(_sizeIndex);
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             _playerPlatform.SetPlatformSize(_defaultSizeIndex);
         }

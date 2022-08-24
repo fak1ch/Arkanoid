@@ -15,6 +15,7 @@ namespace BallSpace
         private readonly ObjectPool<MovableComponent> _pool;
         private float _speed;
         private bool _gameOnPause;
+        private bool _ballOfFuryFlag;
 
         private readonly List<MovableComponent> _currentBalls;
 
@@ -54,6 +55,7 @@ namespace BallSpace
             var ball = _pool.GetElement();
             ball.Speed = _speed;
             ball.GameOnPause = _gameOnPause;
+            ball.SetBallFuryTriggerActive(_ballOfFuryFlag);
             ball.gameObject.SetActive(true);
 
             return ball;
@@ -128,10 +130,17 @@ namespace BallSpace
         
         public void SetToAllBallsBallFuryFlag(bool value)
         {
+            _ballOfFuryFlag = value;
+            
             foreach (var ball in _currentBalls)
             {
                 ball.SetBallFuryTriggerActive(value);
             }
+        }
+
+        public override void Dispose()
+        {
+            _data.bottomWall.OnTriggerWithBall -= DestroyBall;
         }
     }
 }

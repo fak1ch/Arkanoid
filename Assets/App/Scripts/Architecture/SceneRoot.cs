@@ -1,6 +1,7 @@
 using Architecture;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.General.SceneLoaderSpace;
 using UnityEngine;
 
 public class SceneRoot : MonoBehaviour
@@ -15,7 +16,7 @@ public class SceneRoot : MonoBehaviour
         Application.targetFrameRate = 120;
         InstallSettings();
     }
-     
+
     private void InstallSettings()
     {
         _appHandler = new AppHandler();
@@ -29,6 +30,7 @@ public class SceneRoot : MonoBehaviour
     private void Start()
     {
         _appHandler.Initialize();
+        SceneLoader.Instance.OnSceneStartLoading += Dispose;
     }
 
     private void Update()
@@ -41,8 +43,9 @@ public class SceneRoot : MonoBehaviour
         _appHandler.FixedTick();
     }
 
-    private void OnDestroy()
+    private void Dispose()
     {
+        SceneLoader.Instance.OnSceneStartLoading -= Dispose;
         _appHandler.Dispose();
     }
 }

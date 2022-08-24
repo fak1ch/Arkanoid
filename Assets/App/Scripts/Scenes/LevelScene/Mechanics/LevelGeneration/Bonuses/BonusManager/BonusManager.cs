@@ -16,14 +16,10 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
         
         public BonusManager(BonusesActivator bonusesActivator)
         {
+            bonusesActivator.BonusManager = this;
             _bonuses = new Dictionary<int, TimeBonus>();
             _noneActiveBonuses = new List<TimeBonus>();
             _bonusesActivator = bonusesActivator;
-        }
-
-        public override void Initialize()
-        {
-            _bonusesActivator.OnTimeBonusCreated += AddTimeBonus;
         }
 
         public override void Tick()
@@ -47,6 +43,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses
         {
             while (_noneActiveBonuses.Count > 0)
             {
+                _noneActiveBonuses[0].OnBonusEnd -= DeleteBonus;
                 _bonuses.Remove(_noneActiveBonuses[0].Id);
                 _noneActiveBonuses.RemoveAt(0);
             }

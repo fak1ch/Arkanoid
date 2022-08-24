@@ -1,17 +1,17 @@
 ﻿using System;
+using App.Scripts.General.PopUpSystemSpace.PopUps;
 using UnityEngine;
 
 namespace UISpace
 {
-    public class MainUI : MonoBehaviour
+    public class PopUpTransmitter : MonoBehaviour
     {
         public event Action OnRestartGame;
         public event Action OnPauseTheGame;
         public event Action OnUnpauseTheGame;
 
-        [SerializeField] private PausePanelUI _pauseMenu;
-        [SerializeField] private GameOverPanelUI _gameOverMenu;
-        [SerializeField] private YouWinPanelUI _youWinMenu;
+        [SerializeField] private PauseGamePopUp _pauseMenu;
+        [SerializeField] private GameOverPopUp _gameOverMenu;
 
         private void OnEnable()
         {
@@ -27,21 +27,6 @@ namespace UISpace
             _pauseMenu.OnPauseTheGame -= PauseTheGame;
             _pauseMenu.OnUnpauseTheGame -= UnpauseTheGame;
             _gameOverMenu.OnRestartButtonClicked -= RestartGame;
-        }
-
-        public void OpenPauseMenuEvent()
-        {
-            _pauseMenu.OpenPauseMenu();
-        }
-
-        public void OpenGameOverMenu()
-        {
-            _gameOverMenu.OpenMenu();
-        }
-
-        public void OpenYouWinMenu()
-        {
-            _youWinMenu.OpenMenu();
         }
 
         private void RestartGame()

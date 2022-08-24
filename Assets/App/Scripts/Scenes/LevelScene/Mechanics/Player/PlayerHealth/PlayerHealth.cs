@@ -73,5 +73,11 @@ namespace Player
             _healthSystem.RestoreHealth();
             RefreshPlayerHealthView();
         }
+
+        public override void Dispose()
+        {
+            _ballManager.OnCurrentBallsZero -= TakeDamage;
+            _healthSystem.OnHealthEqualsMinValue -= HealthEqualsMinValue;
+        }
     }
 }

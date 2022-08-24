@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.General.SceneLoaderSpace;
 using ButtonSpace;
 using LevelGeneration;
 using TMPro;
@@ -42,7 +43,6 @@ namespace App.Scripts.Scenes.SelectingPack
 
             if (PackIsComplete)
             {
-                Debug.Log(PackIsComplete);
                 MakePackAsComplete();
             }
             else
@@ -61,7 +61,8 @@ namespace App.Scripts.Scenes.SelectingPack
             }
 
             StaticLevelPath.levelPath = _packRepository.GetLevelPath();
-            SceneManager.LoadScene("Level");
+            StaticLevelPath.packId = _packInformation.Id;
+            SceneLoader.Instance.LoadSceneById(2);
         }
         
         private void ChangePackViewByIndex(int dataIndex)
@@ -95,6 +96,9 @@ namespace App.Scripts.Scenes.SelectingPack
         public void MakePackAsComplete()
         {
             ChangePackViewByIndex(2);
+            
+            if (_currentLevelNumber != _maxLevelNumber) 
+                MakePackAsOpenNotComplete();
             
             _packComplete = true;
         }

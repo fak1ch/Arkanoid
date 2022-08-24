@@ -8,8 +8,8 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusK
 {
     public class BonusesActivator
     {
-        public event Action<TimeBonus> OnTimeBonusCreated; 
         private BonusesActivatorData _data;
+        public BonusManager BonusManager { get; set; }
         
         public BonusesActivator(BonusesActivatorData data)
         {
@@ -19,48 +19,43 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusK
         public void ActivateChangeBallSpeed(float duration, float addSpeedValue)
         {
             var bonus = new ChangeBallSpeed(duration, addSpeedValue, _data.ballManager);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
 
         public void ActivatePlatformSpeedBonus(float duration, float addSpeedValue)
         {
             var bonus = new ChangePlatformSpeed(duration, addSpeedValue, _data.playerController);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
 
         public void ActivateResizePlatformBonus(int sizeIndex, float duration)
         {
             var bonus = new ChangePlatformSize(duration, sizeIndex, _data.playerPlatform);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
 
         public void ActivateBallOfFuryBonus(float duration)
         {
             var bonus = new BallOfFury(duration, _data.blockLayer, _data.ballLayer, _data.ballManager);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
 
         public void ActivateCaptiveBallBonus(float duration, Vector2 position, Vector2 direction)
         {
             var bonus = new CaptiveBall(duration, position, direction, _data.ballManager);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
         
         public void ActivateBlackTagBonus(float duration, int healthValue)
         {
             var bonus = new BlackTag(duration, healthValue, _data.playerHealth);
-            StartBonusCreatedEvent(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
         
         public void ActivateSourceLifeBonus(float duration, int healthValue)
         {
             var bonus = new SourceLife(duration, healthValue, _data.playerHealth);
-            StartBonusCreatedEvent(bonus);
-        }
-        
-        private void StartBonusCreatedEvent(TimeBonus bonus)
-        {
-            OnTimeBonusCreated?.Invoke(bonus);
+            BonusManager.AddTimeBonus(bonus);
         }
     }
 
