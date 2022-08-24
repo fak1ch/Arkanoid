@@ -2,8 +2,6 @@ using Architecture;
 using InputSystems;
 using UnityEngine;
 using System;
-using System.Collections;
-using App.Scripts.General.CoroutineManager;
 
 namespace Player
 {
@@ -15,7 +13,6 @@ namespace Player
         public float maxSpeed;
         public Rigidbody2D rigidbody2D;
         public PlayerPlatform playerPlatform;
-        public CoroutineManager coroutineManager;
     }
 
     public class PlayerController : CustomBehaviour
@@ -87,6 +84,11 @@ namespace Player
         public void RestartPlayerPlatform()
         {
             _data.rigidbody2D.position = _startPosition;
+        }
+
+        public override void Dispose()
+        {
+            _inputSystem.OnButtonLaunchBallUnpressed += LaunchBall;
         }
     }
 }

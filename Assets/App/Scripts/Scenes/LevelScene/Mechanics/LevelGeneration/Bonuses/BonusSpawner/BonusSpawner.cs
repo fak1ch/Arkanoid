@@ -56,6 +56,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace
         
         private void DestroyBonus(Bonus bonus)
         {
+            bonus.OnDestroy -= DestroyBonus;
             _bonuses.Remove(bonus);
         }
 
@@ -65,6 +66,11 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace
             {
                 bonus.SetMovableComponentInactive(value);
             }
+        }
+
+        public override void Dispose()
+        {
+            _levelSpawner.OnBlockDestroyed -= TrySpawnBonus;
         }
     }
 }

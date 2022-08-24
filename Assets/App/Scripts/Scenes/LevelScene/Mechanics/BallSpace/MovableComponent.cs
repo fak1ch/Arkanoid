@@ -72,8 +72,8 @@ namespace BallSpace
 
         public void PrepareToLaunch()
         {
-            _movableInfo.rigidbody2D.isKinematic = true;
             _movableInfo.rigidbody2D.velocity = Vector2.zero;
+            _movableInfo.rigidbody2D.isKinematic = true;
         }
 
         public void LaunchThisObject()

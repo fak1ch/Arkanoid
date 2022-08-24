@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1fcd2d1633442596f431dd641b491c, type: 3}
+  m_Name: Scenes
+  m_EditorClassIdentifier: 
+  scenes:
+  - id: 0
+    sceneName: MainMenu
+    scene: {fileID: 102900000, guid: 50d4c8ff166d5d04b928d44fb9ca667d, type: 3}
+  - id: 1
+    sceneName: SelectingPack
+    scene: {fileID: 102900000, guid: 7b88fa6d6d225cb47b1621275e83d7f5, type: 3}
+  - id: 2
+    sceneName: Level
+    scene: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}

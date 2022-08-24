@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             _ballManager.SpawnBallAtPositionWithDirection(_position, _direction);
         }

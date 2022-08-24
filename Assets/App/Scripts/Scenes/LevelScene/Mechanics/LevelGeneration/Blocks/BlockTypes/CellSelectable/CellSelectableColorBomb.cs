@@ -7,6 +7,7 @@ namespace Blocks.BlockTypesSpace
     {
         private List<Block> _blocksNeighbors = new List<Block>();
         private List<Block> _blocksForDestroy = new List<Block>();
+        private List<Block> _blocksForDestroyTemp = new List<Block>();
         private Vector2[] _directions;
         
         public CellSelectableColorBomb(Block block, Block[][] blocks) : base(block, blocks)
@@ -63,23 +64,15 @@ namespace Blocks.BlockTypesSpace
         
         private void AddedAllBlocksToBlocksForDestroy(int[][] moveMap)
         {
-            _blocksForDestroy.Clear();
+            _blocksForDestroy = new List<Block>(_blocksForDestroyTemp);
             
-            for (int i = 0; i < moveMap.Length; i++)
-            {
-                for (int k = 0; k < moveMap[i].Length; k++)
-                {
-                    if (moveMap[i][k] == 2)
-                    {
-                        _blocksForDestroy.Add(blocks[i][k]);
-                    }
-                }
-            }
+            _blocksForDestroyTemp.Clear();
         }
 
         private void CheckNeighbor(Block block, BlockColors neededColor, int[][] moveMap, ref int neededColorBlocksCount)
         {
             moveMap[block.IndexColumn][block.IndexRow] = 2;
+            _blocksForDestroyTemp.Add(blocks[block.IndexColumn][block.IndexRow]);
             var cellSelectable = new CellSelectable(block, blocks);
             var blocksNeighbors = cellSelectable.GetBlocks(_directions);
 

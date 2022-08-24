@@ -20,7 +20,7 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses
             _ballManager.AddValueToSpeedAllBalls(_addSpeedValue);
         }
 
-        public override void EndBonus()
+        protected override void EndBonus()
         {
             _ballManager.AddValueToSpeedAllBalls(_addSpeedValue * -1);
         }

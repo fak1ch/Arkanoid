@@ -34,12 +34,12 @@ namespace App.Scripts.Scenes.SelectingPack
             _jsonPath = $@"{Application.dataPath}\App\Resources\{_packName}";
             _currentLevelIndexPlayerPrefsKey = _packName + "CurrentLevelIndex";
             _packCompleteKey = _packName + "Complete";
-            
+
             _levelCount = info.levelCount;
             _currentLevelIndex = PlayerPrefs.GetInt(_currentLevelIndexPlayerPrefsKey, 0);
 
             if (_currentLevelIndex > _levelCount)
-                _levelCount = _currentLevelIndex;
+                _currentLevelIndex = _levelCount;
 
             InitializePack();
         }
@@ -54,8 +54,6 @@ namespace App.Scripts.Scenes.SelectingPack
 
         public string GetLevelPath()
         {
-            if (IsComplete) ClearProgress();
-            
             StaticLevelPath.packId = _id;
             return $"{_packName}{LevelFileName}{_currentLevelIndex + 1}";
         }
@@ -68,6 +66,10 @@ namespace App.Scripts.Scenes.SelectingPack
         public void LevelComplete()
         {
             _currentLevelIndex++;
+
+            if (_currentLevelIndex > _levelCount)
+                _currentLevelIndex = _levelCount;
+            
             IsComplete = _currentLevelIndex == _levelCount;
             SaveIndexes();
         }

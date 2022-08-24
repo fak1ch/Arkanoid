@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using App.Scripts.General.SceneLoaderSpace;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Scenes.SelectingPack
@@ -7,7 +8,7 @@ namespace App.Scripts.Scenes.SelectingPack
     {
         public void BackButton()
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneLoader.Instance.LoadSceneById(0);
         }
     }
 }

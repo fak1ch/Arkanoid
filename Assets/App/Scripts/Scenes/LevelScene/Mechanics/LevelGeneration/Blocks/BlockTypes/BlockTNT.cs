@@ -6,7 +6,7 @@ namespace Blocks.BlockTypesSpace
 {
     public class BlockTNT : Block
     {
-        [SerializeField] private Vector2[] _directions;
+        [SerializeField] protected Vector2[] _directions;
         private List<Block> _blocksForDestroy;
         protected CellSelectable _cellSelectable;
         

@@ -3,18 +3,20 @@ using BallSpace;
 using LevelGeneration;
 using Player;
 using System;
+using App.Scripts.General.PopUpSystemSpace;
+using App.Scripts.General.PopUpSystemSpace.PopUps;
 using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using InputSystems;
 using UISpace;
-using UnityEngine;
 
 namespace GameEventsControllerSpace
 {
     [Serializable]
     public class GameEventsControllerData
     {
-        public MainUI mainUi;
+        public PopUpTransmitter popUpTransmitter;
+        public PopUpSystem popUpSystem;
     }
 
     public class GameEventsController : CustomBehaviour
@@ -45,9 +47,9 @@ namespace GameEventsControllerSpace
         public override void Initialize()
         {
             _playerHeath.OnHealthEqualsMinusOne += GameOver;
-            _data.mainUi.OnRestartGame += RestartGame;
-            _data.mainUi.OnPauseTheGame += PauseTheGame;
-            _data.mainUi.OnUnpauseTheGame += UnpauseTheGame;
+            _data.popUpTransmitter.OnRestartGame += RestartGame;
+            _data.popUpTransmitter.OnPauseTheGame += PauseTheGame;
+            _data.popUpTransmitter.OnUnpauseTheGame += UnpauseTheGame;
             _levelSpawner.OnNoMoreBlocks += GamePassed;
         }
 
@@ -70,13 +72,13 @@ namespace GameEventsControllerSpace
         private void GameOver()
         {
             PauseTheGame();
-            _data.mainUi.OpenGameOverMenu();
+            _data.popUpSystem.ShowPopUp<GameOverPopUp>();
         }
 
         private void GamePassed()
         {
             PauseTheGame();
-            _data.mainUi.OpenYouWinMenu();
+            _data.popUpSystem.ShowPopUp<GamePassedPopUp>();
         }
         
         private void PauseTheGame()
@@ -96,6 +98,15 @@ namespace GameEventsControllerSpace
             _bonusSpawner.SetBonusesInactive(value);
             _bonusManager.GameOnPause = value;
             _inputSystem.GameOnPause = value;
+        }
+
+        public override void Dispose()
+        {
+            _playerHeath.OnHealthEqualsMinusOne -= GameOver;
+            _data.popUpTransmitter.OnRestartGame -= RestartGame;
+            _data.popUpTransmitter.OnPauseTheGame -= PauseTheGame;
+            _data.popUpTransmitter.OnUnpauseTheGame -= UnpauseTheGame;
+            _levelSpawner.OnNoMoreBlocks -= GamePassed;
         }
     }
 }

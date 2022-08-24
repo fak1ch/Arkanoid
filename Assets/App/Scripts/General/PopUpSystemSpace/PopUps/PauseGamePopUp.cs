@@ -1,35 +1,35 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using App.Scripts.General.SceneLoaderSpace;
 
-namespace UISpace
+namespace App.Scripts.General.PopUpSystemSpace.PopUps
 {
-    public class PausePanelUI : MonoBehaviour
+    public class PauseGamePopUp : FadeScalePopUp
     {
         public event Action OnRestartButtonClicked;
         public event Action OnPauseTheGame;
         public event Action OnUnpauseTheGame;
 
-        public void OpenPauseMenu()
+        public override void ShowPopUp()
         {
-            gameObject.SetActive(true);
             OnPauseTheGame?.Invoke();
+            base.ShowPopUp();
         }
 
         public void RestartButtonEvent()
         {
+            HidePopUp();
             OnRestartButtonClicked?.Invoke();
-            ContinueButtonEvent();
         }
 
         public void BackButtonEvent()
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneLoader.Instance.LoadSceneById(1);
+            HidePopUp();
         }
 
         public void ContinueButtonEvent()
         {
-            gameObject.SetActive(false);
+            HidePopUp();
             OnUnpauseTheGame?.Invoke();
         }
     }
