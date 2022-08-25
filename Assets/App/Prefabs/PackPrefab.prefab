@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1828440500579911354}
   - component: {fileID: 1828440500579911356}
   - component: {fileID: 1828440500579911357}
+  - component: {fileID: 4192813777796994070}
   m_Layer: 5
   m_Name: GalaxyText
   m_TagString: Untagged
@@ -210,6 +211,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4192813777796994070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828440500579911355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563add9b7a8447f89aa082637264631d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: GALAXY
+  _text: {fileID: 1828440500579911357}
 --- !u!1 &1828440500872685766
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +392,7 @@ GameObject:
   - component: {fileID: 1828440501250862558}
   - component: {fileID: 1828440501250862528}
   - component: {fileID: 1828440501250862529}
+  - component: {fileID: 5860585585648124485}
   m_Layer: 5
   m_Name: GalaxyName
   m_TagString: Untagged
@@ -500,6 +516,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5860585585648124485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828440501250862559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563add9b7a8447f89aa082637264631d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: GalaxyName
+  _text: {fileID: 1828440501250862529}
 --- !u!1 &1828440501323234804
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +805,7 @@ MonoBehaviour:
     leftSprite: {fileID: 21300000, guid: 201a5bd1ad3a5c442b281b1ed977b918, type: 3}
     rightSprite: {fileID: 21300000, guid: b6960cc1309b53046a6d4bdb9fff8b14, type: 3}
     panelSprite: {fileID: 21300000, guid: 263b40d70dbdccd4dbc5be13360b24d4, type: 3}
+  _translatableText: {fileID: 5860585585648124485}
   _levelText: {fileID: 1828440501323234806}
   _packNameText: {fileID: 1828440501250862529}
   _galaxyText: {fileID: 1828440500579911357}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using App.Scripts.Scenes.SelectingPack;
 using LevelGeneration;
@@ -13,6 +14,7 @@ namespace MainMenuSceneSpace
         private const string FirstStartKey = "firstStart";
         
         [SerializeField] private PackScriptableObject _packSO;
+        [SerializeField] private LocalizationSystem _localizationSystem;
         private bool _firstStart = true;
         
         private void Start()

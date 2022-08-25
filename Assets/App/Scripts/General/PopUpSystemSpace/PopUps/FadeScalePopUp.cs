@@ -12,11 +12,11 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
         
         protected override void ShowAnimation()
         {
-            gameObject.SetActive(true);
             _raycastBg.DOFade(0, 0);
-            _raycastBg.DOFade(0.5f, _animationSpeed);
             _mainPanel.transform.DOScale(Vector3.zero, 0);
+            _raycastBg.DOFade(0.5f, _animationSpeed);
             _mainPanel.transform.DOScale(Vector3.one, _animationSpeed);
+            gameObject.SetActive(true);
         }
 
         protected override void HideAnimation()

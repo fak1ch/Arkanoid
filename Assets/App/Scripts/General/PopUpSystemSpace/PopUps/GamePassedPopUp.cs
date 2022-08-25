@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using App.Scripts.Scenes.SelectingPack;
 using DG.Tweening;
 using LevelGeneration;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,19 +15,38 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
     public class GamePassedPopUp : FadeScalePopUp
     {
         [SerializeField] private PackScriptableObject _packScriptableObject;
+        [SerializeField] private TranslatableText _packNameText;
         [SerializeField] private float _animDuration;
         [SerializeField] private float _raysAngle;
         [SerializeField] private Transform _galaxyIcon;
         [SerializeField] private Image _rays;
         [SerializeField] private Transform _energy;
+        [SerializeField] private Transform _youWinText;
         [SerializeField] private Transform _buttonContinue;
+
+        [Space(10)] 
+        [SerializeField] private Image _galaxyImage;
+        [SerializeField] private TextMeshProUGUI _galaxyName;
+        [SerializeField] private TextMeshProUGUI _galaxyLevels;
 
         private Sequence _mainSequence;
         private Sequence _raysSequence;
 
+        private void Start()
+        {
+            if (StaticLevelPath.packId == -1) return;
+            var packInfo = GetPackInfoById(StaticLevelPath.packId);
+            var currentPack = new PackRepository(packInfo);
+            _packNameText.SetId(currentPack.Name);
+            _galaxyName.text = currentPack.Name;
+            _galaxyLevels.text = $"{currentPack.CurrentLevelIndex + 1}/{currentPack.LevelCount}";
+            _galaxyImage.sprite = packInfo.sprite;
+        }
+
         protected override void ShowAnimation()
         {
             _buttonContinue.DOScale(0, 0);
+            _youWinText.DOScale(0, 0);
             _galaxyIcon.DOScale(0, 0);
             _energy.DOScale(0, 0);
             _rays.DOFade(0, 0);
@@ -40,6 +61,7 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             
             _mainSequence = DOTween.Sequence();
             _mainSequence.Append(_galaxyIcon.DOScale(1, _animDuration));
+            _mainSequence.Append(_youWinText.DOScale(1, _animDuration));
             _mainSequence.Append(_energy.DOScale(1, _animDuration));
             _mainSequence.Append(_raysSequence.Play());
             _mainSequence.Append(_buttonContinue.DOScale(1, _animDuration));
