@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using ButtonSpace;
 using LevelGeneration;
@@ -12,6 +13,7 @@ namespace App.Scripts.Scenes.SelectingPack
     public class PackView : MonoBehaviour
     {
         [SerializeField] private PackViewData[] _data;
+        [SerializeField] private TranslatableText _translatableText;
 
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private TextMeshProUGUI _packNameText;
@@ -37,6 +39,7 @@ namespace App.Scripts.Scenes.SelectingPack
         {
             _packInformation = packInformation;
             _packRepository = new PackRepository(packInformation);
+            _translatableText.SetId(_packRepository.Name);
 
             _currentLevelNumber = _packRepository.CurrentLevelIndex;
             _maxLevelNumber = _packRepository.LevelCount;
@@ -81,6 +84,7 @@ namespace App.Scripts.Scenes.SelectingPack
 
         public void MakePackAsClosed()
         {
+            _translatableText.SetId("NOTFOUND");
             ChangePackViewByIndex(0);
             
             _packImage.sprite = _packCloseSprite;

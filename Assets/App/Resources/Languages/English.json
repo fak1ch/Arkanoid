@@ -1,0 +1,16 @@
+{
+  "languageDictionary": {
+    "PLAY": "PLAY",
+    "BACK": "BACK",
+    "GALAXY": "GALAXY",
+    "SIGARA": "SIGARA",
+    "SOMBRARO": "SOMBRARO",
+    "VILNUS": "VILNUS",
+    "MENU": "MENU",
+    "CONTINUE": "CONTINUE",
+    "RESTART": "RESTART",
+    "YouLost!": "You lost!",
+    "NOTFOUND": "NOT FOUND",
+    "YouWin!": "You win!",
+  }
+}

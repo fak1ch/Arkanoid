@@ -24,6 +24,7 @@ namespace App.Scripts.Scenes.SelectingPack
         public bool IsComplete { get; private set; }
         public int CurrentLevelIndex => _currentLevelIndex;
         public int LevelCount => _levelCount;
+        public string Name => _packName;
 
         public PackRepository(PackInformation info)
         {

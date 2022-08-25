@@ -1,0 +1,16 @@
+{
+  "languageDictionary": {
+    "PLAY": "ИГРАТЬ",
+    "BACK": "НАЗАД",
+    "GALAXY": "ГАЛАКТИКА",
+    "SIGARA": "СИГАРА",
+    "SOMBRARO": "СОМБРЕЙРО",
+    "VILNUS": "ВИЛЬНЮС",
+    "MENU": "МЕНЮ",
+    "CONTINUE": "ПРОДОЛЖИТЬ",
+    "RESTART": "РЕСТАРТ",
+    "YouLost!": "Вы проиграли!",
+    "NOTFOUND": "НЕ НАЙДЕНА",
+    "YouWin!": "Вы выйграли!"
+  }
+}
