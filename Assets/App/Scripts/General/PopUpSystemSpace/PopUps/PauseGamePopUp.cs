@@ -3,7 +3,7 @@ using App.Scripts.General.SceneLoaderSpace;
 
 namespace App.Scripts.General.PopUpSystemSpace.PopUps
 {
-    public class PauseGamePopUp : FadeScalePopUp
+    public class PauseGamePopUp : PopUp
     {
         public event Action OnRestartButtonClicked;
         public event Action OnPauseTheGame;

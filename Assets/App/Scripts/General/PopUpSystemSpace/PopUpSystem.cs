@@ -24,13 +24,5 @@ namespace App.Scripts.General.PopUpSystemSpace
             popUp.OnPopUpClose -= DeletePopUpFromActivePopUps;
             _activePopUps.Remove(popUp);
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                ShowPopUp<PauseGamePopUp>();
-            }
-        }
     }
 }

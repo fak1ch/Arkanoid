@@ -1,38 +1,48 @@
 ﻿using System;
 using System.Collections;
+using App.Scripts.General.PopUpSystemSpace.PopUps.Animator;
 using UnityEngine;
 
 namespace App.Scripts.General.PopUpSystemSpace
 {
     public abstract class PopUp : MonoBehaviour
     {
+        public event Action<PopUp> OnPopUpStartHideAnimation;
+        public event Action<PopUp> OnPopUpStartShowAnimation;
+        public event Action<PopUp> OnPopUpOpen;
         public event Action<PopUp> OnPopUpClose;
 
-        protected virtual void ShowAnimation()
-        {
-            gameObject.SetActive(true);
-        }
+        [SerializeField] private CustomAnimator _customAnimatorShow;
+        [SerializeField] private CustomAnimator _customAnimatorHide;
 
-        protected virtual void HideAnimation()
-        {
-            gameObject.SetActive(false);
-        }
-        
         public virtual void ShowPopUp()
         {
             transform.SetAsFirstSibling();
-            ShowAnimation();
+            _customAnimatorShow.StartAllAnimations();
+            _customAnimatorShow.OnAnimationsEnd += PopUpOpen;
+            OnPopUpStartShowAnimation?.Invoke(this);
+            
+            gameObject.SetActive(true);
         }
 
         protected void HidePopUp()
         {
-            HideAnimation();
-            ClosePopUpEvent();
+            _customAnimatorHide.StartAllAnimations();
+            _customAnimatorHide.OnAnimationsEnd += PopUpClose;
+            OnPopUpStartHideAnimation?.Invoke(this);
         }
 
-        private void ClosePopUpEvent()
+        private void PopUpOpen()
         {
+            _customAnimatorShow.OnAnimationsEnd -= PopUpOpen;
+            OnPopUpOpen?.Invoke(this);
+        }
+
+        private void PopUpClose()
+        {
+            _customAnimatorHide.OnAnimationsEnd -= PopUpClose;
             OnPopUpClose?.Invoke(this);
+            gameObject.SetActive(false);
         }
     }
 }

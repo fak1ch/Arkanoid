@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds
 {
     public class BonusCaptiveBall: Bonus
     {
         [SerializeField] private Vector2[] _directions;
-        
-        protected override void Start()
+
+        private void OnEnable()
         {
-            base.Start();
+            if (bonusData == null) return;
+            
             ActivateBonus();
             ReturnToPool();
         }
