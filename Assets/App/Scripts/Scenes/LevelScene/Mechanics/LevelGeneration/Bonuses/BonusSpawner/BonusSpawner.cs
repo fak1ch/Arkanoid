@@ -38,12 +38,12 @@ namespace App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace
             var bonus = _bonusContainer.GetObjectFromPoolById(block.BlockInformation.bonusId);
 
             bonus.SetBonusData(_data.bonusData);
-            bonus.gameObject.SetActive(true);
             bonus.transform.position = block.transform.position;
             bonus.rectTransform.sizeDelta = block.BlockData.rectTransform.sizeDelta;
             bonus.SetBoxCollider2DSize(block.BlockData.rectTransform.sizeDelta/2);
             bonus.OnDestroy += DestroyBonus;
             _bonuses.Add(bonus);
+            bonus.gameObject.SetActive(true);
         }
 
         public void DestroyAllBonuses()
