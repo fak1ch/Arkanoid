@@ -1,24 +1,22 @@
 ﻿using System;
 using App.Scripts.General.SceneLoaderSpace;
+using GameEventsControllerSpace;
+using UISpace;
 
 namespace App.Scripts.General.PopUpSystemSpace.PopUps
 {
     public class PauseGamePopUp : PopUp
     {
-        public event Action OnRestartButtonClicked;
-        public event Action OnPauseTheGame;
-        public event Action OnUnpauseTheGame;
-
         public override void ShowPopUp()
         {
-            OnPauseTheGame?.Invoke();
+            GameEventsController.Instance.PauseTheGame();
             base.ShowPopUp();
         }
 
         public void RestartButtonEvent()
         {
             HidePopUp();
-            OnRestartButtonClicked?.Invoke();
+            GameEventsController.Instance.RestartGame();
         }
 
         public void BackButtonEvent()
@@ -30,7 +28,7 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
         public void ContinueButtonEvent()
         {
             HidePopUp();
-            OnUnpauseTheGame?.Invoke();
+            GameEventsController.Instance.UnpauseTheGame();
         }
     }
 }

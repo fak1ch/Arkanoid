@@ -2,26 +2,19 @@
 using BallSpace;
 using LevelGeneration;
 using Player;
-using System;
 using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.General.PopUpSystemSpace.PopUps;
 using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using InputSystems;
-using UISpace;
 
 namespace GameEventsControllerSpace
 {
-    [Serializable]
-    public class GameEventsControllerData
-    {
-        public PopUpTransmitter popUpTransmitter;
-        public PopUpSystem popUpSystem;
-    }
-
     public class GameEventsController : CustomBehaviour
     {
-        private GameEventsControllerData _data;
+        private static GameEventsController _instance;
+        public static GameEventsController Instance => _instance;
+        
         private PlayerHealth _playerHeath;
         private BallManager _ballManager;
         private BonusSpawner _bonusSpawner;
@@ -30,11 +23,10 @@ namespace GameEventsControllerSpace
         private LevelSpawner _levelSpawner;
         private InputSystem _inputSystem;
 
-        public GameEventsController(GameEventsControllerData data, PlayerHealth playerHealth,
+        public GameEventsController(PlayerHealth playerHealth,
             BallManager ballManager, PlayerController playerController, LevelSpawner levelSpawner, 
             BonusSpawner bonusSpawner, BonusManager bonusManager, InputSystem inputSystem)
         {
-            _data = data;
             _playerHeath = playerHealth;
             _ballManager = ballManager;
             _playerController = playerController;
@@ -46,14 +38,12 @@ namespace GameEventsControllerSpace
 
         public override void Initialize()
         {
+            _instance = this;
             _playerHeath.OnHealthEqualsMinusOne += GameOver;
-            _data.popUpTransmitter.OnRestartGame += RestartGame;
-            _data.popUpTransmitter.OnPauseTheGame += PauseTheGame;
-            _data.popUpTransmitter.OnUnpauseTheGame += UnpauseTheGame;
             _levelSpawner.OnNoMoreBlocks += GamePassed;
         }
 
-        private void RestartGame()
+        public void RestartGame()
         {
             _playerController.RestartPlayerPlatform();
             _playerHeath.RestoreHealth();
@@ -72,21 +62,21 @@ namespace GameEventsControllerSpace
         private void GameOver()
         {
             PauseTheGame();
-            _data.popUpSystem.ShowPopUp<GameOverPopUp>();
+            PopUpSystem.Instance.ShowPopUp<GameOverPopUp>();
         }
 
         private void GamePassed()
         {
             PauseTheGame();
-            _data.popUpSystem.ShowPopUp<GamePassedPopUp>();
+            PopUpSystem.Instance.ShowPopUp<GamePassedPopUp>();
         }
         
-        private void PauseTheGame()
+        public void PauseTheGame()
         {
             SetupGameInactive(true);
         }
 
-        private void UnpauseTheGame()
+        public void UnpauseTheGame()
         {
             SetupGameInactive(false);
         }
@@ -103,9 +93,6 @@ namespace GameEventsControllerSpace
         public override void Dispose()
         {
             _playerHeath.OnHealthEqualsMinusOne -= GameOver;
-            _data.popUpTransmitter.OnRestartGame -= RestartGame;
-            _data.popUpTransmitter.OnPauseTheGame -= PauseTheGame;
-            _data.popUpTransmitter.OnUnpauseTheGame -= UnpauseTheGame;
             _levelSpawner.OnNoMoreBlocks -= GamePassed;
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.General.MonoSingletonSpace;
+using App.Scripts.General.Singleton;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,27 +17,44 @@ namespace App.Scripts.General.SceneLoaderSpace
         [SerializeField] private float _timeUntilLoadScene;
         [SerializeField] private SceneScriptableObject _sceneSO;
         [SerializeField] private Image _bg;
+
+        private Tween _fadeTween;
         
         private void OnEnable()
         {
-            SceneManager.sceneLoaded += SceneLoadedAnimation;
+            SceneManager.sceneLoaded += SceneLoadedEvent;
         }
 
         private void OnDisable()
         {
-            SceneManager.sceneLoaded -= SceneLoadedAnimation;
+            SceneManager.sceneLoaded -= SceneLoadedEvent;
         }
 
-        private void SceneLoadedAnimation(Scene arg0, LoadSceneMode arg1)
+        private void SceneLoadedEvent(Scene arg0, LoadSceneMode arg1)
+        {
+            PlayFadeAnimation(1, 0);
+            _fadeTween.OnComplete(SetActiveBackgroundFalse);
+        }
+
+        private void SetActiveBackgroundTrue()
         {
             _bg.gameObject.SetActive(true);
-            _bg.DOFade(1, 0);
-            _bg.DOFade(0, _timeUntilLoadScene).OnComplete(SetActiveFalseBg);
         }
 
-        private void SetActiveFalseBg()
+        private void SetActiveBackgroundFalse()
         {
             _bg.gameObject.SetActive(false);
+        }
+        
+        private void PlayFadeAnimation(float startValue, float endValue)
+        {
+            var color = _bg.color;
+            color.a = startValue;
+            _bg.color = color;
+            
+            _bg.gameObject.SetActive(true);
+            _fadeTween.Kill();
+            _fadeTween = _bg.DOFade(endValue, _timeUntilLoadScene);
         }
         
         public void LoadSceneById(int id)
@@ -48,9 +65,8 @@ namespace App.Scripts.General.SceneLoaderSpace
         
         private IEnumerator LoadSceneByIdAfterTime(int id)
         {
-            _bg.gameObject.SetActive(true);
-            _bg.DOFade(0, 0);
-            _bg.DOFade(1, _timeUntilLoadScene);
+            PlayFadeAnimation(0, 1);
+            _fadeTween.OnComplete(SetActiveBackgroundTrue);
             yield return new WaitForSeconds(_timeUntilLoadScene);
             SceneManager.LoadScene(GetSceneNameById(id));
         }
