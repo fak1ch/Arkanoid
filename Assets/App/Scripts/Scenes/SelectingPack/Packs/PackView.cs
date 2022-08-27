@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.General.Energy;
 using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using ButtonSpace;
@@ -33,6 +34,7 @@ namespace App.Scripts.Scenes.SelectingPack
         private bool _packComplete = false;
         
         public bool PackIsComplete => _packRepository.IsComplete;
+        public bool CanOpenNextPack => _packRepository.CanOpenNextPack;
         public bool PackClosed { get; private set; } = false;
         
         public void InitializePack(PackInformation packInformation)
@@ -56,6 +58,7 @@ namespace App.Scripts.Scenes.SelectingPack
 
         public void StartLevel()
         {
+            if (!EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice)) return;
             if (_canStartLevel == false) return;
 
             if (_packComplete)
@@ -63,6 +66,7 @@ namespace App.Scripts.Scenes.SelectingPack
                 _packRepository.ClearProgress();
             }
 
+            EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
             StaticLevelPath.levelPath = _packRepository.GetLevelPath();
             StaticLevelPath.packId = _packInformation.Id;
             SceneLoader.Instance.LoadSceneById(2);

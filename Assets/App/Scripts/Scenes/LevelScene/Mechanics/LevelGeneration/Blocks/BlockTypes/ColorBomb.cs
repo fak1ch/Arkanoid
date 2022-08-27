@@ -10,6 +10,8 @@ namespace Blocks.BlockTypesSpace
         [SerializeField] private Vector2[] _directions;
         [SerializeField] private float _timeBetweenDestroys;
         private CellSelectableColorBomb _selectable;
+
+        private bool _gameOnPause;
         
         protected override void Start()
         {

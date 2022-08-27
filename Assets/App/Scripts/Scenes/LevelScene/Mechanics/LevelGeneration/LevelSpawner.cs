@@ -123,5 +123,16 @@ namespace LevelGeneration
 
             _blocksCount = _maxBlocksCount;
         }
+
+        public void SetGameOnPauseFlagToBlocks(bool flag)
+        {
+            for (int i = 0; i < _blocks.Length; i++)
+            {
+                for(int k = 0; k < _blocks[i].Length; k++)
+                {
+                    _blocks[i][k].SetGameOnPauseFlag(flag);
+                }
+            }
+        }
     }
 }

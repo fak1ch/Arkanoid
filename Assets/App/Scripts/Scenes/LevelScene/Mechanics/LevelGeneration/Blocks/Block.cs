@@ -111,6 +111,11 @@ namespace Blocks
             IndexColumn = indexColumn;
             IndexRow = indexRow;
         }
+
+        public virtual void SetGameOnPauseFlag(bool flag)
+        {
+            enabled = !flag;
+        }
     }
 
     public interface IInformation<T>

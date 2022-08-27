@@ -32,6 +32,8 @@ namespace App.Scripts.Scenes.SelectingPack
 
                 if (i != 0)
                 {
+                    if (_packs[i - 1].CanOpenNextPack) continue;
+                    
                     if (_packs[i - 1].PackIsComplete == false || _packs[i-1].PackClosed)
                     {
                         pack.MakePackAsClosed();

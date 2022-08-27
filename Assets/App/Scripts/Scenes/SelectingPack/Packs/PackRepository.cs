@@ -1,10 +1,8 @@
-﻿using DG.Tweening.Plugins.Core.PathCore;
-using LevelGeneration;
+﻿using LevelGeneration;
 using ParserJsonSpace;
 using UnityEngine;
 using System.IO;
 using App.Scripts.General.PopUpSystemSpace;
-using Path = System.IO.Path;
 
 namespace App.Scripts.Scenes.SelectingPack
 {
@@ -16,7 +14,6 @@ namespace App.Scripts.Scenes.SelectingPack
         private string _packName;
         private PackInformation _packInformation;
         
-        private string _jsonPath;
         private string _jsonPathLoad;
         private string _jsonPathSave;
         private JsonParser<LevelData> _jsonParser;
@@ -27,6 +24,7 @@ namespace App.Scripts.Scenes.SelectingPack
         private int _levelCount = 0; 
 
         public bool IsComplete { get; private set; }
+        public bool CanOpenNextPack => PlayerPrefs.GetInt(_packCompleteKey) == 1;
         public int CurrentLevelIndex => _currentLevelIndex;
         public int LevelCount => _levelCount;
         public string Name => _packName;
@@ -56,9 +54,6 @@ namespace App.Scripts.Scenes.SelectingPack
         private void InitializePack()
         {
             IsComplete = _currentLevelIndex == _levelCount;
-
-            int value = PlayerPrefs.GetInt(_packCompleteKey, 0);
-            IsComplete = value == 1;
         }
 
         public string GetLevelPath()
@@ -123,7 +118,9 @@ namespace App.Scripts.Scenes.SelectingPack
         {
             _packInformation.levelCount = _levelCount;
             PlayerPrefs.SetInt(_currentLevelIndexPlayerPrefsKey, _currentLevelIndex);
-            PlayerPrefs.SetInt(_packCompleteKey, IsComplete ? 1 : 0);
+            
+            if (!CanOpenNextPack)
+                PlayerPrefs.SetInt(_packCompleteKey, IsComplete ? 1 : 0);
         }
     }
 }
