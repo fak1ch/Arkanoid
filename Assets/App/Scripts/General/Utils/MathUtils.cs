@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace App.Scripts.General.Utils
+﻿namespace App.Scripts.General.Utils
 {
-    public class MathUtils
+    public static class MathUtils
     {
         public static float GetPercent(float a, float b, float value)
         {

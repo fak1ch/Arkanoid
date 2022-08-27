@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using App.Scripts.General.Energy;
 using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using App.Scripts.Scenes.SelectingPack;
 using DG.Tweening;
+using GameEventsControllerSpace;
 using LevelGeneration;
 using TMPro;
 using UnityEngine;
@@ -31,6 +33,8 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             _galaxyName.text = currentPack.Name;
             _galaxyLevels.text = $"{currentPack.CurrentLevelIndex + 1}/{currentPack.LevelCount}";
             _galaxyImage.sprite = packInfo.sprite;
+
+            OnPopUpOpen += popUp => EnergySystem.Instance.AddEnergy(EnergySystem.Instance.AddForPassingLevel);
         }
 
         public void ContinueButtonEvent()
@@ -46,10 +50,18 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             }
             else
             {
-                StaticLevelPath.levelPath = currentPack.GetLevelPath();
-                SceneLoader.Instance.LoadSceneById(2);
+                if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
+                {
+                    EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
+                    StaticLevelPath.levelPath = currentPack.GetLevelPath();
+                    SceneLoader.Instance.LoadSceneById(2);
+                }
+                else
+                {
+                    return;
+                }
             }
-            
+
             HidePopUp();
         }
         

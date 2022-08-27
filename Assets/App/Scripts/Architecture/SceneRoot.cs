@@ -1,8 +1,6 @@
 using Architecture;
-using System.Collections;
 using System.Collections.Generic;
 using App.Scripts.General.SceneLoaderSpace;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 public class SceneRoot : MonoBehaviour
@@ -47,6 +45,6 @@ public class SceneRoot : MonoBehaviour
     private void Dispose()
     {
         SceneLoader.Instance.OnSceneStartLoading -= Dispose;
-        _appHandler.Dispose();
+        _appHandler.Dispose(); 
     }
 }

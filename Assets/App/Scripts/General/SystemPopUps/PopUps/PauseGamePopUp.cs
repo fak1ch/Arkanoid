@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Scripts.General.Energy;
 using App.Scripts.General.SceneLoaderSpace;
 using GameEventsControllerSpace;
 using UISpace;
@@ -15,8 +16,12 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
 
         public void RestartButtonEvent()
         {
-            HidePopUp();
-            GameEventsController.Instance.RestartGame();
+            if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
+            {
+                EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
+                HidePopUp();
+                GameEventsController.Instance.RestartGame();
+            }
         }
 
         public void BackButtonEvent()

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4393240813370158018
+--- !u!1 &1003249885209356221
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4393240813370158016}
-  - component: {fileID: 4393240813370158017}
+  - component: {fileID: 1003249885209356223}
+  - component: {fileID: 1003249885209356220}
   m_Layer: 0
-  m_Name: MainSingleton
+  m_Name: EnergySystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4393240813370158016
+--- !u!4 &1003249885209356223
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393240813370158018}
+  m_GameObject: {fileID: 1003249885209356221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.41378617, y: -3.17085, z: 32.652065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4393240813370158017
+--- !u!114 &1003249885209356220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393240813370158018}
+  m_GameObject: {fileID: 1003249885209356221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e195c0ccb094c5e8d52c2a7f32c49a0, type: 3}
+  m_Script: {fileID: 11500000, guid: c13eddbafc084bb6b048fa49a29058f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabs:
-  - {fileID: 5291966343045178522, guid: 7a16981bd8e0846449ae8ea9c0b77a36, type: 3}
-  - {fileID: 7045423072456419204, guid: 85ab1b419a6b8774a9513bec8e2c7147, type: 3}
-  - {fileID: 267526976797527658, guid: d44e621313abac6458eb32acb1184fa6, type: 3}
-  - {fileID: 1003249885209356220, guid: 1826fc8c192ba9a4084348acc374cb98, type: 3}
+  _maxEnergy: 100
+  _startLevelPrice: 3
+  _addForPassingLevel: 5
+  _minutesBetweenAddEnergy: 20
+  _energyValueForAdd: 5

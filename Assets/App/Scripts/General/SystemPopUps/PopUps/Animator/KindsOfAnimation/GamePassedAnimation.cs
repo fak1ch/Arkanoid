@@ -36,7 +36,7 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps.Animator.KindsOfAnimation
             _raysSequence.Pause();
             _raysSequence.Append(_rays.DOFade(1, _duration));
             _raysSequence.Insert(0, _rays.transform.DORotate(
-                new Vector3(0, 0, _raysAngle), _duration)).SetLoops(-1);
+                new Vector3(0, 0, _raysAngle), _duration));
 
             _mainSequence = DOTween.Sequence();
             _mainSequence.Append(_galaxyIcon.DOScale(1, _duration));
@@ -44,6 +44,8 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps.Animator.KindsOfAnimation
             _mainSequence.Append(_energy.DOScale(1, _duration));
             _mainSequence.Append(_raysSequence.Play());
             _mainSequence.Append(_buttonContinue.DOScale(1, _duration));
+
+            _mainSequence.OnComplete(Stop);
         }
     }
 }

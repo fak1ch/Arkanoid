@@ -1,4 +1,5 @@
-﻿using Architecture;
+﻿using System.Collections;
+using Architecture;
 using BallSpace;
 using LevelGeneration;
 using Player;
@@ -6,7 +7,9 @@ using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.General.PopUpSystemSpace.PopUps;
 using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
+using DG.Tweening;
 using InputSystems;
+using UnityEngine;
 
 namespace GameEventsControllerSpace
 {
@@ -14,7 +17,8 @@ namespace GameEventsControllerSpace
     {
         private static GameEventsController _instance;
         public static GameEventsController Instance => _instance;
-        
+
+        private GameEventsControllerData _data;
         private PlayerHealth _playerHeath;
         private BallManager _ballManager;
         private BonusSpawner _bonusSpawner;
@@ -23,10 +27,11 @@ namespace GameEventsControllerSpace
         private LevelSpawner _levelSpawner;
         private InputSystem _inputSystem;
 
-        public GameEventsController(PlayerHealth playerHealth,
+        public GameEventsController(GameEventsControllerData data , PlayerHealth playerHealth,
             BallManager ballManager, PlayerController playerController, LevelSpawner levelSpawner, 
             BonusSpawner bonusSpawner, BonusManager bonusManager, InputSystem inputSystem)
         {
+            _data = data;
             _playerHeath = playerHealth;
             _ballManager = ballManager;
             _playerController = playerController;
@@ -67,8 +72,7 @@ namespace GameEventsControllerSpace
 
         private void GamePassed()
         {
-            PauseTheGame();
-            PopUpSystem.Instance.ShowPopUp<GamePassedPopUp>();
+            _data.playerPlatform.StartCoroutine(DelayUntilShowGamePassedPopUp());
         }
         
         public void PauseTheGame()
@@ -88,8 +92,16 @@ namespace GameEventsControllerSpace
             _bonusSpawner.SetBonusesInactive(value);
             _bonusManager.GameOnPause = value;
             _inputSystem.GameOnPause = value;
+            _levelSpawner.SetGameOnPauseFlagToBlocks(value);
         }
 
+        private IEnumerator DelayUntilShowGamePassedPopUp()
+        {
+            yield return new WaitForSeconds(_data.delayUntilShowGamePassedPopUp);
+            PauseTheGame();
+            PopUpSystem.Instance.ShowPopUp<GamePassedPopUp>();
+        }
+        
         public override void Dispose()
         {
             _playerHeath.OnHealthEqualsMinusOne -= GameOver;
