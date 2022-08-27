@@ -6,11 +6,9 @@ namespace UISpace
 {
     public class PauseButton : MonoBehaviour
     {
-        [SerializeField] private PopUpSystem _popUpSystem;
-
         public void OpenPauseMenu()
         {
-            _popUpSystem.ShowPopUp<PauseGamePopUp>();
+            PopUpSystem.Instance.ShowPopUp<PauseGamePopUp>();
         }
     }
 }

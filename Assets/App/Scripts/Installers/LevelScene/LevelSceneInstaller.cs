@@ -24,7 +24,6 @@ namespace Installers.LevelScene
         [SerializeField] private LevelSpawnerData _levelSpawnerSettings;
         [SerializeField] private BallManagerData _ballManagerData;
         [SerializeField] private PlayerHealthData _playerHealthData;
-        [SerializeField] private GameEventsControllerData _gameEventsControllerData;
         [SerializeField] private BonusSpawnerData _bonusSpawnerData;
         [SerializeField] private BonusesActivatorData _bonusesActivatorData;
 
@@ -54,8 +53,8 @@ namespace Installers.LevelScene
             var bonusSpawner = new BonusSpawner(_bonusSpawnerData, bonusContainer, levelSpawner);
             var bonusManager = new BonusManager(bonusesActivator);
  
-            var gameEventsController = new GameEventsController(_gameEventsControllerData, playerHealth, ballManager, 
-                playerController, levelSpawner, bonusSpawner, bonusManager, inputSystem);
+            var gameEventsController = new GameEventsController(playerHealth, ballManager, playerController, levelSpawner, bonusSpawner, 
+                bonusManager, inputSystem);
             
             appHandler.AddBehaviour(inputSystem);
             appHandler.AddBehaviour(playerController);

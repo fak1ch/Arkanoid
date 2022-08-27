@@ -1,19 +1,24 @@
-﻿using System;
+﻿using DG.Tweening.Plugins.Core.PathCore;
 using LevelGeneration;
 using ParserJsonSpace;
 using UnityEngine;
+using System.IO;
+using App.Scripts.General.PopUpSystemSpace;
+using Path = System.IO.Path;
 
 namespace App.Scripts.Scenes.SelectingPack
 {
     public class PackRepository
     {
-        private const string LevelFileName = @"\Level";
+        private const string LevelFileName = @"Level";
 
         private int _id;
         private string _packName;
         private PackInformation _packInformation;
         
         private string _jsonPath;
+        private string _jsonPathLoad;
+        private string _jsonPathSave;
         private JsonParser<LevelData> _jsonParser;
         
         private string _currentLevelIndexPlayerPrefsKey;
@@ -32,7 +37,10 @@ namespace App.Scripts.Scenes.SelectingPack
             _packName = info.Name;
             _packInformation = info;
             _jsonParser = new JsonParser<LevelData>();
-            _jsonPath = $@"{Application.dataPath}\App\Resources\{_packName}";
+            _jsonPathSave = Path.Combine(Application.dataPath, "App", "Resources", "Packs", 
+                _packName, LevelFileName);
+            _jsonPathLoad = Path.Combine("Packs", 
+                _packName, LevelFileName);
             _currentLevelIndexPlayerPrefsKey = _packName + "CurrentLevelIndex";
             _packCompleteKey = _packName + "Complete";
 
@@ -56,12 +64,12 @@ namespace App.Scripts.Scenes.SelectingPack
         public string GetLevelPath()
         {
             StaticLevelPath.packId = _id;
-            return $"{_packName}{LevelFileName}{_currentLevelIndex + 1}";
+            return _jsonPathLoad + (_currentLevelIndex + 1);
         }
          
         public string GetLevelPathByIndex(int index)
         {
-            return $"{_packName}{LevelFileName}{index}";
+            return _jsonPathLoad + index;
         }
         
         public void LevelComplete()
@@ -83,17 +91,31 @@ namespace App.Scripts.Scenes.SelectingPack
         
         public void AddLevelInPackToEnd(LevelData levelData)
         {
-            if (_jsonParser.SaveDataToFile(levelData, $"{_jsonPath}{LevelFileName}{_levelCount + 1}.json"))
+            if (_jsonParser.SaveDataToFile(levelData, _jsonPathSave + (_levelCount + 1) + ".json"))
             {
                 _levelCount++;
-            } 
+                PopUpSystem.Instance.ShowInformationPopUp(
+                    "Level saved in pack: " + _packName + " like " + LevelFileName + _levelCount + ".json");
+            }
+            else
+            {
+                PopUpSystem.Instance.ShowInformationPopUp("Error, level not was saved");
+            }
 
             SaveIndexes();
         }
         
         public void ReplaceLevelInPack(LevelData levelData, int levelNumber)
         {
-            _jsonParser.SaveDataToFile(levelData, $"{_jsonPath}{LevelFileName}{levelNumber}.json");
+            if (_jsonParser.SaveDataToFile(levelData, _jsonPathSave + levelNumber + ".json"))
+            {
+                PopUpSystem.Instance.ShowInformationPopUp(
+                    "Level was replaced: " + _packName + " like " + LevelFileName + _levelCount + ".json");
+            }
+            else
+            {
+                PopUpSystem.Instance.ShowInformationPopUp("Error, level not was replaced");
+            }
             SaveIndexes();
         }
         
