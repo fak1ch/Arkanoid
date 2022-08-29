@@ -24,6 +24,7 @@ namespace App.Scripts.General.LocalizationSystemSpace
         private static Dictionary<string, string> _languageDictionary;
 
         public List<SystemLanguage> Languages => _languageSO.languages;
+        public SystemLanguage CurrentLanguage => _currentLanguage;
 
         private void Start()
         {

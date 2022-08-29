@@ -749,7 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828440501455706286}
   - component: {fileID: 1828440501455706451}
-  - component: {fileID: 8520501290979353758}
+  - component: {fileID: 8644669705401935889}
   m_Layer: 5
   m_Name: PackPrefab
   m_TagString: Untagged
@@ -814,7 +814,7 @@ MonoBehaviour:
   _rightImage: {fileID: 1828440500272968747}
   _panelImage: {fileID: 1828440500872685768}
   _packCloseSprite: {fileID: 21300000, guid: a87cd38b7b86e78448e33f719360bd2c, type: 3}
---- !u!114 &8520501290979353758
+--- !u!114 &8644669705401935889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -823,39 +823,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1828440501455706287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1828440500872685768}
-  m_OnClick:
+  _button: {fileID: 1828440501455706286}
+  _buttonImage: {fileID: 1828440500872685768}
+  _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
+  _calledMethod:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1828440501455706451}

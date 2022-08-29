@@ -100,9 +100,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3468078818705741987}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.884765, y: 0.884765, z: 0.884765}
+  m_LocalScale: {x: 1.0551991, y: 1.0551991, z: 1.0551991}
   m_Children:
   - {fileID: 3468078818308947829}
   - {fileID: 3468078819821953041}
@@ -140,6 +140,9 @@ MonoBehaviour:
   _valuesText: {fileID: 3468078819889548887}
   _energyImage: {fileID: 3468078819821953043}
   _timerText: {fileID: 7717380677650899530}
+  _energyAddedEffect: {fileID: 7113392256731972110, guid: f3c6fd6ac650d2f4189de6e4fd9bed68, type: 3}
+  _positiveNumberColor: {r: 0.040236473, g: 1, b: 0, a: 1}
+  _negativeNumberColor: {r: 0.9433962, g: 0, b: 0, a: 1}
 --- !u!1 &3468078819392461979
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,8 +551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -226.3, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchoredPosition: {x: -3, y: -41}
+  m_SizeDelta: {x: -41.4967, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &76401761873663183
 CanvasRenderer:
@@ -613,7 +616,7 @@ MonoBehaviour:
   m_fontSizeMin: 5
   m_fontSizeMax: 22
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -642,7 +645,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 60.337612, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.16110994, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

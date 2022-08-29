@@ -1,11 +1,9 @@
 ﻿using BallSpace;
 using HealthSystemSpace;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.General.Utils;
 using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;
-using Blocks.BlockTypesSpace;
 using DG.Tweening;
 using UnityEngine;
 
@@ -16,7 +14,7 @@ namespace Blocks
         public event Action<Block> OnBlockDestroy;
 
         [SerializeField] private BlockData _blockData;
-        [SerializeField] private BonusScriptableObject _bonusScriptableObject;
+        [SerializeField] private BlocksSettingsScriptableObject _settings;
 
         private BlockInformation _blockInformation;
         protected HealthSystem healthSystem;
@@ -47,7 +45,7 @@ namespace Blocks
             if (IsDestroyed) return;
             
             IsDestroyed = true;
-            transform.DOScale(0, _blockData.animDuration);
+            transform.DOScale(0, _settings.destroyRestoreAnimDuration);
             RunAdditionalLogic();
             healthSystem.OnHealthEqualsMinValue -= DestroyBlock;
             OnBlockDestroy?.Invoke(this);
@@ -61,7 +59,7 @@ namespace Blocks
             healthSystem.OnHealthEqualsMinValue += DestroyBlock;
             RefreshDamageSprite();
 
-            transform.DOScale(1, _blockData.animDuration);
+            transform.DOScale(1, _settings.destroyRestoreAnimDuration);
         }
 
         protected virtual void RunAdditionalLogic()
@@ -95,7 +93,7 @@ namespace Blocks
         {
             if (_blockInformation.bonusId == -1) return;
 
-            _blockData.bonusImage.sprite = _bonusScriptableObject.bonuses
+            _blockData.bonusImage.sprite = _blockData.bonusScriptableObject.bonuses
                 .FirstOrDefault(info => info.id == _blockInformation.bonusId)
                 ?.prefab.Sprite;
         }

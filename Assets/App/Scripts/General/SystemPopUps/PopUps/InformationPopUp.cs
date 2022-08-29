@@ -1,4 +1,5 @@
-﻿using App.Scripts.General.PopUpSystemSpace;
+﻿using App.Scripts.General.LocalizationSystemSpace;
+using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using GameEventsControllerSpace;
 using TMPro;
@@ -8,11 +9,11 @@ namespace App.Scripts.General.SystemPopUps.PopUps
 {
     public class InformationPopUp : PopUp
     {
-        [SerializeField] private TextMeshProUGUI _infoText;
+        [SerializeField] private TranslatableText _translatableText;
 
-        public void InitializeInformationPopUp(string message)
+        public void InitializeInformationPopUp(string translatableId)
         {
-            _infoText.text = message;
+            _translatableText.SetId(translatableId);
         }
 
         public void ContinueButtonEvent()

@@ -30,6 +30,7 @@ namespace App.Scripts.General.LocalizationSystemSpace
         public void SetId(string text)
         {
             _id = text;
+            ChangeLanguage(Application.systemLanguage);
         }
     }
 }

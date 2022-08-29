@@ -41,6 +41,8 @@ namespace App.Scripts.Scenes.MainMenuScene
                 
                 _dropdown.options.Add(option);
             }
+            
+            SetLanguageInDropDown(LocalizationSystem.Instance.CurrentLanguage);
         }
         
         private void SetLanguageInDropDown(SystemLanguage language)

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using App.Scripts.General.Energy;
 using App.Scripts.General.LocalizationSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using App.Scripts.Scenes.SelectingPack;
-using DG.Tweening;
-using GameEventsControllerSpace;
 using LevelGeneration;
 using TMPro;
 using UnityEngine;
@@ -18,6 +15,7 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
     {
         [SerializeField] private PackScriptableObject _packScriptableObject;
         [SerializeField] private TranslatableText _packNameText;
+        [SerializeField] private float _delatUntilContinue;
 
         [Space(10)] 
         [SerializeField] private Image _galaxyImage;
@@ -31,12 +29,18 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             var currentPack = new PackRepository(packInfo);
             _packNameText.SetId(currentPack.Name);
             _galaxyName.text = currentPack.Name;
-            _galaxyLevels.text = $"{currentPack.CurrentLevelIndex + 1}/{currentPack.LevelCount}";
+            _galaxyLevels.text = $"{currentPack.CurrentLevelIndex}/{currentPack.LevelCount}";
             _galaxyImage.sprite = packInfo.sprite;
 
-            OnPopUpOpen += popUp => EnergySystem.Instance.AddEnergy(EnergySystem.Instance.AddForPassingLevel);
+            OnPopUpOpen += popUp => PopUpOpen(currentPack);
         }
 
+        private void PopUpOpen(PackRepository pack)
+        {
+            _galaxyLevels.text = $"{pack.CurrentLevelIndex + 1}/{pack.LevelCount}";
+            EnergySystem.Instance.AddEnergy(EnergySystem.Instance.AddForPassingLevel);
+        }
+        
         public void ContinueButtonEvent()
         {
             var currentPack = new PackRepository(GetPackInfoById(StaticLevelPath.packId));
@@ -47,21 +51,23 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             if (currentPack.CurrentLevelIndex == currentPack.LevelCount)
             {
                 SceneLoader.Instance.LoadSceneById(1);
+                HidePopUp();
             }
             else
             {
                 if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
                 {
-                    EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
-                    StaticLevelPath.levelPath = currentPack.GetLevelPath();
-                    SceneLoader.Instance.LoadSceneById(2);
-                }
-                else
-                {
-                    return;
+                    StartCoroutine(NextLevelRoutine(currentPack));
                 }
             }
-
+        }
+        
+        private IEnumerator NextLevelRoutine(PackRepository currentPack)
+        {
+            EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
+            yield return new WaitForSeconds(_delatUntilContinue);
+            StaticLevelPath.levelPath = currentPack.GetLevelPath();
+            SceneLoader.Instance.LoadSceneById(2);
             HidePopUp();
         }
         
