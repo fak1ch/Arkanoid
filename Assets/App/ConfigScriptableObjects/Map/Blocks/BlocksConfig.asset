@@ -125,3 +125,31 @@ MonoBehaviour:
     color: 0
     bonusId: -1
     maxHealth: 2
+  - id: 16
+    prefab: {fileID: 4716735297676059207, guid: 196a4d6f05b0fbd4b807ac7ef284a9b8, type: 3}
+    poolSize: 10
+    type: 0
+    color: 1
+    bonusId: -1
+    maxHealth: 2
+  - id: 17
+    prefab: {fileID: 634626424102416616, guid: cd8c4249b99154e46a5fe9ca37dffd7c, type: 3}
+    poolSize: 10
+    type: 0
+    color: 2
+    bonusId: -1
+    maxHealth: 2
+  - id: 18
+    prefab: {fileID: 5742684913094438068, guid: b2a257027e4b56049b3d8255f9cfd2bf, type: 3}
+    poolSize: 10
+    type: 0
+    color: 3
+    bonusId: -1
+    maxHealth: 2
+  - id: 19
+    prefab: {fileID: 4410748637842165478, guid: 7d1a9c9eec1a8c54da629cf6dc052c8a, type: 3}
+    poolSize: 10
+    type: 0
+    color: 4
+    bonusId: -1
+    maxHealth: 2

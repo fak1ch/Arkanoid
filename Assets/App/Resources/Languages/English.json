@@ -12,6 +12,8 @@
     "YouLost!": "You lost!",
     "NOTFOUND": "NOT FOUND",
     "YouWin!": "You win!",
-    "DontHaveEnergy": "Sorry, don't have energy"
+    "DontHaveEnergy": "Sorry, don't have energy",
+    "LevelSaved": "Level saved",
+    "LevelNotSaved": "Error, level not was saved"
   }
 }

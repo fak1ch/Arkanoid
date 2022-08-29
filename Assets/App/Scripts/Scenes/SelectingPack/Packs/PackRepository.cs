@@ -90,11 +90,11 @@ namespace App.Scripts.Scenes.SelectingPack
             {
                 _levelCount++;
                 PopUpSystem.Instance.ShowInformationPopUp(
-                    "Level saved in pack: " + _packName + " like " + LevelFileName + _levelCount + ".json");
+                    "LevelSaved");
             }
             else
             {
-                PopUpSystem.Instance.ShowInformationPopUp("Error, level not was saved");
+                PopUpSystem.Instance.ShowInformationPopUp("LevelNotSaved");
             }
 
             SaveIndexes();
@@ -105,11 +105,11 @@ namespace App.Scripts.Scenes.SelectingPack
             if (_jsonParser.SaveDataToFile(levelData, _jsonPathSave + levelNumber + ".json"))
             {
                 PopUpSystem.Instance.ShowInformationPopUp(
-                    "Level was replaced: " + _packName + " like " + LevelFileName + _levelCount + ".json");
+                    "LevelSaved");
             }
             else
             {
-                PopUpSystem.Instance.ShowInformationPopUp("Error, level not was replaced");
+                PopUpSystem.Instance.ShowInformationPopUp("LevelNotSaved");
             }
             SaveIndexes();
         }

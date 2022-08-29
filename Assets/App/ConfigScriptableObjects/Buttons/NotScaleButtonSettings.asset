@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NotScaleButtonSettings
   m_EditorClassIdentifier: 
   pressedColor: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
-  changeColorDuration: 0.5
+  changeColorDuration: 0.25
   pressedScalePercent: 1
   scaleDuration: 0.25
