@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b384a4b4fc64b15b58e737db5639c45, type: 3}
   m_Name: BlocksSettings
   m_EditorClassIdentifier: 
-  destroyRestoreAnimDuration: 0.2
+  destroyRestoreAnimDuration: 0.25

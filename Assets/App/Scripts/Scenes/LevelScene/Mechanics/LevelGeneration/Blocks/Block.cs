@@ -20,6 +20,8 @@ namespace Blocks
         protected HealthSystem healthSystem;
         protected Block[][] blocks;
 
+        private ParticleSystem _instantiatedEffect;
+
         public bool IsDestroyed { get; set; }
         public bool IsImmortality { get; set; }
         public int IndexColumn { get; private set; }
@@ -46,12 +48,13 @@ namespace Blocks
             
             IsDestroyed = true;
             transform.DOScale(0, _settings.destroyRestoreAnimDuration);
+            PlayDestroyEffect();
             RunAdditionalLogic();
             healthSystem.OnHealthEqualsMinValue -= DestroyBlock;
             OnBlockDestroy?.Invoke(this);
         }
         
-        public void RestoreBlock()
+        public virtual void RestoreBlock()
         {
             IsDestroyed = false;
             
@@ -110,9 +113,18 @@ namespace Blocks
             IndexRow = indexRow;
         }
 
-        public virtual void SetGameOnPauseFlag(bool flag)
+        private void PlayDestroyEffect()
         {
-            enabled = !flag;
+            if (_instantiatedEffect == null)
+            {
+                _instantiatedEffect = Instantiate(_blockData.effectPrefab, transform);
+                var module = _instantiatedEffect.main;
+                module.startColor = _blockData.effectColor;
+            }
+            else
+            {
+                _instantiatedEffect.DORestart();
+            }
         }
     }
 

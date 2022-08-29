@@ -130,7 +130,7 @@ namespace LevelGeneration
             {
                 for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    _blocks[i][k].SetGameOnPauseFlag(flag);
+                    _blocks[i][k].enabled = !flag;
                 }
             }
         }

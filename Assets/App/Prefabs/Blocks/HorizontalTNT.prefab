@@ -219,6 +219,8 @@ MonoBehaviour:
     blockImage: {fileID: 2063884073998047742}
     bonusImage: {fileID: 2039321819}
     rectTransform: {fileID: 2063884073998047743}
+    effectPrefab: {fileID: 6764095516389605221, guid: 5246ea022c719804d9c59d10a82833eb, type: 3}
+    effectColor: {r: 0.8018868, g: 0.7649267, b: 0.16264686, a: 1}
     bonusScriptableObject: {fileID: 11400000, guid: b50e033ae78bf2e47bd958f460d66b84, type: 2}
     breakSprites:
     - {fileID: 21300000, guid: 034a6f4f9779a734597450de414264d3, type: 3}

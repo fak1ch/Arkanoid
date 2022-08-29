@@ -13,6 +13,8 @@ namespace Blocks
         public Image blockImage;
         public Image bonusImage;
         public RectTransform rectTransform;
+        public ParticleSystem effectPrefab;
+        public Color effectColor;
         public BonusScriptableObject bonusScriptableObject;
 
         [Space(10)]
