@@ -12,5 +12,6 @@
     "YouLost!": "You lost!",
     "NOTFOUND": "NOT FOUND",
     "YouWin!": "You win!",
+    "DontHaveEnergy": "Sorry, don't have energy"
   }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4854bc77b2f1e7543be08561a12fdf2e, type: 3}
   m_Name: NotScaleButtonSettings
   m_EditorClassIdentifier: 
-  PressedColor: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
-  PressedScaleProcent: 1
-  ScaleDuration: 0.2
-  ChangeColorDuration: 0.2
+  pressedColor: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
+  changeColorDuration: 0.5
+  pressedScalePercent: 1
+  scaleDuration: 0.25

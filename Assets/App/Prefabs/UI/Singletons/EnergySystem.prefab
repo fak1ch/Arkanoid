@@ -46,5 +46,6 @@ MonoBehaviour:
   _maxEnergy: 100
   _startLevelPrice: 3
   _addForPassingLevel: 5
-  _minutesBetweenAddEnergy: 20
-  _energyValueForAdd: 5
+  _infoTranslateId: DontHaveEnergy
+  _minutesBetweenAddEnergy: 1
+  _energyValueForAdd: 1

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.General.SceneLoaderSpace;
 using App.Scripts.Scenes.SelectingPack;
 using LevelGeneration;
@@ -15,6 +16,7 @@ namespace MainMenuSceneSpace
         
         private void Start()
         {
+            var count = PopUpSystem.Instance.ActivePopUpsCount;
             int flag = PlayerPrefs.GetInt(FirstStartKey, 0);
             _firstStart = flag == 0;
         }

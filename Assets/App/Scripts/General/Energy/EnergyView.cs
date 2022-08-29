@@ -13,6 +13,9 @@ namespace App.Scripts.General.Energy
         [SerializeField] private TextMeshProUGUI _valuesText;
         [SerializeField] private Image _energyImage;
         [SerializeField] private TextMeshProUGUI _timerText;
+        [SerializeField] private EnergyAddedEffect _energyAddedEffect;
+        [SerializeField] private Color _positiveNumberColor;
+        [SerializeField] private Color _negativeNumberColor;
 
         private int _currentEnergy;
         private int _maxEnergy;
@@ -60,12 +63,27 @@ namespace App.Scripts.General.Energy
         
         private void ChangeEnergyView(int newEnergy, int maxEnergy)
         {
+            _timerText.enabled = newEnergy < maxEnergy;
+
             _maxEnergy = maxEnergy;
             _isEnergyAnimationWork = true;
+            
+            InstantiateAddedValueInfo(newEnergy - _currentEnergy);
             
             _changeEnergyTween.Kill();
             _changeEnergyTween = DOTween.To(() => _currentEnergy, x => _currentEnergy = x, 
                     newEnergy, 1).OnComplete(() => _isEnergyAnimationWork = false);
+        }
+
+        private void InstantiateAddedValueInfo(int addedEnergy)
+        {
+            if (addedEnergy == 0) return;
+            
+            Color effectColor = addedEnergy > 0 ? _positiveNumberColor : _negativeNumberColor;
+            string addedEnergyString = addedEnergy > 0 ? $"+{addedEnergy}" : $"{addedEnergy}";
+
+            var effect = Instantiate(_energyAddedEffect, transform);
+            effect.Initialize(addedEnergyString, effectColor);
         }
     }
 }

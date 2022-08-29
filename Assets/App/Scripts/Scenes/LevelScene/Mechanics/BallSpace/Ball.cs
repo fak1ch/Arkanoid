@@ -9,10 +9,5 @@ namespace BallSpace
 
         public int Damage => _damage;
         public MovableComponent MovableComponent => _movableComponent;
-
-        public void PlayDestroyEffect()
-        {
-
-        }
     }
 }

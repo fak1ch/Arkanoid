@@ -45,7 +45,6 @@ namespace Walls
         {
             if (collision.TryGetComponent(out Ball ball))
             {
-                ball.PlayDestroyEffect();
                 OnTriggerWithBall?.Invoke(ball.MovableComponent);
             }
         }

@@ -13,7 +13,7 @@ namespace Blocks
         public Image blockImage;
         public Image bonusImage;
         public RectTransform rectTransform;
-        public float animDuration = 0.2f;
+        public BonusScriptableObject bonusScriptableObject;
 
         [Space(10)]
         public List<Sprite> breakSprites;

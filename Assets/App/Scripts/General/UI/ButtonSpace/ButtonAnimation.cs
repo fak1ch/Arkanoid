@@ -1,108 +1,70 @@
+using ButtonSpace;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DG.Tweening;
-using UnityEngine.Events;
 
-namespace ButtonSpace
+namespace App.Scripts.General.UI.ButtonSpace
 {
-    public class ButtonAnimation : Button
+    public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerClickHandler
     {
-        public ButtonClickedEvent onClickEvent;
+        [SerializeField] private Transform _button;
+        [SerializeField] private Image _buttonImage;
+        [SerializeField] private ButtonScriptableObject _settings;
 
-        public RectTransform rectTransform;
-        public Image buttonImage;
-        public ButtonScriptableObject settings;
-
-        private Color _normalColor;
+        [SerializeField] private UnityEvent _calledMethod;
+        
         private Vector3 _startScale;
-        private bool _isPointerExit = true;
-        private bool _isPointerDown = false;
+        private Color _startColor;
+        private Tween _scaleTween;
+        private Tween _colorTween;
+        private bool _onPointerClickOpen = false;
+        private bool _pointerExit = false;
 
-        private Sequence _pressedSequence;
-        private Sequence _unPressedSequence;
-
-        protected override void Start()
+        private void Awake()
         {
-            _startScale = rectTransform.localScale;
-            _normalColor = buttonImage.color;
-
-            _pressedSequence = CreateSequence(_startScale * settings.PressedScaleProcent, settings.ScaleDuration, 
-                settings.PressedColor, settings.ScaleDuration);
-
-            _unPressedSequence = CreateSequence(_startScale, settings.ScaleDuration, 
-                _normalColor, settings.ScaleDuration);
+            _startScale = _button.transform.localScale;
+            _startColor = _buttonImage.color;
         }
 
-        public override void OnPointerDown(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            _isPointerDown = true;
-            _isPointerExit = false;
-            ButtonPressed();
+            _scaleTween = _button.transform.DOScale(
+                _startScale * _settings.pressedScalePercent, + _settings.scaleDuration);
+            _colorTween = _buttonImage.DOColor(_settings.pressedColor, _settings.changeColorDuration);
+
+            _onPointerClickOpen = false;
+            _pointerExit = false;
         }
 
-        public override void OnPointerUp(PointerEventData eventData)
+        public void OnPointerUp(PointerEventData eventData)
         {
-            _isPointerDown = false;
+            _scaleTween = _button.transform.DOScale(
+                _startScale, _settings.scaleDuration);
+            _colorTween = _buttonImage.DOColor(_startColor, _settings.changeColorDuration);
+
+            if (_pointerExit) return;
             
-            if (_isPointerExit == false)
-                ButtonUnPressed();
+            _onPointerClickOpen = true;
         }
 
-        public override void OnPointerExit(PointerEventData eventData)
+        public void OnPointerExit(PointerEventData eventData)
         {
-            if (_isPointerDown == true)
+            _scaleTween = _button.transform.DOScale(
+                _startScale, _settings.scaleDuration);
+            _colorTween = _buttonImage.DOColor(_startColor, _settings.changeColorDuration);
+
+            _onPointerClickOpen = false;
+            _pointerExit = true;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (_onPointerClickOpen)
             {
-                _isPointerExit = true;
-                ButtonUnPressed();
+                _scaleTween.OnComplete(() => _calledMethod.Invoke());
             }
-            
-            _isPointerDown = false;
-        }
-
-        private void ButtonPressed()
-        {
-            if (_pressedSequence.IsComplete())
-                _pressedSequence.Restart();
-            
-            _pressedSequence.Play();
-        }
-
-        private void ButtonUnPressed()
-        {
-            _pressedSequence.Complete();
-            
-            if (_unPressedSequence.IsComplete())
-                _unPressedSequence.Restart();
-            
-            _unPressedSequence.Play();
-
-            _unPressedSequence.OnComplete(ButtonUnPressedComplete);
-        }
-
-        private void ButtonUnPressedComplete()
-        {
-            if (_isPointerExit == false)
-            {
-                _pressedSequence.Pause();
-                _unPressedSequence.Pause();
-
-                onClickEvent?.Invoke();
-            }
-        }
-
-        private Sequence CreateSequence(Vector3 endScaleValue, float duration, Color endColor, float colorDuration)
-        {
-            var tween1 = rectTransform.DOScale(endScaleValue, duration);
-            var tween2 = buttonImage.DOColor(endColor, colorDuration);
-            
-            Sequence sequence = DOTween.Sequence();
-            sequence.Pause();
-            sequence.Append(tween1);
-            sequence.Insert(0, tween2);
-            sequence.SetAutoKill(false);
-
-            return sequence;
         }
     }
 }

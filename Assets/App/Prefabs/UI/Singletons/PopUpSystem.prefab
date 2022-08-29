@@ -55,9 +55,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1749016443
-  m_SortingOrder: 999
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4875852070084274682
 MonoBehaviour:
@@ -156,4 +156,4 @@ MonoBehaviour:
   - id: 3
     prefab: {fileID: 1561527218, guid: da6ae7246b3546043b80f7be6279f0b9, type: 3}
     poolSize: 0
-  _canvasParent: {fileID: 4875852070084274680}
+  _canvasParent: {fileID: 4875852070084274681}

@@ -17,7 +17,7 @@ namespace App.Scripts.General.PopUpSystemSpace
 
         public virtual void ShowPopUp()
         {
-            transform.SetAsFirstSibling();
+            transform.SetAsLastSibling();
             _customAnimatorShow.StartAllAnimations();
             _customAnimatorShow.OnAnimationsEnd += PopUpOpen;
             OnPopUpStartShowAnimation?.Invoke(this);

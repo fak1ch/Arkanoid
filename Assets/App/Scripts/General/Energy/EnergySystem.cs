@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.General.Singleton;
 using UnityEngine;
 
@@ -15,7 +16,8 @@ namespace App.Scripts.General.Energy
         [SerializeField] private int _maxEnergy;
         [SerializeField] private int _startLevelPrice;
         [SerializeField] private int _addForPassingLevel;
-        
+        [SerializeField] private string _infoTranslateId;
+
         [Space(10)]
         [SerializeField] private int _minutesBetweenAddEnergy;
         [SerializeField] private int _energyValueForAdd;
@@ -59,7 +61,14 @@ namespace App.Scripts.General.Energy
 
         public bool IsEnoughEnergy(int value)
         {
-            return _currentEnergy > value;
+            bool flag = _currentEnergy >= value;
+
+            if (!flag)
+            {
+                PopUpSystem.Instance.ShowInformationPopUp(_infoTranslateId);
+            }
+            
+            return flag;
         }
 
         public void AddEnergy(int value)

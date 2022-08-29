@@ -558,6 +558,7 @@ MonoBehaviour:
   _customAnimatorHide: {fileID: 8658455934636281809}
   _packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
   _packNameText: {fileID: 8658455933508883686}
+  _delatUntilContinue: 0.5
   _galaxyImage: {fileID: 8658455935107380133}
   _galaxyName: {fileID: 8658455933508883680}
   _galaxyLevels: {fileID: 8658455934904639311}
@@ -650,43 +651,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 8658455933767904329}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onClickEvent:
+  _button: {fileID: 8658455933767904330}
+  _buttonImage: {fileID: 8658455933767904329}
+  _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
+  _calledMethod:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8658455933676784329}
-        m_TargetAssemblyTypeName: UISpace.YouWinPanelUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: App.Scripts.General.PopUpSystemSpace.PopUps.GamePassedPopUp,
+          Assembly-CSharp
         m_MethodName: ContinueButtonEvent
         m_Mode: 1
         m_Arguments:
@@ -697,9 +670,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  rectTransform: {fileID: 8658455933767904330}
-  buttonImage: {fileID: 8658455933767904329}
-  settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
 --- !u!1 &8658455933904806473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 8658455933305908531}
   _startValue: 0
-  _endValue: 1
+  _endValue: 0.5
   _duration: 0.4
 --- !u!114 &8658455934603307433
 MonoBehaviour:
@@ -1103,12 +1073,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.5
-  _raysAngle: 90
+  _raysDuration: 2
+  _raysAngle: 120
   _galaxyIcon: {fileID: 8658455935069605750}
   _rays: {fileID: 8658455935034524703}
-  _energy: {fileID: 0}
+  _energy: {fileID: 2464039228375788946}
   _youWinText: {fileID: 8658455934883357257}
   _buttonContinue: {fileID: 8658455933767904330}
+  _confettiEffect: {fileID: 8666011256448105210, guid: c7092cae942c9b14b9a35d7a4ad72f18, type: 3}
 --- !u!1 &8658455934636281805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 8658455933305908531}
-  _startValue: 1
+  _startValue: 0.5
   _endValue: 0
   _duration: 0.4
 --- !u!114 &8658455934636281811
@@ -1919,18 +1891,6 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.0551991
-      objectReference: {fileID: 0}
-    - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.0551991
-      objectReference: {fileID: 0}
-    - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0551991
-      objectReference: {fileID: 0}
-    - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1960,7 +1920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -185.43
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1977,14 +1937,6 @@ PrefabInstance:
     - target: {fileID: 3468078818705741996, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5979579177352169073, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -41
-      objectReference: {fileID: 0}
-    - target: {fileID: 5979579177352169073, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 854ed9cf6eadb4e4793d82466bdcc20d, type: 3}

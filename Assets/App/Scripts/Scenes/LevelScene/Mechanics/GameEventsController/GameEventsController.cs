@@ -101,6 +101,11 @@ namespace GameEventsControllerSpace
             PauseTheGame();
             PopUpSystem.Instance.ShowPopUp<GamePassedPopUp>();
         }
+
+        public PlayerHealth GetPlayerHealth()
+        {
+            return _playerHeath;
+        }
         
         public override void Dispose()
         {
