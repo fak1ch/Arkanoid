@@ -826,6 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 1828440501455706286}
   _buttonImage: {fileID: 1828440500872685768}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}

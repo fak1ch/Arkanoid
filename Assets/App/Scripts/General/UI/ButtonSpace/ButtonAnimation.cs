@@ -9,6 +9,9 @@ namespace App.Scripts.General.UI.ButtonSpace
 {
     public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerClickHandler
     {
+        public bool interactable = true;
+        
+        [Space(10)]
         [SerializeField] private Transform _button;
         [SerializeField] private Image _buttonImage;
         [SerializeField] private ButtonScriptableObject _settings;
@@ -30,6 +33,8 @@ namespace App.Scripts.General.UI.ButtonSpace
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            if (!interactable) return;
+            
             _scaleTween = _button.transform.DOScale(
                 _startScale * _settings.pressedScalePercent, + _settings.scaleDuration);
             _colorTween = _buttonImage.DOColor(_settings.pressedColor, _settings.changeColorDuration);
@@ -40,6 +45,8 @@ namespace App.Scripts.General.UI.ButtonSpace
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            if (!interactable) return;
+            
             _scaleTween = _button.transform.DOScale(
                 _startScale, _settings.scaleDuration);
             _colorTween = _buttonImage.DOColor(_startColor, _settings.changeColorDuration);
@@ -51,6 +58,8 @@ namespace App.Scripts.General.UI.ButtonSpace
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (!interactable) return;
+            
             _scaleTween = _button.transform.DOScale(
                 _startScale, _settings.scaleDuration);
             _colorTween = _buttonImage.DOColor(_startColor, _settings.changeColorDuration);
@@ -61,10 +70,19 @@ namespace App.Scripts.General.UI.ButtonSpace
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (!interactable) return;
+            
             if (_onPointerClickOpen)
             {
-                _scaleTween.OnComplete(() => _calledMethod.Invoke());
+                interactable = false;
+                _scaleTween.OnComplete(ClickHappened);
             }
+        }
+
+        private void ClickHappened()
+        {
+            interactable = true;
+            _calledMethod?.Invoke();
         }
     }
 }

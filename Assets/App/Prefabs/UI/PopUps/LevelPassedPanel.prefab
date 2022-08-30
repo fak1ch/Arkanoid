@@ -556,6 +556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customAnimatorShow: {fileID: 8658455934603307439}
   _customAnimatorHide: {fileID: 8658455934636281809}
+  _buttons:
+  - {fileID: 8658455933767904335}
   _packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
   _packNameText: {fileID: 8658455933508883686}
   _delatUntilContinue: 0.5
@@ -650,6 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 8658455933767904330}
   _buttonImage: {fileID: 8658455933767904329}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}

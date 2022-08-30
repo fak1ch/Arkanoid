@@ -472,6 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 1424839782235966367}
   _buttonImage: {fileID: 1424839782235966360}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
@@ -899,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 1424839783342310645}
   _buttonImage: {fileID: 1424839783342310646}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
@@ -1007,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 1424839783525193225}
   _buttonImage: {fileID: 1424839783525193226}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
@@ -1275,6 +1278,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customAnimatorShow: {fileID: 1424839783939434771}
   _customAnimatorHide: {fileID: 1424839782031295857}
+  _buttons:
+  - {fileID: 1424839783525193220}
+  - {fileID: 1424839782235966362}
+  - {fileID: 1424839783342310640}
   _delayUnitlRestart: 0.5
 --- !u!1 &1424839783815176454
 GameObject:

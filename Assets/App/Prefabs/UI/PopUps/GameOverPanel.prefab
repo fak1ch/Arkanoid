@@ -212,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customAnimatorShow: {fileID: 902009572123841445}
   _customAnimatorHide: {fileID: 902009571964474054}
+  _buttons:
+  - {fileID: 902009572728237163}
   _delayUnitlRestart: 0.5
   _delayAfterBuyLive: 0.5
   _addHealthValue: 1
@@ -811,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 902009572728237166}
   _buttonImage: {fileID: 902009572728237161}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}

@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 4069988981544674670}
   _buttonImage: {fileID: 139911236846356948}
   _settings: {fileID: 11400000, guid: 57e9f0d372e712048925cc71e702e965, type: 2}

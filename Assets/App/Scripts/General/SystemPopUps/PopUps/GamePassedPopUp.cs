@@ -21,8 +21,7 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
         [Space(10)] 
         [SerializeField] private Image _galaxyImage;
         [SerializeField] private TextMeshProUGUI _galaxyLevels;
-
-        private bool _continueButtonOpen = true;
+        
         private PackRepository _currentPack;
 
         private void Awake()
@@ -50,7 +49,6 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
         public void ContinueButtonEvent()
         {
             if (StaticLevelPath.packId == -1) return;
-            if (!_continueButtonOpen) return;
 
             if (_currentPack.CurrentLevelIndex == _currentPack.LevelCount)
             {
@@ -62,19 +60,18 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
                 if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
                 {
                     StartCoroutine(NextLevelRoutine(_currentPack));
-                    _continueButtonOpen = false;
                 }
             }
         }
         
         private IEnumerator NextLevelRoutine(PackRepository currentPack)
         {
+            SetButtonsInteractable(false);
             EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
             yield return new WaitForSeconds(_delatUntilContinue);
             StaticLevelPath.levelPath = currentPack.GetLevelPath();
             SceneLoader.Instance.LoadScene(SceneEnum.Level);
             HidePopUp();
-            _continueButtonOpen = true;
         }
         
         private PackInformation GetPackInfoById(int id)

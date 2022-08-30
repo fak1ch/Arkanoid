@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using App.Scripts.General.PopUpSystemSpace.PopUps.Animator;
 using App.Scripts.General.SystemPopUps.PopUps.Animator;
+using App.Scripts.General.UI.ButtonSpace;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace App.Scripts.General.PopUpSystemSpace
 {
@@ -15,6 +18,7 @@ namespace App.Scripts.General.PopUpSystemSpace
 
         [SerializeField] private CustomAnimator _customAnimatorShow;
         [SerializeField] private CustomAnimator _customAnimatorHide;
+        [SerializeField] private List<ButtonAnimation> _buttons;
 
         public virtual void ShowPopUp()
         {
@@ -30,7 +34,8 @@ namespace App.Scripts.General.PopUpSystemSpace
         protected void HidePopUp()
         {
             OnPopUpStartHideAnimation?.Invoke(this);
-            
+
+            SetButtonsInteractable(false);
             _customAnimatorHide.StartAllAnimations();
             _customAnimatorHide.OnAnimationsEnd += PopUpClose;
         }
@@ -39,6 +44,7 @@ namespace App.Scripts.General.PopUpSystemSpace
         {
             _customAnimatorShow.OnAnimationsEnd -= PopUpOpen;
             OnPopUpOpen?.Invoke(this);
+            SetButtonsInteractable(true);
         }
         
         private void PopUpClose()
@@ -46,6 +52,14 @@ namespace App.Scripts.General.PopUpSystemSpace
             _customAnimatorHide.OnAnimationsEnd -= PopUpClose;
             OnPopUpClose?.Invoke(this);
             gameObject.SetActive(false);
+        }
+
+        protected void SetButtonsInteractable(bool value)
+        {
+            foreach (var button in _buttons)
+            {
+                button.interactable = value;
+            }
         }
     }
 }

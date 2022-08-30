@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac8205cbedb20c4893a526cce7a0e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
   _button: {fileID: 691434967405736290}
   _buttonImage: {fileID: 691434967405736289}
   _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
@@ -330,6 +331,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _customAnimatorShow: {fileID: 691434968017788036}
   _customAnimatorHide: {fileID: 691434968850903270}
+  _buttons:
+  - {fileID: 691434967405736295}
   _translatableText: {fileID: 1509523856764589263}
 --- !u!1 &691434968194542928
 GameObject:
