@@ -23,7 +23,7 @@ namespace App.Scripts.Scenes.MainMenuScene
             LocalizationSystem.Instance.OnLanguageChanged -= SetLanguageInDropDown;
         }
 
-        private void Awake()
+        private void Start()
         {
             InitializeDropdown();
         }
@@ -42,11 +42,13 @@ namespace App.Scripts.Scenes.MainMenuScene
                 _dropdown.options.Add(option);
             }
             
-            SetLanguageInDropDown(LocalizationSystem.Instance.CurrentLanguage);
+            SetLanguageInDropDown();
         }
         
-        private void SetLanguageInDropDown(SystemLanguage language)
+        private void SetLanguageInDropDown()
         {
+            var language = LocalizationSystem.Instance.CurrentLanguage;
+
             for (int i = 0; i < _dropdown.options.Count; i++)
             {
                 if (_dropdown.options[i].text == language.ToString())
@@ -55,6 +57,8 @@ namespace App.Scripts.Scenes.MainMenuScene
                     break;
                 }
             }
+            
+            _dropdown.RefreshShownValue();
         }
         
         public void DropDownValueChangedEvent()

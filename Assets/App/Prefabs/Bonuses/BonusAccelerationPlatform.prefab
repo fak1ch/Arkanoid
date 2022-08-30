@@ -105,7 +105,7 @@ MonoBehaviour:
   _bonusImage: {fileID: 9157377415549720671}
   _boxCollider2D: {fileID: 9157377415549720668}
   _duration: 2
-  _addSpeedValue: 50
+  _addSpeedValue: 80
 --- !u!114 &6375513523779599944
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,26 +1,21 @@
 {
   "blocksMap": [
     [
-      12,
-      8,
-      13
+      16,
+      19,
+      18
     ],
     [
-      9,
+      17,
+      11,
+      16
+    ],
+    [
+      19,
       15,
-      0
-    ],
-    [
-      3,
-      6,
-      4
-    ],
-    [
-      13,
-      5,
-      12
+      17
     ]
   ],
-  "BlocksCountColumn": 4,
+  "BlocksCountColumn": 3,
   "BlocksCountRow": 3
 }

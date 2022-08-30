@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using App.Scripts.General.PopUpSystemSpace.PopUps.Animator;
+using App.Scripts.General.SystemPopUps.PopUps.Animator;
 using UnityEngine;
 
 namespace App.Scripts.General.PopUpSystemSpace
@@ -17,19 +18,21 @@ namespace App.Scripts.General.PopUpSystemSpace
 
         public virtual void ShowPopUp()
         {
+            OnPopUpStartShowAnimation?.Invoke(this);
+
             transform.SetAsLastSibling();
             _customAnimatorShow.StartAllAnimations();
             _customAnimatorShow.OnAnimationsEnd += PopUpOpen;
-            OnPopUpStartShowAnimation?.Invoke(this);
-            
+
             gameObject.SetActive(true);
         }
 
         protected void HidePopUp()
         {
+            OnPopUpStartHideAnimation?.Invoke(this);
+            
             _customAnimatorHide.StartAllAnimations();
             _customAnimatorHide.OnAnimationsEnd += PopUpClose;
-            OnPopUpStartHideAnimation?.Invoke(this);
         }
 
         private void PopUpOpen()
@@ -37,7 +40,7 @@ namespace App.Scripts.General.PopUpSystemSpace
             _customAnimatorShow.OnAnimationsEnd -= PopUpOpen;
             OnPopUpOpen?.Invoke(this);
         }
-
+        
         private void PopUpClose()
         {
             _customAnimatorHide.OnAnimationsEnd -= PopUpClose;

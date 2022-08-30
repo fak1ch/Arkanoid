@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace App.Scripts.General.SceneLoaderSpace
+namespace App.Scripts.General.LoadScene
 {
     [CreateAssetMenu(fileName = "New scene", menuName = "Scenes")]
     public class SceneScriptableObject : ScriptableObject
@@ -14,8 +14,15 @@ namespace App.Scripts.General.SceneLoaderSpace
     [Serializable]
     public partial class SceneInformation
     {
-        public int id;
+        public SceneEnum sceneEnumEnum;
         public string sceneName;
+    }
+
+    public enum SceneEnum
+    {
+        MainMenu,
+        SelectingPack,
+        Level,
     }
     
 #if UNITY_EDITOR

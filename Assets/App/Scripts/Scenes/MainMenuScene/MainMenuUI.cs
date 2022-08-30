@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using App.Scripts.General.Energy;
+using App.Scripts.General.LoadScene;
 using App.Scripts.General.PopUpSystemSpace;
-using App.Scripts.General.SceneLoaderSpace;
-using App.Scripts.Scenes.SelectingPack;
+using App.Scripts.Scenes.SelectPack;
 using LevelGeneration;
 using UnityEngine;
 
@@ -30,11 +31,12 @@ namespace MainMenuSceneSpace
                 var packRepository = new PackRepository(packInfo);
                 StaticLevelPath.levelPath = packRepository.GetLevelPath();
                 StaticLevelPath.packId = packInfo.Id;
-                SceneLoader.Instance.LoadSceneById(2);
+                EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
+                SceneLoader.Instance.LoadScene(SceneEnum.Level);
             }
             else
             {
-                SceneLoader.Instance.LoadSceneById(1);
+                SceneLoader.Instance.LoadScene(SceneEnum.SelectingPack);
             }
         }
         

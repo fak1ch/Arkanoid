@@ -27,6 +27,9 @@ namespace GameEventsControllerSpace
         private LevelSpawner _levelSpawner;
         private InputSystem _inputSystem;
 
+        private bool _gamePassedIsOpen = true;
+        private bool _gameOverIsOpen = true;
+
         public GameEventsController(GameEventsControllerData data , PlayerHealth playerHealth,
             BallManager ballManager, PlayerController playerController, LevelSpawner levelSpawner, 
             BonusSpawner bonusSpawner, BonusManager bonusManager, InputSystem inputSystem)
@@ -50,6 +53,9 @@ namespace GameEventsControllerSpace
 
         public void RestartGame()
         {
+            _gameOverIsOpen = true;
+            _gamePassedIsOpen = true;
+            
             _playerController.RestartPlayerPlatform();
             _playerHeath.RestoreHealth();
 
@@ -66,13 +72,19 @@ namespace GameEventsControllerSpace
 
         private void GameOver()
         {
+            if (!_gameOverIsOpen) return;
+            _gameOverIsOpen = false;
+            
             PauseTheGame();
             PopUpSystem.Instance.ShowPopUp<GameOverPopUp>();
         }
 
         private void GamePassed()
         {
+            if (!_gamePassedIsOpen) return;
+            
             _data.playerPlatform.StartCoroutine(DelayUntilShowGamePassedPopUp());
+            _gamePassedIsOpen = false;
         }
         
         public void PauseTheGame()

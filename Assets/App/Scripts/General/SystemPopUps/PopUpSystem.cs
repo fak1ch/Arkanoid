@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using App.Scripts.General.PopUpSystemSpace.PopUps;
-using App.Scripts.General.SceneLoaderSpace;
+﻿using System.Collections.Generic;
 using App.Scripts.General.Singleton;
 using App.Scripts.General.SystemPopUps.PopUps;
 using App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer;

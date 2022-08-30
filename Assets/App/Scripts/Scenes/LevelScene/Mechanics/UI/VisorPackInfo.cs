@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using App.Scripts.Scenes.SelectingPack;
+using App.Scripts.Scenes.SelectPack;
 using LevelGeneration;
 using TMPro;
 using UnityEditor;

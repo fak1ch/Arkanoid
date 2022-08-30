@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563add9b7a8447f89aa082637264631d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: GalaxyName
+  _id: VILNUS
   _text: {fileID: 8658455933508883680}
 --- !u!1 &8658455933676784324
 GameObject:
@@ -560,7 +560,6 @@ MonoBehaviour:
   _packNameText: {fileID: 8658455933508883686}
   _delatUntilContinue: 0.5
   _galaxyImage: {fileID: 8658455935107380133}
-  _galaxyName: {fileID: 8658455933508883680}
   _galaxyLevels: {fileID: 8658455934904639311}
 --- !u!1 &8658455933767904331
 GameObject:

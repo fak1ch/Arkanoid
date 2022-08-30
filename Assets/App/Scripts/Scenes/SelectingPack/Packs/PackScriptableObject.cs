@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.SelectingPack
+namespace App.Scripts.Scenes.SelectPack
 {
     [CreateAssetMenu(fileName = "New pack", menuName = "Packs")]
     public class PackScriptableObject : ScriptableObject

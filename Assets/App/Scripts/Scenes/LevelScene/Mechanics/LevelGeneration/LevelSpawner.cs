@@ -94,8 +94,15 @@ namespace LevelGeneration
             {
                 for(int k = 0; k < _blocks[i].Length; k++)
                 {
-                    _blocks[i][k].RestoreBlock();
-                    _blocks[i][k].OnBlockDestroy += BlockDestroy;
+                    if (_blocks[i][k].IsDestroyed)
+                    {
+                        _blocks[i][k].RestoreBlock();
+                        _blocks[i][k].OnBlockDestroy += BlockDestroy;
+                    }
+                    else
+                    {
+                        _blocks[i][k].RestoreOnlyHealth();
+                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 ﻿using App.Scripts.General.LocalizationSystemSpace;
-using App.Scripts.Scenes.SelectingPack;
+using App.Scripts.Scenes.SelectPack;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;

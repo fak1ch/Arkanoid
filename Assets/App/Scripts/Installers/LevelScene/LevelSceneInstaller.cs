@@ -2,7 +2,7 @@
 using App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses;
 using App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusKinds;
-using App.Scripts.Scenes.SelectingPack;
+using App.Scripts.Scenes.SelectPack;
 using Architecture;
 using BallSpace;
 using Blocks.BlockTypesSpace;

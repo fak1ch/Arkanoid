@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using App.Scripts.General.SceneLoaderSpace;
+﻿using System.IO;
 using UnityEngine;
 
 namespace App.Scripts.General.Singleton

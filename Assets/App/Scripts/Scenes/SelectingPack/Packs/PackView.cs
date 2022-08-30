@@ -1,15 +1,13 @@
-﻿using System;
-using App.Scripts.General.Energy;
+﻿using App.Scripts.General.Energy;
+using App.Scripts.General.LoadScene;
 using App.Scripts.General.LocalizationSystemSpace;
-using App.Scripts.General.SceneLoaderSpace;
-using ButtonSpace;
+using App.Scripts.Scenes.SelectPack;
 using LevelGeneration;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.SelectingPack
+namespace App.Scripts.Scenes.SelectingPack.Packs
 {
     public class PackView : MonoBehaviour
     {
@@ -69,7 +67,7 @@ namespace App.Scripts.Scenes.SelectingPack
             EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
             StaticLevelPath.levelPath = _packRepository.GetLevelPath();
             StaticLevelPath.packId = _packInformation.Id;
-            SceneLoader.Instance.LoadSceneById(2);
+            SceneLoader.Instance.LoadScene(SceneEnum.Level);
         }
         
         private void ChangePackViewByIndex(int dataIndex)

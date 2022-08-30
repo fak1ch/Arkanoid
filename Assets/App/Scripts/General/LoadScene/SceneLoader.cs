@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using App.Scripts.General.Singleton;
 using DG.Tweening;
@@ -8,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace App.Scripts.General.SceneLoaderSpace
+namespace App.Scripts.General.LoadScene
 {
     public class SceneLoader : MonoSingleton<SceneLoader>
     {
@@ -57,23 +56,23 @@ namespace App.Scripts.General.SceneLoaderSpace
             _fadeTween = _bg.DOFade(endValue, _timeUntilLoadScene);
         }
         
-        public void LoadSceneById(int id)
+        public void LoadScene(SceneEnum sceneEnum)
         {
             OnSceneStartLoading?.Invoke();
-            StartCoroutine(LoadSceneByIdAfterTime(id));
+            StartCoroutine(LoadSceneRoutine(sceneEnum));
         }
         
-        private IEnumerator LoadSceneByIdAfterTime(int id)
+        private IEnumerator LoadSceneRoutine(SceneEnum sceneEnum)
         {
             PlayFadeAnimation(0, 1);
             _fadeTween.OnComplete(SetActiveBackgroundTrue);
             yield return new WaitForSeconds(_timeUntilLoadScene);
-            SceneManager.LoadScene(GetSceneNameById(id));
+            SceneManager.LoadScene(GetSceneNameByEnum(sceneEnum));
         }
 
-        private string GetSceneNameById(int id)
+        private string GetSceneNameByEnum(SceneEnum sceneEnum)
         {
-            return _sceneSO.scenes.FirstOrDefault(scene => scene.id == id)?.sceneName;
+            return _sceneSO.scenes.FirstOrDefault(scene => scene.sceneEnumEnum == sceneEnum)?.sceneName;
         }
     }
 }

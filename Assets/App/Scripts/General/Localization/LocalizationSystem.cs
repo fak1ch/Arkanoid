@@ -15,7 +15,7 @@ namespace App.Scripts.General.LocalizationSystemSpace
         private const string JsonFolderName = @"Languages";
         private const string LanguageKeyPrefs = "Language";
 
-        public event Action<SystemLanguage> OnLanguageChanged;
+        public event Action OnLanguageChanged;
 
         [SerializeField] private SystemLanguage _defaultLanguage;
         [SerializeField] private LanguageScriptableObject _languageSO;
@@ -26,8 +26,10 @@ namespace App.Scripts.General.LocalizationSystemSpace
         public List<SystemLanguage> Languages => _languageSO.languages;
         public SystemLanguage CurrentLanguage => _currentLanguage;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
+            
             var saveLanguage = (SystemLanguage)PlayerPrefs.GetInt(
                 LanguageKeyPrefs, (int)_defaultLanguage);
             SetLanguage(saveLanguage);
@@ -41,7 +43,7 @@ namespace App.Scripts.General.LocalizationSystemSpace
             PlayerPrefs.SetInt(LanguageKeyPrefs, (int)_currentLanguage);
             
             LoadLanguageJsonByEnum(systemLanguage);
-            OnLanguageChanged?.Invoke(systemLanguage);
+            OnLanguageChanged?.Invoke();
         }
 
         public string GetTextById(string id)
