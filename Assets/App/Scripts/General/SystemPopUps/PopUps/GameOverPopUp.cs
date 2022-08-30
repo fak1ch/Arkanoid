@@ -12,14 +12,26 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
         [SerializeField] private int _addHealthValue;
         [SerializeField] private int _minusEnergyValue;
 
+        private bool _buttonRestartOpen = true;
+        
         public void RestartButtonEvent()
         {
+            if (!_buttonRestartOpen) return;
+            
             if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
             {
                 StartCoroutine(RestartGame());
+                _buttonRestartOpen = false;
+                OnPopUpClose += PopUpClose;
             }
         }
 
+        private void PopUpClose(PopUp popUp)
+        {
+            OnPopUpClose -= PopUpClose;
+            _buttonRestartOpen = true;
+        }
+        
         public void BuyLiveButtonEvent()
         {
             if (EnergySystem.Instance.IsEnoughEnergy(_minusEnergyValue))

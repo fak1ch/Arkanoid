@@ -1,7 +1,5 @@
-﻿using System;
-using App.Scripts.General.SceneLoaderSpace;
+﻿using App.Scripts.General.LoadScene;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Scenes.SelectingPack
 {
@@ -9,7 +7,7 @@ namespace App.Scripts.Scenes.SelectingPack
     {
         public void BackButton()
         {
-            SceneLoader.Instance.LoadSceneById(0);
+            SceneLoader.Instance.LoadScene(0);
         }
     }
 }

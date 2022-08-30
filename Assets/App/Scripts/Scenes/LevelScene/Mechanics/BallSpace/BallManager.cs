@@ -89,7 +89,7 @@ namespace BallSpace
             SetSpeedToAllBalls(_speed);
         }
 
-        private void SetSpeedToAllBalls(float newSpeed)
+        private float SetSpeedToAllBalls(float newSpeed)
         {
             _speed = Mathf.Clamp(newSpeed, _data.startBallSpeed, _data.maxBallSpeed);
 
@@ -97,13 +97,19 @@ namespace BallSpace
             {
                 ball.Speed = _speed;
             }
+
+            return _speed;
         }
 
-        public void AddValueToSpeedAllBalls(float addValueSpeed)
+        public float AddValueToSpeedAllBalls(float addValueSpeed)
         {
+            float speedUntilClamp = _speed;
+            
             _speed += addValueSpeed;
             
-            SetSpeedToAllBalls(_speed);
+            float speedAfterClamp = SetSpeedToAllBalls(_speed);
+
+            return speedAfterClamp - speedUntilClamp;
         }
 
         public void ReturnAllBallsToPool()

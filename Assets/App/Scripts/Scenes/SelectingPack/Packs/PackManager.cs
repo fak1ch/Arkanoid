@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.Scenes.SelectingPack.Packs;
 using UnityEngine;
 
-namespace App.Scripts.Scenes.SelectingPack
+namespace App.Scripts.Scenes.SelectPack
 {
     public class PackManager : MonoBehaviour
     {

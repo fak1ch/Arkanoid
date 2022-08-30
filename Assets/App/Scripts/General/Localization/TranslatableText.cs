@@ -1,6 +1,4 @@
-﻿using System;
-using App.Scripts.General.SceneLoaderSpace;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace App.Scripts.General.LocalizationSystemSpace
@@ -12,17 +10,22 @@ namespace App.Scripts.General.LocalizationSystemSpace
 
         private void OnEnable()
         {
-            LocalizationSystem.Instance.OnLanguageChanged += ChangeLanguage;
+            LocalizationSystem.Instance.OnLanguageChanged += UpdateLanguage;
         }
 
         private void OnDisable()
         {
             if (LocalizationSystem.Instance == null) return;
             
-            LocalizationSystem.Instance.OnLanguageChanged -= ChangeLanguage;
+            LocalizationSystem.Instance.OnLanguageChanged -= UpdateLanguage;
         }
 
-        private void ChangeLanguage(SystemLanguage systemLanguage)
+        private void Start()
+        {
+            UpdateLanguage();
+        }
+
+        private void UpdateLanguage()
         {
             _text.text = LocalizationSystem.Instance.GetTextById(_id);
         }
@@ -30,7 +33,7 @@ namespace App.Scripts.General.LocalizationSystemSpace
         public void SetId(string text)
         {
             _id = text;
-            ChangeLanguage(Application.systemLanguage);
+            UpdateLanguage();
         }
     }
 }

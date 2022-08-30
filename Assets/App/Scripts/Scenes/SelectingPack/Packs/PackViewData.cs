@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace App.Scripts.Scenes.SelectingPack
+namespace App.Scripts.Scenes.SelectPack
 {
     [Serializable]
     public class PackViewData

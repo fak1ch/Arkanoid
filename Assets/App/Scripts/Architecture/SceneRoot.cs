@@ -1,6 +1,6 @@
 using Architecture;
 using System.Collections.Generic;
-using App.Scripts.General.SceneLoaderSpace;
+using App.Scripts.General.LoadScene;
 using UnityEngine;
 
 public class SceneRoot : MonoBehaviour

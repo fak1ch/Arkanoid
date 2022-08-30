@@ -22,7 +22,7 @@ namespace App.Scripts.General.Energy
         [SerializeField] private int _minutesBetweenAddEnergy;
         [SerializeField] private int _energyValueForAdd;
 
-        private int _currentEnergy;
+        [SerializeField] private int _currentEnergy;
         private float _timeUntilAddEnergy;
 
         public int MaxEnergy => _maxEnergy;

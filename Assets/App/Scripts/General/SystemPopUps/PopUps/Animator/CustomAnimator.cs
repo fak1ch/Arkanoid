@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Scripts.General.PopUpSystemSpace.PopUps.Animator;
 using UnityEngine;
 
-namespace App.Scripts.General.PopUpSystemSpace.PopUps.Animator
+namespace App.Scripts.General.SystemPopUps.PopUps.Animator
 {
     public class CustomAnimator : MonoBehaviour
     {

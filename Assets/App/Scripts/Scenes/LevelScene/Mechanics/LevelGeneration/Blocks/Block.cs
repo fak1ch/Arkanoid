@@ -65,6 +65,12 @@ namespace Blocks
             transform.DOScale(1, _settings.destroyRestoreAnimDuration);
         }
 
+        public void RestoreOnlyHealth()
+        {
+            healthSystem.RestoreHealth();
+            RefreshDamageSprite();
+        }
+        
         protected virtual void RunAdditionalLogic()
         {
             

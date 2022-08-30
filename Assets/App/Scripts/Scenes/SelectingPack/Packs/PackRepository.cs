@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using App.Scripts.General.PopUpSystemSpace;
 
-namespace App.Scripts.Scenes.SelectingPack
+namespace App.Scripts.Scenes.SelectPack
 {
     public class PackRepository
     {
@@ -102,6 +102,12 @@ namespace App.Scripts.Scenes.SelectingPack
         
         public void ReplaceLevelInPack(LevelData levelData, int levelNumber)
         {
+            if (levelNumber > _levelCount)
+            {
+                PopUpSystem.Instance.ShowInformationPopUp("LevelNotSaved");
+                return;
+            }
+        
             if (_jsonParser.SaveDataToFile(levelData, _jsonPathSave + levelNumber + ".json"))
             {
                 PopUpSystem.Instance.ShowInformationPopUp(

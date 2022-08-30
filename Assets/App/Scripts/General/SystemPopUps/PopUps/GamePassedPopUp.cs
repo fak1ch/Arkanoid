@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using App.Scripts.General.Energy;
+using App.Scripts.General.LoadScene;
 using App.Scripts.General.LocalizationSystemSpace;
-using App.Scripts.General.SceneLoaderSpace;
-using App.Scripts.Scenes.SelectingPack;
+using App.Scripts.Scenes.SelectPack;
 using LevelGeneration;
 using TMPro;
 using UnityEngine;
@@ -19,45 +20,49 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
 
         [Space(10)] 
         [SerializeField] private Image _galaxyImage;
-        [SerializeField] private TextMeshProUGUI _galaxyName;
         [SerializeField] private TextMeshProUGUI _galaxyLevels;
 
-        private void Start()
-        {
-            if (StaticLevelPath.packId == -1) return;
-            var packInfo = GetPackInfoById(StaticLevelPath.packId);
-            var currentPack = new PackRepository(packInfo);
-            _packNameText.SetId(currentPack.Name);
-            _galaxyName.text = currentPack.Name;
-            _galaxyLevels.text = $"{currentPack.CurrentLevelIndex}/{currentPack.LevelCount}";
-            _galaxyImage.sprite = packInfo.sprite;
+        private bool _continueButtonOpen = true;
+        private PackRepository _currentPack;
 
-            OnPopUpOpen += popUp => PopUpOpen(currentPack);
+        private void Awake()
+        {
+            OnPopUpStartShowAnimation += PopUpStartShowAnimation;
+            OnPopUpOpen += PopUpOpen;
         }
 
-        private void PopUpOpen(PackRepository pack)
+        private void PopUpStartShowAnimation(PopUp popUp)
         {
-            _galaxyLevels.text = $"{pack.CurrentLevelIndex + 1}/{pack.LevelCount}";
+            var packInfo = GetPackInfoById(StaticLevelPath.packId);
+            _currentPack = new PackRepository(packInfo);
+            _packNameText.SetId(_currentPack.Name);
+            _galaxyLevels.text = $"{_currentPack.CurrentLevelIndex}/{_currentPack.LevelCount}";
+            _galaxyImage.sprite = packInfo.sprite;
+        }
+
+        private void PopUpOpen(PopUp popUp)
+        {
+            _currentPack.LevelComplete();
+            _galaxyLevels.text = $"{_currentPack.CurrentLevelIndex}/{_currentPack.LevelCount}";
             EnergySystem.Instance.AddEnergy(EnergySystem.Instance.AddForPassingLevel);
         }
-        
+
         public void ContinueButtonEvent()
         {
-            var currentPack = new PackRepository(GetPackInfoById(StaticLevelPath.packId));
+            if (StaticLevelPath.packId == -1) return;
+            if (!_continueButtonOpen) return;
 
-            if (StaticLevelPath.packId != -1)
-                currentPack.LevelComplete();
-
-            if (currentPack.CurrentLevelIndex == currentPack.LevelCount)
+            if (_currentPack.CurrentLevelIndex == _currentPack.LevelCount)
             {
-                SceneLoader.Instance.LoadSceneById(1);
+                SceneLoader.Instance.LoadScene(SceneEnum.SelectingPack);
                 HidePopUp();
             }
             else
             {
                 if (EnergySystem.Instance.IsEnoughEnergy(EnergySystem.Instance.StartLevelPrice))
                 {
-                    StartCoroutine(NextLevelRoutine(currentPack));
+                    StartCoroutine(NextLevelRoutine(_currentPack));
+                    _continueButtonOpen = false;
                 }
             }
         }
@@ -67,8 +72,9 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
             EnergySystem.Instance.MinusEnergy(EnergySystem.Instance.StartLevelPrice);
             yield return new WaitForSeconds(_delatUntilContinue);
             StaticLevelPath.levelPath = currentPack.GetLevelPath();
-            SceneLoader.Instance.LoadSceneById(2);
+            SceneLoader.Instance.LoadScene(SceneEnum.Level);
             HidePopUp();
+            _continueButtonOpen = true;
         }
         
         private PackInformation GetPackInfoById(int id)
