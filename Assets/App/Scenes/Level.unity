@@ -2761,7 +2761,7 @@ MonoBehaviour:
   _debugLevelData:
     packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
     packId: 0
-    levelIndex: 8
+    levelIndex: 6
 --- !u!114 &1873474723
 MonoBehaviour:
   m_ObjectHideFlags: 0

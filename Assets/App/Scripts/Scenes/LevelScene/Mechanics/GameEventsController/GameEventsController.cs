@@ -95,6 +95,8 @@ namespace GameEventsControllerSpace
         public void UnpauseTheGame()
         {
             SetupGameInactive(false);
+            _gameOverIsOpen = true;
+            _gamePassedIsOpen = true;
         }
 
         private void SetupGameInactive(bool value)
