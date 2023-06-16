@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Architecture.AppHandler" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAQAAAAAAAAAIAAAAACAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\App\Scripts\Architecture\AppHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Architecture.CustomBehaviour" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\App\Scripts\Architecture\CustomBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Architecture.Installer" Collapsed="true">
+    <Position X="17.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Architecture\Installer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneRoot" Collapsed="true">
+    <Position X="33.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAiAAAAAAAAAAAAAAAAAAAAAECAAAAAEAAEA=</HashCode>
+      <FileName>Assets\App\Scripts\Architecture\SceneRoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GridLayoutGroupParent" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="33.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAAAEIAAAAAAAAAAABAAAACAAgEA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelCreator\GridLayoutGroupParent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="LevelCreator" Collapsed="true">
+    <Position X="32" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQA0AAAASBAAIBAARAAAQAAAAAAAAAIACEhACAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelCreator\LevelCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Energy.EnergyAddedEffect" Collapsed="true">
+    <Position X="28.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACAAAQEAAABAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Energy\EnergyAddedEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Energy.EnergySystem" Collapsed="true">
+    <Position X="5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQACDAAACIQAASAAQEKASAAAAAgAAAEEAAAIAAAAAo=</HashCode>
+      <FileName>Assets\App\Scripts\General\Energy\EnergySystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Energy.EnergyView" Collapsed="true">
+    <Position X="30.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAIIAMAgAAAAAIAAAEAAAAAAMIAABAAAAiCA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Energy\EnergyView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LoadScene.SceneLoader" Collapsed="true">
+    <Position X="7.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAABAAIAAAAgKAAAAIAAgAgIAAAAACAASBA=</HashCode>
+      <FileName>Assets\App\Scripts\General\LoadScene\SceneLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LoadScene.SceneScriptableObject" Collapsed="true">
+    <Position X="21.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\LoadScene\SceneScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LoadScene.SceneInformation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAAAAAAAAIAAAABAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\LoadScene\SceneScriptableObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="App.Scripts.General.LocalizationSystemSpace.LanguageData">
+    <Position X="41.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Localization\LanguageData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LocalizationSystemSpace.LanguageScriptableObject">
+    <Position X="46.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Localization\LanguageScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LocalizationSystemSpace.LocalizationSystem" Collapsed="true">
+    <Position X="0.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAQCABBAAABBCACBAAAABAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Localization\LocalizationSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.LocalizationSystemSpace.TranslatableText">
+    <Position X="43.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAAIAAAAABAAAAAAAAAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Localization\TranslatableText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParserJsonSpace.JsonParser&lt;T&gt;" Collapsed="true">
+    <Position X="25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAQAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\ParserJson\JsonParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pool.ObjectPool&lt;T&gt;" Collapsed="true">
+    <Position X="21.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAQAAAAAAACAAAAAAAAAAAAAAcAIIAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Pool\ObjectPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pool.PoolData&lt;T&gt;" Collapsed="true">
+    <Position X="30.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Pool\PoolData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.PoolContainer&lt;T&gt;" Collapsed="true">
+    <Position X="2.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAABAAEEAAAAAAAACAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Pool\PoolContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.LevelData" Collapsed="true">
+    <Position X="33.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAQQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\LevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.LevelSpawner" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIBAAAARAQAAYEgAAAAgAAAAAAAAAAEAQAABAAIAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\LevelSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.LevelSpawnerData" Collapsed="true">
+    <Position X="23.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAACAAAAAAAAAACAAAAAAEAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\LevelSpawnerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.StaticLevelPath" Collapsed="true">
+    <Position X="25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\StaticLevelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.WallData" Collapsed="true">
+    <Position X="30.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEEAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Walls\WallData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.WallLimitersData" Collapsed="true">
+    <Position X="32" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Walls\WallLimitersData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LevelGeneration.WallsLimiters" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAQAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Walls\WallsLimiters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.PoolContainer.PoolObjectInformation&lt;T&gt;" Collapsed="true">
+    <Position X="14.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAIAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Pool\PoolObjectInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Singleton.MainSingleton" Collapsed="true">
+    <Position X="2.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Singleton\MainSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Singleton.MonoSingleton&lt;T&gt;" Collapsed="true">
+    <Position X="5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFAAAABAAACAAAAAAAAAAAAAAAAAABQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Singleton\MonoSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUpContainer" Collapsed="true">
+    <Position X="5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUpContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUp" Collapsed="true">
+    <Position X="3.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAADAAIEgMAACAAAEAAAAAAAAABQAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\PopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUpSystem" Collapsed="true">
+    <Position X="9.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACIAAAAAAAADAAAEAAQAAACYAAIAAAABCEA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUpSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.Animator.CustomAnimation" Collapsed="true">
+    <Position X="12.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAIAAAAAgAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\Animator\CustomAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.SystemPopUps.PopUps.Animator.CustomAnimator" Collapsed="true">
+    <Position X="21.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIAAAAgAAAAAAAACAAAEAAACAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\Animator\CustomAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.Animator.KindsOfAnimation.GamePassedAnimation" Collapsed="true">
+    <Position X="10.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAABIAAAEACAAAACEAgACQAAAAAAI=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\Animator\KindsOfAnimation\GamePassedAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.Animator.KindsOfAnimation.ImageFadeAnimation" Collapsed="true">
+    <Position X="12.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAABAAAAAAAAAAQASAgAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\Animator\KindsOfAnimation\ImageFadeAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.Animator.KindsOfAnimation.ScaleAnimation" Collapsed="true">
+    <Position X="15" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAARAAAAAAAAAAAACAgAAAAAAAAAI=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\Animator\KindsOfAnimation\ScaleAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.GameOverPopUp" Collapsed="true">
+    <Position X="0.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAgAAAAEAAAAAAACAIAQAAQAAAAAAAAAAAkAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\GameOverPopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.GamePassedPopUp" Collapsed="true">
+    <Position X="2.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAACCAAAIAAAAAAQAAAAAAEAAAAABAAMFA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\GamePassedPopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.PopUpSystemSpace.PopUps.PauseGamePopUp" Collapsed="true">
+    <Position X="5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAIAAAAAAAAAAAAAAAAAQAAAAAABAAAAkBA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\PauseGamePopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.SystemPopUps.PopUps.InformationPopUp" Collapsed="true">
+    <Position X="7.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAIAAAAAABA=</HashCode>
+      <FileName>Assets\App\Scripts\General\SystemPopUps\PopUps\InformationPopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.UI.ButtonSpace.ButtonAnimation" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="32" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAggBgAIAAAAgCAQAAACAICgAAAAAEAEAAAAAkA=</HashCode>
+      <FileName>Assets\App\Scripts\General\UI\ButtonSpace\ButtonAnimation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ButtonSpace.ButtonScriptableObject" Collapsed="true">
+    <Position X="33.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAACAAAAAAAAAAAAAAAAAAAAAQAAgAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\UI\ButtonSpace\ButtonScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Utils.MapMathUtils" Collapsed="true">
+    <Position X="28.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Utils\MapMathUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.General.Utils.MathUtils" Collapsed="true">
+    <Position X="30.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\General\Utils\MathUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Installers.LevelScene.LevelSceneInstaller" Collapsed="true">
+    <Position X="17.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYAAEAAAAAAIgAAkAAAAAAAAAAAgAAEAAAgAAAAAAAQ=</HashCode>
+      <FileName>Assets\App\Scripts\Installers\LevelScene\LevelSceneInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Installers.LevelScene.DebugLevelData" Collapsed="true">
+    <Position X="26.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAgBAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Installers\LevelScene\LevelSceneInstaller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelCreatorSpace.CustomGridData" Collapsed="true">
+    <Position X="25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAgAAAAQAAoA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelCreator\CustomGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelCreatorSpace.CustomGrid" Collapsed="true">
+    <Position X="23.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAABAIAAAQIAAAAAIAABAAAEiAACAAAAIAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelCreator\CustomGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelCreatorSpace.LevelSaver" Collapsed="true">
+    <Position X="21.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAogAAADAAAAAAAAAAAAAgAAAAAAAACAAAAAABAEAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelCreator\LevelSaver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.Ball" Collapsed="true">
+    <Position X="23.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAADIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\Ball.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.BallFuryTrigger" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAAAAAAAAAAAAAAEAAQAAAAAAAAQAACAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\BallFuryTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.BallManager" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAEBCgAASAAAAAAARIgAIAAABEABAAAAAEAACA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\BallManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.BallManagerData" Collapsed="true">
+    <Position X="26.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAQSAAAAAAAAAAAAAABBAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\BallManagerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.MovableInfo" Collapsed="true">
+    <Position X="33.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAIEAAAAAAAAAAAAAAAAACAQAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\MovableComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BallSpace.MovableComponent" Collapsed="true">
+    <Position X="32" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAACgBAACAQCAAAAQABAEAAgIAJAAAgAAEAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\BallSpace\MovableComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEventsControllerSpace.GameEventsController" Collapsed="true">
+    <Position X="16.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEgAQABCQAAQUEAAAAE0AAABAAAAAAUAAIAAAQgAg=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\GameEventsController\GameEventsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEventsControllerSpace.GameEventsControllerData" Collapsed="true">
+    <Position X="32" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\GameEventsController\GameEventsControllerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthSystemSpace.HealthSystem" Collapsed="true">
+    <Position X="21.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEACgAAQAAAAAQBAAAAgAAAAAAAoCAAAQA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\HealthSystem\HealthSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.Block" Collapsed="true">
+    <Position X="14.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAmMAAgAQgEAAAABggEQAAAAQAIg0AAEgBBA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\Block.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Blocks.BlockData" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAAAAAggAAACAAAAAAAQIAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockScriptableObject" Collapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockInformation" Collapsed="true">
+    <Position X="13.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAICAAAAAAAAAAAAAAAAAABAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlocksSettingsScriptableObject" Collapsed="true">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlocksSettingsScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BonusScriptableObject" Collapsed="true">
+    <Position X="26.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BonusInformation" Collapsed="true">
+    <Position X="15.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.BlockEndlessTNT" Collapsed="true">
+    <Position X="17" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAgQAAAAAAAAAAAAAAIAEAAAAACA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\BlockEndlessTNT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.BlockTNT" Collapsed="true">
+    <Position X="17" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAQAAAAEAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\BlockTNT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.CellSelectable" Collapsed="true">
+    <Position X="9.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAIAAAAAQAQAAAAAAAAAAAAIAAAAAAAAAABAQ=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\CellSelectable\CellSelectable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.CellSelectableColorBomb" Collapsed="true">
+    <Position X="8.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAIgEAAQAIAAAAAAAAAAAAAAAAACY=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\CellSelectable\CellSelectableColorBomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.CellSelectableEndless" Collapsed="true">
+    <Position X="10.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\CellSelectable\CellSelectableEndless.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.ColorBomb" Collapsed="true">
+    <Position X="12.5" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAgQAAQAAAAAAAAAAAIAEAAMAACA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\ColorBomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.ImmortalBlock" Collapsed="true">
+    <Position X="14.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\BlockTypes\ImmortalBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blocks.BlockTypesSpace.BlockContainer" Collapsed="true">
+    <Position X="0.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAGAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\PoolContainers\BlockContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusKinds.BonusesActivator" Collapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABAAAAEBAAAAAAAAAAAgAAAAAAAAEAAAMAAAAAABAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\BonusesActivator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusKinds.BonusesActivatorData" Collapsed="true">
+    <Position X="23.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAACAAAAAAAAABAAAAAQAAAAAIAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\BonusesActivator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusBallOfFury" Collapsed="true">
+    <Position X="9.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Ball\BonusBallOfFury.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusCaptiveBall" Collapsed="true">
+    <Position X="12" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Ball\BonusCaptiveBall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusChangeBallSpeed" Collapsed="true">
+    <Position X="14.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Ball\BonusChangeBallSpeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.Bonus" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQFCEIABDAAAAAACAAAAQAgAEEAAAAQAAAgAAAAAAg=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Bonus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusBlackTag" Collapsed="true">
+    <Position X="0.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Health\BonusBlackTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusSourceOfLife" Collapsed="true">
+    <Position X="3" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Health\BonusSourceOfLife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusChangeSpeedPlatform" Collapsed="true">
+    <Position X="5.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Platform\BonusChangeSpeedPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusKinds.BonusResizePlatform" Collapsed="true">
+    <Position X="7.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\Platform\BonusResizePlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusData" Collapsed="true">
+    <Position X="33.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\SpawnBonuses\BonusData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BallOfFury" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAEAAAAyAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Ball\BallOfFury.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.CaptiveBall" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAEAAAACAAAAAAAAAAAAAAAIgAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Ball\CaptiveBall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.ChangeBallSpeed" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAABEAAAACAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Ball\ChangeBallSpeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BlackTag" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Health\BlackTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.SourceLife" Collapsed="true">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAwAAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Health\SourceLife.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.ChangePlatformSize" Collapsed="true">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAACAAAAgAAAAIAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Platform\ChangePlatformSize.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.ChangePlatformSpeed" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAEAAACAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\Platform\ChangePlatformSpeed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.TimeBonus" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAQBAAAAAAABACAAAAAQAAUAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusKinds\TimeBonuses\TimeBonus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.BonusMovement" Collapsed="true">
+    <Position X="25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusMovement\BonusMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusManager" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAALgAAAAAAAAAAAAAAQAAgEAAAAMAAAAAQAg=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusManager\BonusManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusSpawnerData" Collapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAACAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusSpawner\BonusSpawnerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.LevelGeneration.Bonuses.BonusContainer" Collapsed="true">
+    <Position X="2.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAACAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\PoolContainers\BonusContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.LevelScene.Mechanics.BonusSpace.BonusSpawner" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABGgAAQAAAAQQAAAAAAAAAAAAQAAAAAAQAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusSpawner\BonusSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Walls.BottomWall" Collapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAQSABAAQAAAAAAMAACAAAAAAAAAAAAACAEAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Walls\BottomWall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputSystems.InputSystemInfo" Collapsed="true">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAIAAAAAAAAAAAEAAAAAAAAABEAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\InputSystem\InputSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputSystems.InputSystem" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAgAIAQAAAAAEAAoAAAAAAAAIAAQAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\InputSystem\InputSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerControllerInfo" Collapsed="true">
+    <Position X="23.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAIAAAAAQAAAAAAAAAAAAAAAAAAABBAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerController" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgAEAABCQAAQAAAAAACAAAAAAAgABIBQAAAAEAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.Live" Collapsed="true">
+    <Position X="25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAACAAAAAAAAAAAAAAAACAQAAAQAAAABAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerHealth\Live.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerHealthData" Collapsed="true">
+    <Position X="25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACIAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerHealth\PlayerHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerHealth" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAABAAABCAAAQEAQAAAAAQAAAAAACAAAAAEoAIAAQA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerHealth\PlayerHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerHealthView" Collapsed="true">
+    <Position X="26.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAQgAgCAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerHealth\PlayerHealthView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlatformSizeInfo" Collapsed="true">
+    <Position X="21.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player.PlayerPlatform" Collapsed="true">
+    <Position X="28.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACAAAAgIAAAAAAIAAIAAAAAAAQAAAAEAABAAAMICAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\Player\PlayerPlatform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UISpace.PauseButton" Collapsed="true">
+    <Position X="33.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\UI\PauseButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UISpace.VisorPackInfo" Collapsed="true">
+    <Position X="28.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAAAAAAAIAAAAAAAAAABAAABAAAAAAEAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\UI\VisorPackInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.MainMenuScene.LanguageDropdown">
+    <Position X="45" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQgAAAAgAABAAAAAAAAIAAAAAIAACAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\MainMenuScene\LanguageDropdown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuSceneSpace.MainMenuUI">
+    <Position X="44.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAACACAAAAAAAAAAIAAAAAAAAAAAAAAAAIAAEAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\MainMenuScene\MainMenuUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectPack.PackManager" Collapsed="true">
+    <Position X="25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAACAACAAAAAAAAAAAAAAAAAAQAAAAAAEQAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectPack.PackRepository" Collapsed="true">
+    <Position X="26.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAIACAAEAAAEsAABABAgAQAAAQAAAhCABGgQIAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectPack.PackScriptableObject" Collapsed="true">
+    <Position X="28.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectPack.PackInformation" Collapsed="true">
+    <Position X="23.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAAAAAAAQAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectPack.PackViewData" Collapsed="true">
+    <Position X="32" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAAAIAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackViewData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectingPack.Packs.PackView" Collapsed="true">
+    <Position X="30.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BSAQAAAADABAQAAAQAABgCBAgACCABAEAAIoQAAAAAI=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\Packs\PackView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="App.Scripts.Scenes.SelectingPack.SelectingPackUI" Collapsed="true">
+    <Position X="23.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\SelectingPack\SelectingPackUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Blocks.IInformation&lt;T&gt;" Collapsed="true">
+    <Position X="23.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Blocks\Block.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="App.Scripts.Scenes.LevelScene.Mechanics.Bonuses.IBonusManager" Collapsed="true">
+    <Position X="21.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAgEAAAAEAAAAAAAg=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\LevelGeneration\Bonuses\BonusManager\IBonusManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="App.Scripts.General.LoadScene.SceneEnum" Collapsed="true">
+    <Position X="25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAAAAACA=</HashCode>
+      <FileName>Assets\App\Scripts\General\LoadScene\SceneScriptableObject.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Blocks.BlockTypesSpace.BlockColors" Collapsed="true">
+    <Position X="21.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAADEAAAA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\PoolContainers\BlockContainer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Blocks.BlockTypesSpace.BlockTypes" Collapsed="true">
+    <Position X="23.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAAAAAAAAAAAAgAAAAAgAAAAAAAABIAAAAAAAEA=</HashCode>
+      <FileName>Assets\App\Scripts\Scenes\LevelScene\Mechanics\PoolContainers\BlockContainer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

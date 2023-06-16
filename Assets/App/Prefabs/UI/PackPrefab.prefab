@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1828440501323234807}
   m_Father: {fileID: 1828440500872685769}
@@ -105,6 +106,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500872685769}
   m_RootOrder: 3
@@ -253,6 +255,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1828440500982352631}
   - {fileID: 1828440500272968744}
@@ -334,6 +337,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500872685769}
   m_RootOrder: 0
@@ -410,6 +414,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500872685769}
   m_RootOrder: 4
@@ -558,6 +563,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.193884, y: 1.193884, z: 1.193884}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500272968744}
   m_RootOrder: 0
@@ -692,6 +698,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500872685769}
   m_RootOrder: 5
@@ -767,6 +774,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1828440500872685769}
   m_Father: {fileID: 0}
@@ -827,14 +835,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactable: 1
-  _button: {fileID: 1828440501455706286}
-  _buttonImage: {fileID: 1828440500872685768}
-  _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
-  _calledMethod:
+  OnClickOccured:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1828440501455706451}
-        m_TargetAssemblyTypeName: App.Scripts.Scenes.SelectingPack.PackView, Assembly-CSharp
+        m_TargetAssemblyTypeName: App.Scripts.Scenes.SelectingPack.Packs.PackView,
+          Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -845,6 +851,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _button: {fileID: 1828440501455706286}
+  _buttonImage: {fileID: 1828440500872685768}
+  _settings: {fileID: 11400000, guid: 7658cfde74241c84891724a4713e0ac9, type: 2}
 --- !u!1 &1828440501592661737
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +882,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1828440500872685769}
   m_RootOrder: 2

@@ -10,13 +10,12 @@ namespace App.Scripts.General.UI.ButtonSpace
     public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerClickHandler
     {
         public bool interactable = true;
-        
+        public UnityEvent OnClickOccured;
+
         [Space(10)]
         [SerializeField] private Transform _button;
         [SerializeField] private Image _buttonImage;
         [SerializeField] private ButtonScriptableObject _settings;
-
-        [SerializeField] private UnityEvent _calledMethod;
         
         private Vector3 _startScale;
         private Color _startColor;
@@ -82,7 +81,7 @@ namespace App.Scripts.General.UI.ButtonSpace
         private void ClickHappened()
         {
             interactable = true;
-            _calledMethod?.Invoke();
+            OnClickOccured?.Invoke();
         }
     }
 }

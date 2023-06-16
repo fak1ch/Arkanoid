@@ -22,3 +22,6 @@ MonoBehaviour:
   - sceneEnumEnum: 2
     sceneName: Level
     scene: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+  - sceneEnumEnum: 3
+    sceneName: LevelCreator
+    scene: {fileID: 102900000, guid: 7c2faf7f9965c5145bc7fc7aa7a8f881, type: 3}

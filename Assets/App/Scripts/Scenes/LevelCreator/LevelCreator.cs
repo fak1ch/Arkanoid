@@ -26,11 +26,14 @@ public class LevelCreator : MonoBehaviour
     private List<Block> _blocksPalette = new List<Block>();
     private Block _currentSelectedBlock;
     private CustomGrid _blockGrid;
-    
+
     public int[][] GetConvertedGridToArray => _blockGrid.ConvertCurrentGridToArray();
-    
-    private void Start()
+
+    public void Initialize(int x, int y)
     {
+        _customGridData.gridSize.x = x;
+        _customGridData.gridSize.y = y;
+
         _blockContainer = new BlockContainer(_blocksInformation.blocks, _blocksParent.transform);
         _customGridData.blockContainer = _blockContainer;
         _blockGrid = new CustomGrid(_customGridData);

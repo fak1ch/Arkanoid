@@ -23,6 +23,7 @@ namespace App.Scripts.General.LoadScene
         MainMenu,
         SelectingPack,
         Level,
+        LevelCreator,
     }
     
 #if UNITY_EDITOR
