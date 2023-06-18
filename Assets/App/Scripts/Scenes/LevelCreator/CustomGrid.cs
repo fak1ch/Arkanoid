@@ -4,6 +4,7 @@ using System.Linq;
 using App.Scripts.General.Utils;
 using Blocks;
 using Blocks.BlockTypesSpace;
+using LevelGeneration;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -57,6 +58,20 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
                 for (int k = 0; k < _gridMap[i].Length; k++)
                 {
                     CreateBlock(i,k);
+                }
+            }
+        }
+
+        public void InitializeGridByLevelData(LevelData levelData)
+        {
+            for (int i = 0; i < _gridMap.Length; i++)
+            {
+                for (int k = 0; k < _gridMap[i].Length; k++)
+                {
+                    Block block = _blockContainer.GetObjectFromPoolById(levelData.blocksMap[i][k]);
+                    block.gameObject.SetActive(true);
+                    
+                    ReplaceBlock(new []{i,k}, block);
                 }
             }
         }

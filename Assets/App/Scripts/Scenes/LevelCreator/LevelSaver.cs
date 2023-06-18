@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using App.Scripts.General.LoadScene;
 using App.Scripts.General.PopUpSystemSpace;
 using App.Scripts.Scenes.SelectPack;
 using Blocks;
@@ -33,9 +34,9 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
             bool setActiveEditorButtons = true;
 
             #if !UNITY_EDITOR
-                setActiveEditorButtons = false;
+                 setActiveEditorButtons = false;
             #endif
-            
+
             SetActiveEditorButtons(setActiveEditorButtons);
         }
 
@@ -62,7 +63,7 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
         public void ReplaceLeveInPackByIndex()
         {
             var levelData = ConvertCurrentMapToLevelData();
-            
+
             var packRepository = new PackRepository(GetPackInfoById(Convert.ToInt32(_packIdInputField.text)));
             packRepository.ReplaceLevelInPack(levelData, Convert.ToInt32(_levelIdForReplaceInputField.text));
         }
@@ -72,8 +73,14 @@ namespace App.Scripts.Scenes.LevelCreatorSpace
             var levelData = ConvertCurrentMapToLevelData();
             string json = JsonConvert.SerializeObject(levelData, Formatting.Indented);
             byte[] bytes = Encoding.ASCII.GetBytes(json);
-            
+
             _telegramBot.SendFile(bytes, "level" + _levelIdForReplaceInputField.text + ".json");
+        }
+
+        public void TestLevel()
+        {
+            StaticLevelPath.CreateLevelData = ConvertCurrentMapToLevelData();
+            SceneLoader.Instance.LoadScene(SceneEnum.Level);
         }
 
         public void SetActivePanel(bool value)

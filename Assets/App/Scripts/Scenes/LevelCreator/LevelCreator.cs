@@ -42,6 +42,11 @@ public class LevelCreator : MonoBehaviour
         StartCoroutine(SetGridLayoutGroupActiveRoutine(false, _gridLayoutTimeUntilActive));
     }
 
+    public void LoadLevelData(LevelData levelData)
+    {
+        _blockGrid.InitializeGridByLevelData(levelData);
+    }
+
     private void InitializePalette<T>(PoolObjectInformation<T>[] infos, Transform parent, 
         PoolContainer<T> poolContainer, List<T> listContainer) where T : MonoBehaviour
     {
@@ -62,19 +67,6 @@ public class LevelCreator : MonoBehaviour
         CheckPalette(ref _currentSelectedBlock, _blocksParent, _blocksPalette, _blockContainer);
     }
 
-    public void ConvertCurrentMapToLevelData()
-    {
-        int[][] blocksMap = _blockGrid.ConvertCurrentGridToArray();
-        
-        LevelData levelData = new LevelData
-        {
-            blocksMap = blocksMap
-        };
-
-        JsonParser<LevelData> jsonParser = new JsonParser<LevelData>();
-        jsonParser.SaveDataToFile(levelData, StaticLevelPath.levelPath);
-    }
-    
     private void CheckGridParent()
     {
         if (_customGridData.blockParent.PointerOverObject && Input.GetKeyUp(KeyCode.Mouse0))

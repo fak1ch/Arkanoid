@@ -70,11 +70,16 @@ namespace Installers.LevelScene
         
         private LevelData LoadLevelDataFromJson(string levelDataPath)
         {
-            if (StaticLevelPath.packId == -1)
+            if (StaticLevelPath.packId == null)
             {
                 var packInfo = _debugLevelData.packScriptableObject.GetPackById(_debugLevelData.packId);
                 var packRepository = new PackRepository(packInfo);
                 levelDataPath = packRepository.GetLevelPathByIndex(_debugLevelData.levelIndex);
+            }
+
+            if (StaticLevelPath.CreateLevelData != null)
+            {
+                return StaticLevelPath.CreateLevelData;
             }
             
             var jsonParser = new JsonParser<LevelData>();

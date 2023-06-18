@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _packScriptableObject: {fileID: 11400000, guid: 1b8ef6e3a612ed6458a29d9a9f77ce03, type: 2}
   _packImage: {fileID: 1469058364}
-  _packProcent: {fileID: 170756349}
+  _packPercent: {fileID: 170756349}
   _levelCount: {fileID: 881622417}
 --- !u!1 &1860846188
 GameObject:

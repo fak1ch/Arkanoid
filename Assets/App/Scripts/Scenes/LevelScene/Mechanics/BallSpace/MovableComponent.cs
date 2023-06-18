@@ -1,5 +1,6 @@
 ﻿using Player;
 using System;
+using App.Scripts.Scenes.General;
 using Blocks;
 using Pool;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace BallSpace
     public class MovableComponent : MonoBehaviour
     {
         [SerializeField] private MovableInfo _movableInfo;
+        [SerializeField] private SoundEffect _bounceSoundEffect;
         
         private Vector2 _velocityForReflection;
         private Vector2 _velocityUntilPauseGame;
@@ -86,6 +88,7 @@ namespace BallSpace
         private void OnCollisionEnter2D(Collision2D collision)
         {
             _movableInfo.rigidbody2D.velocity = Vector2.Reflect(_velocityForReflection, collision.contacts[0].normal);
+            _bounceSoundEffect.Play();
         }
 
         private void OnCollisionExit2D(Collision2D collision)

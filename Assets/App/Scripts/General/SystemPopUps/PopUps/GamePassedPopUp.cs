@@ -32,7 +32,9 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
 
         private void PopUpStartShowAnimation(PopUp popUp)
         {
-            var packInfo = GetPackInfoById(StaticLevelPath.packId);
+            if (StaticLevelPath.packId == null) return;
+            
+            var packInfo = GetPackInfoById(StaticLevelPath.packId.Value);
             _currentPack = new PackRepository(packInfo);
             _packNameText.SetId(_currentPack.Name);
             _galaxyLevels.text = $"{_currentPack.CurrentLevelIndex}/{_currentPack.LevelCount}";
@@ -41,6 +43,8 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
 
         private void PopUpOpen(PopUp popUp)
         {
+            if (StaticLevelPath.packId == null) return;
+            
             _currentPack.LevelComplete();
             _galaxyLevels.text = $"{_currentPack.CurrentLevelIndex}/{_currentPack.LevelCount}";
             EnergySystem.Instance.AddEnergy(EnergySystem.Instance.AddForPassingLevel);
@@ -48,7 +52,12 @@ namespace App.Scripts.General.PopUpSystemSpace.PopUps
 
         public void ContinueButtonEvent()
         {
-            if (StaticLevelPath.packId == -1) return;
+            if (StaticLevelPath.CreateLevelData != null)
+            {
+                SceneLoader.Instance.LoadScene(SceneEnum.LevelCreator);
+                HidePopUp();
+                return;
+            }
 
             if (_currentPack.CurrentLevelIndex == _currentPack.LevelCount)
             {

@@ -10,6 +10,7 @@ namespace LevelGeneration
     public static class StaticLevelPath
     {
         public static string levelPath = string.Empty;
-        public static int packId = -1;
+        public static int? packId = null;
+        public static LevelData CreateLevelData = null;
     }
 }
